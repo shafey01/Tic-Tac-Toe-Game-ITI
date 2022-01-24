@@ -4,11 +4,14 @@
  */
 package tic.tac.toe;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  *
@@ -16,35 +19,53 @@ import java.net.Socket;
  */
 public class Client {
 
+    Boolean isOn;
     Socket clientSocket;
-    Object Oo = new Object(2, "X");
-    String s = "X";
-    int id = 4;
 
     public Client() throws ClassNotFoundException {
+        isOn = true;
+
         try {
             InetAddress ip = InetAddress.getLocalHost();
             System.out.println(ip);
             this.clientSocket = new Socket(ip, 5000);
-            ObjectInputStream objIn = new ObjectInputStream(clientSocket.getInputStream());
-            ObjectOutputStream objOut = new ObjectOutputStream(clientSocket.getOutputStream());
+            DataInputStream readFromServer = new DataInputStream(clientSocket.getInputStream());
+            DataOutputStream writeToServer = new DataOutputStream(clientSocket.getOutputStream());
+
+            Thread t = new Thread() {
+
+                @Override
+                public void run() {
+                    String str = "";
+                    while (isOn) {
+                        try {
+                            str = readFromServer.readUTF();
+                            System.out.println(str);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                }
+            };
+            t.start();
+
+            Scanner scan = new Scanner(System.in);
+            String str = "";
 
             while (true) {
-
-                ObjectInputStream readFromServer;
-                ObjectOutputStream writeToServer;
-
-                try {
-
-                    readFromServer = (ObjectInputStream) objIn.readObject();
-                    System.out.println(readFromServer);
-                    objOut.writeObject(s);
-                    objOut.writeObject(id);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                str = scan.nextLine();
+                writeToServer.writeUTF("From Client:   " + str);
+                if (str.equalsIgnoreCase("exit")) {
+                    break;
                 }
+
             }
+            isOn = false;
+            readFromServer.close();
+            writeToServer.close();
+            clientSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,8 @@
  */
 package tic.tac.toe;
 
+import java.util.Scanner;
+
 /**
  *
  * @author MBR
@@ -11,7 +13,29 @@ package tic.tac.toe;
 public class ServerMain {
 
     public static void main(String[] args) {
-        new Server();
+        Scanner scan = new Scanner(System.in);
+if(scan.next().equals("server"))
+{
+
+Server s = new Server();
+
+
+}
+else
+{
+try{
+Client c = new Client();
+}
+catch(ClassNotFoundException e)
+{
+e.printStackTrace();
+}
+}
+        
+
+
+
+
     }
 
 }

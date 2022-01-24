@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -20,34 +21,56 @@ public class Server {
     private ServerSocket serverSock;
     private Socket internalSock;
 
-    private Hashtable<Integer, ClientHandler> clientsTable = new Hashtable<Integer, ClientHandler>();
-
- Server() {
+//    private Hashtable<Integer, ClientHandler> clientsTable = new Hashtable<Integer, ClientHandler>();
+    Server() {
 
         System.out.println("tic.tac.toe.Server.<init>()");
         try {
             serverSock = new ServerSocket(5000);
+            Socket clientSocket = serverSock.accept();
+            ClientHandler clientHandler1 = new ClientHandler(clientSocket);
+            clientHandler1.start();
+
+            clientSocket = serverSock.accept();
+            ClientHandler clientHandler2 = new ClientHandler(clientSocket);
+            clientHandler2.start();
+            ArrayList<String> message;
             while (true) {
-                internalSock = serverSock.accept();
-//                new ClientHandler(internalSock);
-                ObjectInputStream readFromClient = new ObjectInputStream(internalSock.getInputStream());
-                ObjectOutputStream writeToClient = new ObjectOutputStream(internalSock.getOutputStream());
 
-                while (true) {
-                    writeToClient.writeUTF("Hi From Server");
-                    writeToClient.writeObject(this);
+                message = clientHandler1.getMessages();
 
-                    String str = readFromClient.readUTF();
-                    System.err.println(str);
-                    try {
-                        Object o = (Object) readFromClient.readObject();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+                if (!message.isEmpty()) {
+
+                    synchronized (message) {
+                        for (int i = 0; i < message.size(); i++) {
+                            clientHandler2.sendMessage(message.get(i));
+
+                        }
+                        message.clear();
+
                     }
-                    readFromClient.close();
-                    writeToClient.close();
-                    internalSock.close();
 
+                }
+
+                message = clientHandler2.getMessages();
+
+                if (!message.isEmpty()) {
+
+                    synchronized (message) {
+                        for (int i = 0; i < message.size(); i++) {
+                            clientHandler1.sendMessage(message.get(i));
+
+                        }
+                        message.clear();
+
+                    }
+
+                }
+
+                try {
+                    Thread.sleep(5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -58,7 +81,6 @@ public class Server {
         }
 
     }
-
 
 //    private class ClientHandler extends Thread {
 //
@@ -95,16 +117,9 @@ public class Server {
 //            }
 //        }
 //    }
-
-   
-
 //    public void sendToAll() {
 //        for (Entry<Integer, ClientHandler> client : clientsTable.entrySet()) {
 //            client.objOut.writeObject();
 //        }
 //    }
-
-
-
-
 }
