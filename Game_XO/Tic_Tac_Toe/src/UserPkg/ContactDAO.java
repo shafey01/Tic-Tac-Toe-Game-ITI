@@ -7,6 +7,7 @@ package UserPkg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +25,8 @@ public class ContactDAO {
     public static final String USER = "root";
     public static final String PASS = "";
     Connection con;
-    Vector<ContactPerson> contactperson;
+    PreparedStatement pst=null;
+    Vector<ContactPerson> contactPerson;
     
     public ContactDAO() {
         try {
@@ -50,31 +52,57 @@ public class ContactDAO {
         }
     }
     
-    public Vector<ContactPerson> getContacts() {
-         contactperson = new Vector<ContactPerson>();
+    public Vector<ContactPerson> getUsers() {
+         contactPerson = new Vector<ContactPerson>();
         try {
             Statement stat = con.createStatement();
             String query = "select * from user";
             ResultSet st = stat.executeQuery(query);
             while(st.next()) {
-                int id = st.getInt(1);
-                String username = st.getString(2);
-                String password = st.getString(3);
-                String total_score = st.getString(4);
-                ContactPerson contact = new ContactPerson(id,username,password,total_score);
-                contactperson.add(contact);
+               
+                ContactPerson contact = new ContactPerson(st.getInt("user_id"),st.getString("username"),st.getString("password"),st.getInt("total_score"));
+                contactPerson.add(contact);
             }
             stat.close();
         } catch (SQLException ex) {
             Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return contactperson;
+        return contactPerson;
     }
+    public Vector<ContactPerson> getUserByName(String name) {
+         contactPerson = new Vector<ContactPerson>();
+        try {
+            pst= con.prepareStatement("select * from user where username = ?");
+            pst.setString(1, name);          
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()) {
+
+                ContactPerson contact = new ContactPerson(rs.getInt("user_id"),rs.getString("username"),rs.getString("password"),rs.getInt("total_score"));
+                contactPerson.add(contact);
+            }
+          pst.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contactPerson;
+    }
+    public void createNewUser(ContactPerson newPerson) throws SQLException{
+
+        PreparedStatement pst= con.prepareStatement("INSERT INTO user(username, password, total_score) VALUES (  ? ,? , 0 )");
+        pst.setString(1 ,newPerson.getUsername());
+        pst.setString(2 ,newPerson.getPassword());
+        pst.execute();
     
-    public static void main(String[] args) {
+}
+    
+    public static void main(String[] args) throws SQLException {
         ContactDAO cd = new ContactDAO();
         cd.connect();
-        Vector<ContactPerson> tbData = cd.getContacts();
+        Vector<ContactPerson> tbData = cd.getUserByName("menna");
+//        ContactPerson person = new ContactPerson();
+//        person.setUsername("menna");
+//        person.setPassword("1234");
+//        cd.createNewUser(person);
         cd.closeConnection();
         for(ContactPerson i : tbData) {
             System.out.println(i.getUser_id()+" "+i.getUsername()+" "+i.getPassword()+" "+i.getTotal_score());

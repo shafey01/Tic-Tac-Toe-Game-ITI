@@ -13,9 +13,13 @@ public class ContactPerson {
     int user_id;
     String username;
     String password;
-    String total_score;
-
-    public ContactPerson(int user_id, String username, String password, String total_score) {
+    int total_score;
+    public ContactPerson(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.total_score = 0;
+    }
+    public ContactPerson(int user_id, String username, String password, int total_score) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
@@ -37,7 +41,7 @@ public class ContactPerson {
         this.password = password;
     }
 
-    public void setTotal_score(String total_score) {
+    public void setTotal_score(int total_score) {
         this.total_score = total_score;
     }
 
@@ -53,7 +57,7 @@ public class ContactPerson {
         return password;
     }
 
-    public String getTotal_score() {
+    public int getTotal_score() {
         return total_score;
     }
     

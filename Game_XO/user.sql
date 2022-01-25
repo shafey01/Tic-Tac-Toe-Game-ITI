@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2022 at 10:27 PM
+-- Generation Time: Jan 25, 2022 at 01:16 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -41,7 +41,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `username`, `password`, `total_score`) VALUES
 (1, 'ahmed', '1999', 5),
 (2, 'mostafa', '2hgu', 8),
-(3, 'omar', 'omar99', 3);
+(3, 'omar', 'omar99', 3),
+(4, 'menna', '1234', 0);
 
 --
 -- Indexes for dumped tables
@@ -51,7 +52,8 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `total_score`) VALUES
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -61,7 +63,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
