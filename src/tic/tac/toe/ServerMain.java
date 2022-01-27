@@ -1,8 +1,9 @@
+package ClientServer;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tic.tac.toe;
 
 import java.util.Scanner;
 
@@ -13,28 +14,23 @@ import java.util.Scanner;
 public class ServerMain {
 
     public static void main(String[] args) {
+
+System.out.println("Blocking0");
         Scanner scan = new Scanner(System.in);
-if(scan.next().equals("server"))
-{
+System.out.println("Blocking1");
+String s = scan.next();
+        if (s.equals("server")) {
 
-Server s = new Server();
+            new Server();
 
-
-}
-else
-{
-try{
-Client c = new Client();
-}
-catch(ClassNotFoundException e)
-{
-e.printStackTrace();
-}
-}
-        
-
-
-
+        } else {
+            try {
+                System.out.println("Blocking2");
+                new Client(s);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 

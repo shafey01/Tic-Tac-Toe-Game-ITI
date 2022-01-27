@@ -1,14 +1,19 @@
+package ClientServer;
+
+import java.io.BufferedReader;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tic.tac.toe;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
@@ -21,26 +26,33 @@ public class Client {
 
     Boolean isOn;
     Socket clientSocket;
+    String id;
+    PrintWriter writeToServer;
+    BufferedReader readFromServer;
 
-    public Client() throws ClassNotFoundException {
+    public Client(String _id) throws ClassNotFoundException {
         isOn = true;
-
+        id = _id;
+        String messageToServer;
+        // Scanner scan = new Scanner(System.in);
         try {
             InetAddress ip = InetAddress.getLocalHost();
             System.out.println(ip);
-            this.clientSocket = new Socket(ip, 5000);
-            DataInputStream readFromServer = new DataInputStream(clientSocket.getInputStream());
-            DataOutputStream writeToServer = new DataOutputStream(clientSocket.getOutputStream());
+            this.clientSocket = new Socket(ip, 6001);
+            readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            writeToServer = new PrintWriter(clientSocket.getOutputStream());
 
             Thread t = new Thread() {
 
                 @Override
                 public void run() {
-                    String str = "";
+
+                    String messageFromServer;
                     while (isOn) {
                         try {
-                            str = readFromServer.readUTF();
-                            System.out.println(str);
+                            // writeToServer.writeUTF("login");
+                            messageFromServer = readFromServer.readLine();
+                            System.out.println(messageFromServer);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -51,17 +63,15 @@ public class Client {
             };
             t.start();
 
-            Scanner scan = new Scanner(System.in);
-            String str = "";
-
             while (true) {
-                str = scan.nextLine();
-                writeToServer.writeUTF("From Client:   " + str);
-                if (str.equalsIgnoreCase("exit")) {
+                messageToServer = new String(id + ".3" + ".hello client3");
+                writeToServer.println(messageToServer);
+                if (messageToServer.equalsIgnoreCase("exit")) {
                     break;
                 }
 
             }
+
             isOn = false;
             readFromServer.close();
             writeToServer.close();
@@ -72,14 +82,14 @@ public class Client {
 
     }
 
-    public static void main(String[] args) {
-        try {
-            new Client();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-
-        }
-
-    }
+//     public static void main(String[] args) {
+//     try {
+//     new Client();
+//     } catch (ClassNotFoundException e) {
+//    e.printStackTrace();
+//
+//     }
+//
+//     }
 
 }
