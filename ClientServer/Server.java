@@ -14,8 +14,10 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  *
@@ -61,13 +63,18 @@ public class Server {
                     String[] tokens = messageFromClient.split("\\.");
 
                     clientsTable.put(tokens[0], this);
+                    for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
+                        System.out.print(hashEntry.getKey() + "   " + hashEntry.getValue());
+                    }
+                    System.out.println();
                     writeToClient.println("hello " + tokens[0]);
 
                     if (clientsTable.get(tokens[1]) != null) {
-                        clientsTable.get(tokens[1]).writeToClient.println("message is" + tokens[2]);
+                        clientsTable.get(tokens[1]).writeToClient.println("message from" + tokens[0] + tokens[2]);
                     } else {
                         writeToClient.println("not connected yet");
                     }
+
                     // if (messageFromClient.equals(new String("login"))) {
                     // writeToClient.println("you will login");
                     // }
@@ -91,15 +98,7 @@ public class Server {
             while (true) {
                 internalSock = serverSock.accept();
                 new ClientHandler(internalSock).start();
-
-                try {
-                    Thread.sleep(5);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
             }
-
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
