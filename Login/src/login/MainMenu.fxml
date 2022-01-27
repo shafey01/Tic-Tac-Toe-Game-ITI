@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #032358;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="login.MainMenuController">
+   <children>
+      <ImageView fitHeight="258.0" fitWidth="334.0" layoutX="150.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Screenshot%20(42).png" />
+         </image>
+      </ImageView>
+      <Button layoutX="101.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: F89A36;" text="AI" textFill="#032358">
+         <font>
+            <Font name="Yu Gothic Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="378.0" layoutY="325.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="142.0" style="-fx-background-color: F89A36;" text="Online" textFill="#032358">
+         <font>
+            <Font name="Yu Gothic Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

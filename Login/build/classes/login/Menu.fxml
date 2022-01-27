@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="808.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
+         <children>
+            <Button cancelButton="true" layoutX="65.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: F89A36;" text="Exit" textFill="#032358" AnchorPane.leftAnchor="30.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <font>
+                  <Font name="Yu Gothic Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="710.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: F89A36;" text="Setting" textFill="#032358" AnchorPane.rightAnchor="30.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <font>
+                  <Font name="Yu Gothic Bold" size="14.0" />
+               </font>
+            </Button>
+            <Text fill="#f89a36" fontSmoothingType="LCD" layoutX="290.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tic Tac Toe">
+               <font>
+                  <Font name="Yu Gothic Bold" size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+   <right>
+      <SplitPane dividerPositions="0.4237213403880071" orientation="VERTICAL" prefHeight="455.0" prefWidth="234.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="229.0">
+               <children>
+                  <VBox layoutX="47.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField editable="false" text="                     Online">
+                           <font>
+                              <Font name="Yu Gothic Bold" size="14.0" />
+                           </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="280.0" text="User on">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField editable="false" text="                   Offline">
+                           <font>
+                              <Font name="Yu Gothic Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="280.0" text="User off">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+         <effect>
+            <DropShadow />
+         </effect>
+      </SplitPane>
+   </right>
+   <center>
+      <AnchorPane prefHeight="452.0" prefWidth="593.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
+         <effect>
+            <InnerShadow height="35.04" radius="17.0175" width="35.03" />
+         </effect>
+         <children>
+            <Button layoutX="187.0" layoutY="249.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="198.0" style="-fx-background-color: F89A36;" text="Local " textFill="#032358">
+               <font>
+                  <Font name="Yu Gothic Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button layoutX="187.0" layoutY="126.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" style="-fx-background-color: F89A36;" text="Find match" textFill="#032358">
+               <font>
+                  <Font name="Yu Gothic Bold" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
