@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 07:15 PM
+-- Generation Time: Jan 28, 2022 at 11:06 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -29,9 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `player` (
   `gameId` int(11) NOT NULL,
-  `playerId` int(11) NOT NULL,
-  `gameScore` int(11) NOT NULL
+  `userId` int(11) NOT NULL,
+  `totalScore` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `player`
+--
+
+INSERT INTO `player` (`gameId`, `userId`, `totalScore`) VALUES
+(1, 1, 0),
+(1, 2, 0);
 
 --
 -- Indexes for dumped tables
@@ -41,8 +49,8 @@ CREATE TABLE `player` (
 -- Indexes for table `player`
 --
 ALTER TABLE `player`
-  ADD KEY `gameId` (`gameId`),
-  ADD KEY `player_ibfk_1` (`playerId`);
+  ADD PRIMARY KEY (`gameId`,`userId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Constraints for dumped tables
@@ -52,7 +60,8 @@ ALTER TABLE `player`
 -- Constraints for table `player`
 --
 ALTER TABLE `player`
-  ADD CONSTRAINT `player_ibfk_1` FOREIGN KEY (`playerId`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `player_ibfk_1` FOREIGN KEY (`gameId`) REFERENCES `game` (`id`),
+  ADD CONSTRAINT `player_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

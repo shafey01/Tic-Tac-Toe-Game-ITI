@@ -5,8 +5,6 @@
  */
 package PlayerPkg;
 
-import UserPkg.ContactDAO;
-import UserPkg.ContactPerson;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,7 +41,7 @@ public class PlayerDAO {
         try {
             con = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException ex) {
-            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -51,7 +49,7 @@ public class PlayerDAO {
         try {
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -71,7 +69,7 @@ public class PlayerDAO {
             }
             stat.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return playerTable;
     }
@@ -89,7 +87,7 @@ public class PlayerDAO {
             }
           pst.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return playerTable;
     }
