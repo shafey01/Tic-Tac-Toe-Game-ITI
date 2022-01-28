@@ -27,6 +27,7 @@ public class Client {
     Boolean isOn;
     Socket clientSocket;
     String id;
+    String password;
     PrintWriter writeToServer;
     BufferedReader readFromServer;
 
@@ -34,11 +35,11 @@ public class Client {
         isOn = true;
         id = _id;
         String messageToServer;
-        // Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         try {
             InetAddress ip = InetAddress.getLocalHost();
             System.out.println(ip);
-            this.clientSocket = new Socket(ip, 6001);
+            this.clientSocket = new Socket(ip, 7001);
             readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             writeToServer = new PrintWriter(clientSocket.getOutputStream());
 
@@ -48,7 +49,7 @@ public class Client {
                 public void run() {
 
                     String messageFromServer;
-                    while (isOn) {
+                    while (true) {
                         try {
                             // writeToServer.writeUTF("login");
                             messageFromServer = readFromServer.readLine();
@@ -63,10 +64,33 @@ public class Client {
             };
             t.start();
 
+            BufferedReader keyBoard = new BufferedReader(new InputStreamReader(System.in));
+            String clientInput;
+            System.out.println("Enter you input: ");
+            clientInput = keyBoard.readLine();
             while (true) {
-                messageToServer = new String(id + ".3" + ".hello client3");
-                writeToServer.println(messageToServer);
-                if (messageToServer.equalsIgnoreCase("exit")) {
+
+                if (clientInput.equals(new String("login"))) {
+                    messageToServer = new String("login" + "." + id);
+                    writeToServer.println(messageToServer);
+                    clientInput = new String("signup");
+                    // System.out.println("sent " + messageToServer);
+                }
+
+                else if (clientInput.equals(new String("signup"))) {
+                    messageToServer = new String("signup" + "." + id);
+                    writeToServer.println(messageToServer);
+                }
+
+                else if (clientInput.equals(new String("invite"))) {
+                    String idToInvite = scan.next();
+                    messageToServer = new String("invite." + id + "." + idToInvite + ".helloclient3");
+                    writeToServer.println(messageToServer);
+                }
+
+                else if (clientInput.equals(new String("exit"))) {
+                    messageToServer = "exit";
+                    writeToServer.println(messageToServer);
                     break;
                 }
 

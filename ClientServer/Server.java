@@ -1,21 +1,19 @@
 package ClientServer;
 
-import java.io.BufferedReader;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.Key;
-import java.util.ArrayList;
+
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -35,10 +33,12 @@ public class Server {
         Socket internalSockHandler;
         PrintWriter writeToClient;
         BufferedReader readFromClient;
+        String clientID;
+        // boolean isOn;
 
-        public ClientHandler(Socket clientSocket) {
-            internalSockHandler = clientSocket;
-
+        public ClientHandler(Socket _internalSock) {
+            internalSockHandler = _internalSock;
+            // isOn = true;
             try {
 
                 readFromClient = new BufferedReader(new InputStreamReader(internalSockHandler.getInputStream()));
@@ -59,32 +59,64 @@ public class Server {
                 String messageFromClient;
                 while (true) {
                     messageFromClient = readFromClient.readLine();
-                    // System.out.println(messageFromClient);
+
+                    System.out.println(messageFromClient);
                     String[] tokens = messageFromClient.split("\\.");
 
-                    clientsTable.put(tokens[0], this);
-                    for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
-                        System.out.print(hashEntry.getKey() + "   " + hashEntry.getValue());
-                    }
-                    System.out.println();
-                    writeToClient.println("hello " + tokens[0]);
-
-                    if (clientsTable.get(tokens[1]) != null) {
-                        clientsTable.get(tokens[1]).writeToClient.println("message from" + tokens[0] + tokens[2]);
-                    } else {
-                        writeToClient.println("not connected yet");
-                    }
-
-                    // if (messageFromClient.equals(new String("login"))) {
-                    // writeToClient.println("you will login");
+                    // for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
+                    // System.out.print(hashEntry.getKey() + " " + hashEntry.getValue());
                     // }
+                    // System.out.println();
 
-                    // else {
-                    // writeToClient.println();
-                    // }
+                    // writeToClient.println("hello " + tokens[0]);
+
+                    if (tokens[0].equals(new String("login"))) {
+                        clientID = tokens[1];
+                        clientsTable.put(tokens[0], this);
+                        writeToClient.println(new String("hello " + clientID));
+
+                    }
+
+                    else if (tokens[0].equals(new String("signup"))) {
+                        writeToClient.println(new String("signup" + clientID));
+                    }
+
+                    else if (tokens[0].equals(new String("invite"))) {
+                        if (clientsTable.get(tokens[2]) != null) {
+                            clientsTable.get(tokens[2]).writeToClient
+                                    .println("message from " + clientID + " : " + tokens[3]);
+                        }
+
+                        else {
+                            writeToClient.println("not connected yet");
+                        }
+                    }
+
+                    else {
+                        System.out.println("in else");
+                        clientsTable.remove(clientID);
+                        // isOn = false;
+                        break;
+                    }
 
                 }
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            writeToClient.close();
+
+            try {
+                readFromClient.close();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
+            try {
+                internalSockHandler.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -94,7 +126,7 @@ public class Server {
     Server() {
         System.out.println("tic.tac.toe.Server.<init>()");
         try {
-            serverSock = new ServerSocket(6001);
+            serverSock = new ServerSocket(7001);
             while (true) {
                 internalSock = serverSock.accept();
                 new ClientHandler(internalSock).start();
