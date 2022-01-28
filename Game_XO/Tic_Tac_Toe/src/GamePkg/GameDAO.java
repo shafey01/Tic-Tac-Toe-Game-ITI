@@ -82,6 +82,26 @@ public class GameDAO {
         pst.execute();
     
 }
+    public void updateGameMap(GameTable game) throws SQLException{
+
+        PreparedStatement pst= con.prepareStatement("UPDATE game SET map = ? WHERE id = ?");
+        pst.setString(1 ,Arrays.deepToString(game.getMap()));
+        pst.setInt(2 ,game.getId());
+
+
+        pst.execute();
+    
+}
+    public void setGameWinner(GameTable game,int winnerId) throws SQLException{
+
+        PreparedStatement pst= con.prepareStatement("UPDATE game SET winnerId = ? WHERE id = ?");
+        pst.setInt(1 ,winnerId);
+        pst.setInt(2 ,game.getId());
+
+
+        pst.execute();
+    
+}
 private int[][] stringToArray(String string){
     String[] rows = string.split("\\[|],|\\]");
     String[][] matrix = new String[rows.length][];
