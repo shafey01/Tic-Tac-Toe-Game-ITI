@@ -95,14 +95,30 @@ public class ContactDAO {
     
 }
     
+    public void UpdateUserTolalScore(ContactPerson user) {
+        try {
+            String query = "UPDATE user SET total_score = ? WHERE user_id = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, user.getTotal_score());
+            pst.setInt(2, user.getUser_id());
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static void main(String[] args) throws SQLException {
         ContactDAO cd = new ContactDAO();
+        ContactPerson user = new ContactPerson();
         cd.connect();
         Vector<ContactPerson> tbData = cd.getUserByName("menna");
 //        ContactPerson person = new ContactPerson();
 //        person.setUsername("menna");
 //        person.setPassword("1234");
 //        cd.createNewUser(person);
+//        user.setTotal_score(14);
+//        user.setUser_id(1);
+//        cd.UpdateUserTolalScore(user);
         cd.closeConnection();
         for(ContactPerson i : tbData) {
             System.out.println(i.getUser_id()+" "+i.getUsername()+" "+i.getPassword()+" "+i.getTotal_score());

@@ -73,19 +73,19 @@ public class PlayerDAO {
         }
         return playerTable;
     }
-    
-    public Vector<PlayerTable> getPlayerByName(int game) {
-         playerTable = new Vector<PlayerTable>();
-        try {
-            pst= con.prepareStatement("select * from player where gameId = ?");
-            pst.setInt(1, game);          
-            ResultSet rs = pst.executeQuery();
-            while(rs.next()) {
 
-                PlayerTable player = new PlayerTable(rs.getInt("gameId"),rs.getInt("playerId"),rs.getInt("gameScore"));
+    public Vector<PlayerTable> getPlayerByName(int game) {
+        playerTable = new Vector<PlayerTable>();
+        try {
+            pst = con.prepareStatement("select * from player where gameId = ?");
+            pst.setInt(1, game);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                PlayerTable player = new PlayerTable(rs.getInt("gameId"), rs.getInt("playerId"), rs.getInt("gameScore"));
                 playerTable.add(player);
             }
-          pst.close();
+            pst.close();
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,18 +98,37 @@ public class PlayerDAO {
             pst.setInt(1, newPlayer.getGameId());
             pst.setInt(2, newPlayer.getPlayerId());
             pst.execute();
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             ex.getMessage();
         }
     }
-    
+
+    public void UpdatePlayerGameScore(PlayerTable player) {
+        try {
+            String query = "UPDATE player SET gameScore = ? WHERE playerId = ? AND gameId = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, player.getGameScore());
+            pst.setInt(2, player.getGameId());
+            pst.setInt(3, player.getPlayerId());
+
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static void main(String[] args) {
         PlayerDAO pd = new PlayerDAO();
+        PlayerTable player = new PlayerTable();
         pd.connect();
         Vector<PlayerTable> tdPlayer = pd.getPlayerInfo();
+//        player.setGameScore(4);
+//        player.setGameId(1);
+//        player.setPlayerId(1);
+//       pd.UpdatePlayerGameScore(player);
         pd.closeConnection();
-        for(PlayerTable i : tdPlayer) {
-            System.out.println(i.getGameId()+" "+i.getPlayerId()+" "+i.getGameScore());
+        for (PlayerTable i : tdPlayer) {
+            System.out.println(i.getGameId() + " " + i.getPlayerId() + " " + i.getGameScore());
         }
     }
 }
