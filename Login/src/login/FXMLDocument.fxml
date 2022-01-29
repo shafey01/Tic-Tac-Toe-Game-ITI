@@ -13,21 +13,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="808.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="528.4" prefWidth="818.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLDocumentController">
    <children>
       <ImageView fitHeight="290.0" fitWidth="350.0" focusTraversable="true" layoutX="32.0" layoutY="114.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Screenshot%20(42).png" />
+            <Image url="@../Img/Screenshot%20(42).png" />
          </image>
       </ImageView>
-      <AnchorPane id="AnchorPane" focusTraversable="true" layoutX="404.0" prefHeight="518.0" prefWidth="403.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="404.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="AnchorPane" focusTraversable="true" layoutX="404.0" prefHeight="518.0" prefWidth="403.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="404.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField layoutX="72.0" layoutY="173.0" prefHeight="30.0" prefWidth="260.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
+            <TextField layoutX="72.0" layoutY="173.0" prefHeight="30.0" prefWidth="260.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </TextField>
-            <PasswordField layoutX="72.0" layoutY="252.0" prefHeight="30.0" prefWidth="260.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
+            <PasswordField layoutX="72.0" layoutY="252.0" prefHeight="30.0" prefWidth="260.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
@@ -49,16 +49,25 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Text>
-            <Button layoutX="254.0" layoutY="304.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" />
+            <Button layoutX="254.0" layoutY="304.0" mnemonicParsing="false" onAction="#loadenter" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" />
             <Label layoutX="153.0" layoutY="39.0" text="Sign in" textFill="#032358">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="66.0" layoutY="305.0" text="Create account" textFill="#4886ff" wrapText="true">
+            <Hyperlink fx:id="CreateAccount" layoutX="66.0" layoutY="305.0" onAction="#loadCreate" text="Create account" textFill="#4886ff" wrapText="true">
                <font>
                   <Font size="15.0" />
                </font></Hyperlink>
+            <Button layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadend" prefHeight="57.0" prefWidth="67.0" style="-fx-background-color: #ffffff;">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_back_60px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
          <effect>
             <DropShadow height="79.49" radius="34.565" spread="0.29" width="60.77" />

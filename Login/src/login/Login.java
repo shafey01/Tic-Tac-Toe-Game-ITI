@@ -4,12 +4,14 @@
  */
 package login;
 
+import java.io.IOException;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.jfoenix.controls.*;
+
 
 /**
  *
@@ -19,10 +21,10 @@ public class Login extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Setting.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         
+
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }
