@@ -103,10 +103,27 @@ public class PlayerDAO {
         }
     }
     
+    public void UpdatePlayerGameScore(PlayerTable player , int gameScore) {
+        try {
+            String query = "UPDATE player SET gameScore =? where playerId = ? and gameId = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, gameScore);
+            pst.setInt(2, player.getPlayerId());
+            pst.setInt(3, player.getGameId());
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static void main(String[] args) {
         PlayerDAO pd = new PlayerDAO();
+        PlayerTable player = new PlayerTable();
         pd.connect();
         Vector<PlayerTable> tdPlayer = pd.getPlayerInfo();
+//        player.setPlayerId(1);
+//        player.setGameId(1);
+//        pd.UpdatePlayerGameScore(player, 7);
         pd.closeConnection();
         for(PlayerTable i : tdPlayer) {
             System.out.println(i.getGameId()+" "+i.getPlayerId()+" "+i.getGameScore());
