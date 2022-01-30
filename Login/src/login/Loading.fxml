@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.4" prefWidth="818.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoadingController">
+   <children>
+      <ImageView fitHeight="530.0" fitWidth="699.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Screenshot%20(42).png" />
+         </image>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </ImageView>
+   </children>
+</StackPane>

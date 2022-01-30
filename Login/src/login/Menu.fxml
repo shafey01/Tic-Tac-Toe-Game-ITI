@@ -1,65 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="808.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.MenuController">
-   <top>
-      <AnchorPane prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
-         <children>
-            <Button cancelButton="true" layoutX="65.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: F89A36;" text="Logout" textFill="#032358" AnchorPane.leftAnchor="30.0">
-               <effect>
-                  <DropShadow />
-               </effect>
-               <font>
-                  <Font name="Yu Gothic Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="710.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: F89A36;" text="Setting" textFill="#032358" AnchorPane.rightAnchor="30.0">
-               <effect>
-                  <DropShadow />
-               </effect>
-               <font>
-                  <Font name="Yu Gothic Bold" size="14.0" />
-               </font>
-            </Button>
-            <Text fill="#f89a36" fontSmoothingType="LCD" layoutX="290.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tic Tac Toe">
-               <font>
-                  <Font name="Yu Gothic Bold" size="40.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-   </top>
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="818.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <ImageView fitHeight="330.0" fitWidth="435.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../Img/Screenshot%20(42).png" />
+         </image>
+      </ImageView>
+   </left>
    <center>
-      <AnchorPane prefHeight="452.0" prefWidth="593.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="537.0" prefWidth="558.0" BorderPane.alignment="CENTER">
+         <center>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="411.0" prefWidth="388.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER_RIGHT">
+               <children>
+                  <TextField layoutX="14.0" layoutY="159.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="260.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="14.800000000000011" AnchorPane.rightAnchor="90.80000000000001" AnchorPane.topAnchor="159.0">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField layoutX="14.0" layoutY="248.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="260.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="90.80000000000001" AnchorPane.topAnchor="248.0">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </PasswordField>
+                  <Text fill="#032358" fontSmoothingType="LCD" layoutX="14.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" AnchorPane.leftAnchor="14.646289062500017" AnchorPane.rightAnchor="273.3537109375" AnchorPane.topAnchor="128.8134765625">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Text>
+                  <Text fill="#032358" layoutX="14.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" AnchorPane.leftAnchor="13.750683593749997" AnchorPane.rightAnchor="283.84931640625" AnchorPane.topAnchor="218.8134765625">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="216.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="216.00000000000003" AnchorPane.topAnchor="306.0" />
+                  <Label layoutX="102.0" layoutY="30.0" text="Sign in" textFill="#032358" AnchorPane.topAnchor="30.0">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Hyperlink fx:id="CreateAccount" layoutX="14.0" layoutY="305.0" text="Create account" textFill="#4886ff" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="305.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+               <effect>
+                  <DropShadow radius="29.885" width="100.54" />
+               </effect>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </AnchorPane>
+         </center>
+         <top>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="525.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="455.0" prefWidth="70.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+         </left>
          <effect>
-            <InnerShadow height="35.04" radius="17.0175" width="35.03" />
+            <DropShadow radius="32.225" width="109.9" />
          </effect>
-         <children>
-            <Button layoutX="479.0" layoutY="211.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="198.0" style="-fx-background-color: F89A36;" text="Local " textFill="#032358">
-               <font>
-                  <Font name="Yu Gothic Bold" size="18.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
-            <Button layoutX="88.0" layoutY="211.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" style="-fx-background-color: F89A36;" text="Leader Bored " textFill="#032358">
-               <font>
-                  <Font name="Yu Gothic Bold" size="17.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
-         </children>
-      </AnchorPane>
+      </BorderPane>
    </center>
 </BorderPane>

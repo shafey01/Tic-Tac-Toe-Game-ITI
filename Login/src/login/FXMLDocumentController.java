@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 /**
  *
@@ -21,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
- private AnchorPane rootPane;
+ private BorderPane rootPane;
 
 
     @Override
@@ -35,14 +36,10 @@ AnchorPane pane = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
 rootPane.getChildren().setAll(pane);
 
 }
-@FXML
-private void loadend(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-rootPane.getChildren().setAll(pane);
-}
+
 @FXML
 private void loadenter(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
+AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 rootPane.getChildren().setAll(pane);
 
 }

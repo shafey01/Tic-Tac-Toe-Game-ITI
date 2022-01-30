@@ -30,7 +30,7 @@ public class MainMenuController implements Initializable {
     }    
     @FXML
 private void loadend(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+AnchorPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
 main.getChildren().setAll(pane);
 }
 }

@@ -10,7 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 /**
@@ -21,10 +23,13 @@ public class Login extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("Loading.fxml"));
+        Image icon = new Image(getClass().getResourceAsStream("hobbies-and-free-time.png"));
 
+stage.getIcons().add(icon);
         Scene scene = new Scene(root);
+stage.setTitle("Tic Tac Toe");
+stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
