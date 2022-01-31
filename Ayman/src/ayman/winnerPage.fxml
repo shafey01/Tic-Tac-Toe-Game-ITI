@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #1e377f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="exit2_btn" layoutX="281.0" layoutY="614.0" mnemonicParsing="false" prefHeight="220.0" prefWidth="500.0" style="-fx-background-color: #34f9fe;" text="Exit">
          <font>
