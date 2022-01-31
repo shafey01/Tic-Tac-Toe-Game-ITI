@@ -7,60 +7,63 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="friend" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FriendController">
-   <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.4" prefWidth="818.0" style="-fx-background-color: F89A36;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<BorderPane fx:id="friend" prefHeight="1059.0" prefWidth="1940.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FriendController">
+   <top>
+      <AnchorPane fx:id="topbar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="818.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="topbar" prefHeight="80.0" prefWidth="808.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="448.4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Button fx:id="bt_setting" layoutX="84.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358;">
-                     <graphic>
-                        <ImageView fitHeight="39.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Img/icons8_settings_64px_1.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="bt_loadfriend" layoutX="261.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358;">
-                     <graphic>
-                        <ImageView fx:id="bt_friend" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Img/icons8_friends_64px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="bt_loadleaderborde" layoutX="459.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358;">
-                     <graphic>
-                        <ImageView fx:id="bt_leaderborde" fitHeight="39.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Img/icons8_trophy_50px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358;">
-                     <graphic>
-                        <ImageView fx:id="bt_exit" fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Img/icons8_shutdown_60px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="277.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="bt_setting" layoutX="201.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_settings_64px_1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadfriend" layoutX="630.0" layoutY="11.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_friend" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_friends_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadleaderborde" layoutX="1124.0" layoutY="12.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_leaderborde" fitHeight="39.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_trophy_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_exit" fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_shutdown_60px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1940.0" style="-fx-background-color: F89A36;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="668.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/icons8_eject_48px.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutY="100.0" prefHeight="425.0" prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="92.39999999999998">
+            <AnchorPane layoutY="16.0" prefHeight="994.0" prefWidth="1940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
                <children>
-                  <TableView layoutX="294.0" layoutY="104.0" prefHeight="363.0" prefWidth="818.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView layoutX="-1.0" prefHeight="915.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="User Name" />
                         <TableColumn prefWidth="75.0" text="Score " />
@@ -70,16 +73,16 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <AnchorPane layoutX="209.0" layoutY="368.0" prefHeight="66.0" prefWidth="818.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <AnchorPane layoutX="209.0" layoutY="368.0" prefHeight="73.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <TextField layoutX="213.0" layoutY="21.0" prefHeight="26.0" prefWidth="222.0" promptText="Enter User Name ...">
+                        <TextField layoutX="637.0" layoutY="4.0" prefHeight="46.0" prefWidth="471.0" promptText="Enter User Name ..." AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="637.0" AnchorPane.topAnchor="4.0">
                            <font>
-                              <Font name="Yu Gothic Bold" size="13.0" />
+                              <Font name="Yu Gothic Bold" size="27.0" />
                            </font>
                         </TextField>
-                        <Button layoutX="482.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-color: #032358;" text="Invite" textFill="#f89a36">
+                        <Button defaultButton="true" layoutX="1137.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: #032358;" text="Invite" textFill="#f89a36" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1137.0" AnchorPane.topAnchor="4.0">
                            <font>
-                              <Font name="Yu Gothic Bold" size="17.0" />
+                              <Font name="Yu Gothic Bold" size="28.0" />
                            </font>
                         </Button>
                      </children>
@@ -88,5 +91,5 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-   </children>
-</AnchorPane>
+   </center>
+</BorderPane>

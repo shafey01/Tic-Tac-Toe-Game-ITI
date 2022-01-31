@@ -21,7 +21,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class Exit1Controller implements Initializable {
  @FXML
-private AnchorPane exit2;
+private BorderPane exit2;
     /**
      * Initializes the controller class.
      */
@@ -43,22 +43,22 @@ exit2.getChildren().setAll(pane);
     
 @FXML
 private void loadsetting(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
 exit2.getChildren().setAll(pane);
 }
 @FXML
 private void loadleaderborde(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
 exit2.getChildren().setAll(pane);
 }
 @FXML
 private void loadexite2(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
 exit2.getChildren().setAll(pane);
 }
 @FXML
 private void loadfriend(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
 exit2.getChildren().setAll(pane);
 }
 

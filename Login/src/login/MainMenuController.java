@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -30,7 +31,7 @@ public class MainMenuController implements Initializable {
     }    
     @FXML
 private void loadend(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
 main.getChildren().setAll(pane);
 }
 }

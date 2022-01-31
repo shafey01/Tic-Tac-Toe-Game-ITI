@@ -6,14 +6,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="setting" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.4" prefWidth="818.0" style="-fx-background-color: F89A36;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SettingController">
-   <children>
-      <AnchorPane fx:id="topbar" prefHeight="80.0" prefWidth="808.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="448.4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<BorderPane fx:id="setting" prefHeight="1059.0" prefWidth="1940.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SettingController">
+   <top>
+      <AnchorPane fx:id="topbar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="818.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bt_setting" layoutX="84.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358;">
+            <Button fx:id="bt_setting" layoutX="201.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -22,7 +23,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bt_loadfriend" layoutX="261.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358;">
+            <Button fx:id="bt_loadfriend" layoutX="630.0" layoutY="11.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fx:id="bt_friend" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -31,7 +32,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bt_loadleaderborde" layoutX="459.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358;">
+            <Button fx:id="bt_loadleaderborde" layoutX="1124.0" layoutY="12.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fx:id="bt_leaderborde" fitHeight="39.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -40,7 +41,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358;">
+            <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fx:id="bt_exit" fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,59 +52,65 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Setting" prefHeight="426.0" prefWidth="808.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="92.39999999999998">
+   </top>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1940.0" style="-fx-background-color: F89A36;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#f89a36" layoutX="114.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music">
-               <font>
-                  <Font name="Yu Gothic Bold" size="23.0" />
-               </font>
-            </Text>
-            <Separator layoutX="45.0" layoutY="116.0" prefHeight="7.0" prefWidth="717.0" />
-            <Text fill="#f89a36" layoutX="111.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How To Play">
-               <font>
-                  <Font name="Yu Gothic Bold" size="23.0" />
-               </font>
-            </Text>
-            <RadioButton layoutX="580.0" layoutY="65.0" mnemonicParsing="false" text="On/Off" textFill="#f89a36">
-               <font>
-                  <Font name="Yu Gothic Bold" size="13.0" />
-               </font>
-            </RadioButton>
-            <Text fill="#f89a36" layoutX="110.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. The game is played on a grid that's 3 squares by 3 squares." wrappingWidth="588.7159271240234">
-               <font>
-                  <Font name="Yu Gothic Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text fill="#f89a36" layoutX="110.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. You are X, your friend (or the computer in this case) is O. Players take turns putting their marks in empty squares." wrappingWidth="588.7159271240234">
-               <font>
-                  <Font name="Yu Gothic Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text fill="#f89a36" layoutX="114.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." wrappingWidth="588.7159271240234">
-               <font>
-                  <Font name="Yu Gothic Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text fill="#f89a36" layoutX="114.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." wrappingWidth="588.7159271240234">
-               <font>
-                  <Font name="Yu Gothic Bold" size="14.0" />
-               </font>
-            </Text>
-            <Button layoutX="721.0" layoutY="362.0" mnemonicParsing="false" onAction="#loadgithub" style="-fx-background-color: #032358;">
-               <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Img/icons8_github_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Img/icons8_eject_48px.png" />
+               </image>
+            </ImageView>
+            <AnchorPane fx:id="Setting" layoutY="16.0" prefHeight="994.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
+               <children>
+                  <Text fill="#f89a36" layoutX="314.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="40.0" />
+                     </font>
+                  </Text>
+                  <Separator layoutX="551.0" layoutY="222.0" prefHeight="7.0" prefWidth="717.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+                  <Text fill="#f89a36" layoutX="111.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How To Play">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="46.0" />
+                     </font>
+                  </Text>
+                  <RadioButton layoutX="1395.0" layoutY="104.0" mnemonicParsing="false" text="On/Off" textFill="#f89a36">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="31.0" />
+                     </font>
+                  </RadioButton>
+                  <Text fill="#f89a36" layoutX="118.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. The game is played on a grid that's 3 squares by 3 squares." wrappingWidth="1737.5157928466797">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#f89a36" layoutX="115.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. You are X, your friend (or the computer in this case) is O. Players take turns putting their marks in empty squares." wrappingWidth="1753.5160369873047">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#f89a36" layoutX="111.0" layoutY="732.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." wrappingWidth="1721.5160369873047">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#f89a36" layoutX="111.0" layoutY="651.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." wrappingWidth="1702.3160858154297">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="1697.0" layoutY="852.0" mnemonicParsing="false" onAction="#loadgithub" style="-fx-background-color: #032358;">
+                     <graphic>
+                        <ImageView fitHeight="87.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Img/icons8_github_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="25.0" fitWidth="79.0" layoutX="105.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Img/icons8_eject_48px.png" />
-         </image>
-      </ImageView>
-   </children>
-</AnchorPane>
+   </center>
+</BorderPane>

@@ -32,7 +32,7 @@ public class FXMLDocumentController implements Initializable {
      
 @FXML
 private void loadCreate(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
 rootPane.getChildren().setAll(pane);
 
 }

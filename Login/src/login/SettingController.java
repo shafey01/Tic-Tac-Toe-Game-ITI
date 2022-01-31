@@ -15,10 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class SettingController implements Initializable {
  @FXML       
- private AnchorPane setting;
+ private BorderPane setting;
 
 
     @Override
@@ -28,13 +29,13 @@ public class SettingController implements Initializable {
 
 @FXML
 private void loadsetting(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
 setting.getChildren().setAll(pane);
 }
 
 @FXML
 private void loadleaderborde(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
 setting.getChildren().setAll(pane);
 }
 
@@ -45,13 +46,13 @@ Desktop.getDesktop().browse(new URI("https://github.com/shafey01/Tic-Tac-Toe-Gam
 
 @FXML
 private void loadexite2(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
 setting.getChildren().setAll(pane);
 }
 
 @FXML
 private void loadfriend(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
 setting.getChildren().setAll(pane);
 }
 

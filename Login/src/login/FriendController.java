@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -20,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FriendController implements Initializable {
  @FXML
-private AnchorPane friend;
+private BorderPane friend;
     /**
      * Initializes the controller class.
      */
@@ -31,22 +32,22 @@ private AnchorPane friend;
     
 @FXML
 private void loadsetting(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
 friend.getChildren().setAll(pane);
 }
 @FXML
 private void loadleaderborde(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
 friend.getChildren().setAll(pane);
 }
 @FXML
 private void loadexite2(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
 friend.getChildren().setAll(pane);
 }
 @FXML
 private void loadfriend(ActionEvent event) throws IOException{
-AnchorPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
+BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
 friend.getChildren().setAll(pane);
 }
 }

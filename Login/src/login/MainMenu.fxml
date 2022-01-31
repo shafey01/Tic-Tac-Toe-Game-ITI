@@ -6,31 +6,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="main" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="528.4" prefWidth="818.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.MainMenuController">
+<AnchorPane id="AnchorPane" fx:id="main" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1228.0" prefWidth="1940.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.MainMenuController">
    <children>
-      <ImageView fitHeight="337.0" fitWidth="492.0" layoutX="213.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="747.0" fitWidth="1108.0" layoutX="530.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Img/Screenshot%20(42).png" />
          </image>
       </ImageView>
-      <Button layoutX="157.0" layoutY="410.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #032358;" textFill="#032358">
+      <Button layoutX="422.0" layoutY="842.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #032358;" textFill="#032358">
          <font>
             <Font name="Yu Gothic Bold" size="18.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="88.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="136.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/icons8_broken_robot_200px.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="553.0" layoutY="419.0" mnemonicParsing="false" onAction="#loadend" prefHeight="82.0" prefWidth="102.0" style="-fx-background-color: #032358;" textFill="#032358">
+      <Button layoutX="1356.0" layoutY="855.0" mnemonicParsing="false" onAction="#loadend" prefHeight="82.0" prefWidth="102.0" style="-fx-background-color: #032358;" textFill="#032358">
          <font>
             <Font name="Yu Gothic Bold" size="18.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="69.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/icons8_online_64px.png" />
                </image>

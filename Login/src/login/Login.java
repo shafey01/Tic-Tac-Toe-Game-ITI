@@ -29,7 +29,9 @@ public class Login extends Application {
 stage.getIcons().add(icon);
         Scene scene = new Scene(root);
 stage.setTitle("Tic Tac Toe");
-stage.initStyle(StageStyle.UNDECORATED);
+//stage.initStyle(StageStyle.UNDECORATED);
+      stage.setFullScreen(true);
+ 
         stage.setScene(scene);
         stage.show();
     }
