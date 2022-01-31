@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -48,6 +49,9 @@ public class Exit1Controller implements Initializable {
     private AnchorPane exit;
 
     @FXML
+    private Button switchMode_bt;
+
+    @FXML
     private BorderPane exit2;
 
     @FXML
@@ -71,7 +75,7 @@ public class Exit1Controller implements Initializable {
     }
 
     @FXML
-    private void loadend(ActionEvent event) throws IOException {
+    private void loadSwitchMode(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         exit2.getChildren().setAll(pane);
     }
@@ -99,5 +103,13 @@ public class Exit1Controller implements Initializable {
         BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
         exit2.getChildren().setAll(pane);
     }
+
+@FXML
+    private void closeButtonAction(){
+    // get a handle to the stage
+    Stage stage = (Stage) exit_bt.getScene().getWindow();
+    // do what you have to do
+    stage.close();
+}
 
 }

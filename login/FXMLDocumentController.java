@@ -58,8 +58,8 @@ public class FXMLDocumentController implements Initializable {
         String A = userNameTextFieldSignIn.getText();
         System.out.println(A);
 
-//AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-//rootPane.getChildren().setAll(pane);
+AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+rootPane.getChildren().setAll(pane);
     }
 
 }

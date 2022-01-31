@@ -56,12 +56,12 @@
          <children>
             <AnchorPane fx:id="exit" layoutX="6.0" layoutY="18.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="993.0" prefWidth="1940.0" style="-fx-background-color: #032358; -fx-cursor: pointer;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
                <children>
-                  <Text fill="#f89a36" layoutX="287.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switch Account" wrappingWidth="439.733154296875">
+                  <Text fill="#f89a36" layoutX="153.0" layoutY="591.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switch Account" wrappingWidth="439.733154296875">
                      <font>
                         <Font name="Yu Gothic Bold" size="55.0" />
                      </font>
                   </Text>
-                  <Button fx:id="switchAccount_bt" layoutX="367.0" layoutY="272.0" mnemonicParsing="false" onAction="#loadaccount" prefHeight="130.0" prefWidth="131.0" style="-fx-background-color: #032358; -fx-cursor: pointer;">
+                  <Button fx:id="switchAccount_bt" layoutX="235.0" layoutY="272.0" mnemonicParsing="false" onAction="#loadaccount" prefHeight="130.0" prefWidth="131.0" style="-fx-background-color: #032358; -fx-cursor: pointer;">
                      <graphic>
                         <ImageView fitHeight="218.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;">
                            <image>
@@ -70,7 +70,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="exit_bt" cancelButton="true" layoutX="1205.0" layoutY="297.0" mnemonicParsing="false" onAction="#loadend" prefHeight="216.0" prefWidth="285.0" style="-fx-background-color: #032358; -fx-cursor: pointer;">
+                  <Button fx:id="exit_bt" cancelButton="true" layoutX="1492.0" layoutY="294.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="216.0" prefWidth="285.0" style="-fx-background-color: #032358; -fx-cursor: pointer;">
                      <graphic>
                         <ImageView fitHeight="208.0" fitWidth="403.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;">
                            <image>
@@ -84,7 +84,21 @@
                         <Image url="@../Img/icons8_eject_48px.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#f89a36" layoutX="1296.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" wrappingWidth="110.3192138671875">
+                  <Text fill="#f89a36" layoutX="1591.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" wrappingWidth="110.3192138671875">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="55.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="switchMode_bt" layoutX="924.0" layoutY="295.0" mnemonicParsing="false" onAction="#loadSwitchMode" style="-fx-background-color: #032358;">
+                     <graphic>
+                        <ImageView fitHeight="195.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Img/icons8_menu_rounded_64px_1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text fill="#f89a36" layoutX="851.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switch Mode" wrappingWidth="359.733154296875">
                      <font>
                         <Font name="Yu Gothic Bold" size="55.0" />
                      </font>
