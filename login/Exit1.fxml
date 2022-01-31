@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="exit2" prefHeight="1059.0" prefWidth="1940.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Exit1Controller">
+   <top>
+      <AnchorPane fx:id="topbar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="818.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="bt_setting" layoutX="201.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_settings_64px_1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadfriend" layoutX="630.0" layoutY="11.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_friend" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_friends_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadleaderborde" layoutX="1124.0" layoutY="12.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_leaderborde" fitHeight="39.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_trophy_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_exit" fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_shutdown_60px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1940.0" style="-fx-background-color: F89A36;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="exit" layoutX="6.0" layoutY="18.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="993.0" prefWidth="1940.0" style="-fx-background-color: #032358; -fx-cursor: pointer;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+               <children>
+                  <Text fill="#f89a36" layoutX="287.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switch Account" wrappingWidth="439.733154296875">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="55.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="switchAccount_bt" layoutX="367.0" layoutY="272.0" mnemonicParsing="false" onAction="#loadaccount" prefHeight="130.0" prefWidth="131.0" style="-fx-background-color: #032358; -fx-cursor: pointer;">
+                     <graphic>
+                        <ImageView fitHeight="218.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;">
+                           <image>
+                              <Image url="@../Img/icons8_account_100px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="exit_bt" cancelButton="true" layoutX="1205.0" layoutY="297.0" mnemonicParsing="false" onAction="#loadend" prefHeight="216.0" prefWidth="285.0" style="-fx-background-color: #032358; -fx-cursor: pointer;">
+                     <graphic>
+                        <ImageView fitHeight="208.0" fitWidth="403.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;">
+                           <image>
+                              <Image url="@../Img/icons8_exit_sign_240px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="1698.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_eject_48px.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f89a36" layoutX="1296.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" wrappingWidth="110.3192138671875">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="55.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
