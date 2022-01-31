@@ -5,20 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="436.0" style="-fx-background-color: #1e377f;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="436.0" style="-fx-background-color: #1e377f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="25.0" layoutY="247.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #34f9fe;" text="Exit">
+      <Button fx:id="exit2_btn" layoutX="25.0" layoutY="247.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #34f9fe;" text="Exit">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="236.0" layoutY="247.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="146.0" style="-fx-background-color: #34f9fe;" text="Play Again">
+      <Button fx:id="play_again_btn" layoutX="236.0" layoutY="247.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="146.0" style="-fx-background-color: #34f9fe;" text="Play Again">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="99.0" prefHeight="48.0" prefWidth="366.0" style="-fx-background-color: #34f9fe;" text="??? is the Winner">
+      <Label fx:id="winner_msg" alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="99.0" prefHeight="48.0" prefWidth="366.0" style="-fx-background-color: #34f9fe;" text="??? is the Winner">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
