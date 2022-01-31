@@ -14,7 +14,7 @@
    <children>
       <Label fx:id="Xscore" alignment="CENTER" layoutX="220.0" layoutY="240.0" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: #34f9fe;" text="0" textAlignment="CENTER" textFill="#0048ba">
          <font>
-            <Font name="System Bold" size="48.0" />
+            <Font name="System Bold" size="64.0" />
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="264.0" layoutY="760.0" prefHeight="110.0" prefWidth="118.0" style="-fx-background-color: #34f9fe;" text="X" textAlignment="CENTER" textFill="#d90808">
@@ -47,7 +47,7 @@
       </GridPane>
       <Label fx:id="Oscore" alignment="CENTER" layoutX="1553.0" layoutY="252.0" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: #34f9fe;" text="0" textAlignment="CENTER" textFill="#0048ba">
          <font>
-            <Font name="System Bold" size="48.0" />
+            <Font name="System Bold" size="64.0" />
          </font>
       </Label>
       <Label alignment="CENTER" contentDisplay="TOP" layoutX="1595.0" layoutY="752.0" prefHeight="144.0" prefWidth="151.0" style="-fx-background-color: #34f9fe;" text="o" textAlignment="CENTER" textFill="#fca954">
