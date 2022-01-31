@@ -5,21 +5,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="436.0" style="-fx-background-color: #1e377f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #1e377f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="exit2_btn" layoutX="25.0" layoutY="247.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #34f9fe;" text="Exit">
+      <Button fx:id="exit2_btn" layoutX="281.0" layoutY="614.0" mnemonicParsing="false" prefHeight="220.0" prefWidth="500.0" style="-fx-background-color: #34f9fe;" text="Exit">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="72.0" />
          </font>
       </Button>
-      <Button fx:id="play_again_btn" layoutX="236.0" layoutY="247.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="146.0" style="-fx-background-color: #34f9fe;" text="Play Again">
+      <Button fx:id="play_again_btn" layoutX="1167.0" layoutY="615.0" mnemonicParsing="false" prefHeight="220.0" prefWidth="500.0" style="-fx-background-color: #34f9fe;" text="Play Again">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="72.0" />
          </font>
       </Button>
-      <Label fx:id="winner_msg" alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="99.0" prefHeight="48.0" prefWidth="366.0" style="-fx-background-color: #34f9fe;" text="??? is the Winner">
+      <Label fx:id="winner_msg" alignment="CENTER" contentDisplay="CENTER" layoutX="269.0" layoutY="160.0" prefHeight="220.0" prefWidth="1406.0" style="-fx-background-color: #34f9fe;" text="??? is the Winner">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="72.0" />
          </font>
       </Label>
    </children>
