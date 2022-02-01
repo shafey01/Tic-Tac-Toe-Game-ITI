@@ -21,7 +21,7 @@ public class Ayman extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Game_v3.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
     }
