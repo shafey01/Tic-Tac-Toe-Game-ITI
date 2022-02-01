@@ -74,7 +74,7 @@
                         <Font name="Yu Gothic Bold" size="46.0" />
                      </font>
                   </Text>
-                  <RadioButton layoutX="1395.0" layoutY="104.0" mnemonicParsing="false" text="On/Off" textFill="#f89a36">
+                  <RadioButton fx:id="music_bt" layoutX="1395.0" layoutY="104.0" mnemonicParsing="false" text="On/Off" textFill="#f89a36">
                      <font>
                         <Font name="Yu Gothic Bold" size="31.0" />
                      </font>
@@ -99,7 +99,7 @@
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Button layoutX="1697.0" layoutY="852.0" mnemonicParsing="false" onAction="#loadgithub" style="-fx-background-color: #032358;">
+                  <Button fx:id="github_bt" layoutX="1697.0" layoutY="852.0" mnemonicParsing="false" onAction="#loadgithub" style="-fx-background-color: #032358;">
                      <graphic>
                         <ImageView fitHeight="87.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
                            <image>

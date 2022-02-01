@@ -59,10 +59,10 @@
                   <Image url="@../Img/icons8_eject_48px.png" />
                </image>
             </ImageView>
-            <TableView layoutY="16.0" prefHeight="994.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
+            <TableView fx:id="leaderBordeTableView" layoutY="16.0" prefHeight="994.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
                <columns>
-                  <TableColumn prefWidth="382.39996337890625" text="User Name" />
-                  <TableColumn minWidth="0.0" prefWidth="425.60009765625" sortType="DESCENDING" text="Score" />
+                  <TableColumn fx:id="userNameColumn" prefWidth="382.39996337890625" text="User Name" />
+                  <TableColumn fx:id="scoreColumn" minWidth="0.0" prefWidth="425.60009765625" sortType="DESCENDING" text="Score" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

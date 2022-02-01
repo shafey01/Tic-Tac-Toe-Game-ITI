@@ -23,8 +23,8 @@ public class ContactDAO {
 
     public static final String DB_URL = "jdbc:mysql://localhost:3306/" + "gamedb?zeroDateTimeBehavior=convertToNull";
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String USER = "root";
-    public static final String PASS = "";
+    public static final String USER = "shafey";
+    public static final String PASS = "shafey";
     Connection con;
     PreparedStatement pst = null;
     Vector<ContactPerson> contactPerson;
@@ -89,7 +89,9 @@ public class ContactDAO {
         return contactPerson;
     }
 
-    public void createNewUser(ContactPerson newPerson) throws SQLException {
+    public void createNewUser(String userName, String password) throws SQLException {
+
+        ContactPerson newPerson = new ContactPerson(userName, password);
 
         PreparedStatement pst = con.prepareStatement("INSERT INTO user(username, password, total_score) VALUES (  ? ,? , 0 )");
         pst.setString(1, newPerson.getUsername());
@@ -108,6 +110,72 @@ public class ContactDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public int getUserByNameBoolean(String name, String password) {
+        this.connect();
+
+        try {
+            pst = con.prepareStatement("select * from user where username = ?");
+            pst.setString(1, name);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next() == false) {
+
+                createNewUser(name, password);
+                pst.close();
+                this.closeConnection();
+                return 1;
+            } else {
+                pst.close();
+                this.closeConnection();
+                return 0;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+            return -1;
+        }
+
+    }
+
+    public int getUserIdByName(String name, String password) {
+        this.connect();
+       
+        try {
+            pst = con.prepareStatement("select * from user where username = ?");
+            pst.setString(1, name);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next() == false) {
+
+                pst.close();
+                this.closeConnection();
+                System.out.println("first if");
+                return 0;
+            } else {
+
+                if (rs.getString("password").equals(new String(password))) {
+                    int id = rs.getInt("user_id");
+                    pst.close();
+                    this.closeConnection();
+                    
+                    return id;
+
+                } else {
+                    pst.close();
+                    this.closeConnection();
+                    System.out.println("else ");
+                    return 0;
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+
     }
 
     public static void main(String[] args) throws SQLException {

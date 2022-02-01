@@ -13,6 +13,8 @@ public class Client {
     Socket clientSocket;
     String id;
     String password;
+    String userName;
+
     PrintWriter writeToServer;
     BufferedReader readFromServer;
     BufferedReader readClientInput;
@@ -20,9 +22,9 @@ public class Client {
     String messageFromServer;
     String clientInput;
 
-    public Client(String _id) throws IOException {
+    public Client() throws IOException {
         isOn = true;
-        id = _id;
+
         InetAddress ip = InetAddress.getLocalHost();
         System.out.println(ip);
         this.clientSocket = new Socket(ip, 7001);
@@ -43,6 +45,15 @@ public class Client {
                     try {
                         messageFromServer = readFromServer.readLine();
                         System.out.println(messageFromServer);
+                        String[] message = parseClientMessage(messageFromServer);
+                        
+                        if (message[0].equals(new String("login"))) {
+                           
+                            loginStatus(message);
+                        } else if (message[0].equals(new String("signup"))) {
+                            signupStatus(message);
+                        }
+
                     } catch (IOException e) {
                         // e.printStackTrace();
                         System.out.println("connection to server closed");
@@ -67,9 +78,27 @@ public class Client {
     public void sendRequestToServer(String clientInput) {
 
         if (clientInput.equals(new String("login"))) {
-            sendLoginRequest();
+            String password = "";
+            String userName = "";
+            try {
+                userName = readClientInput.readLine();
+                password = readClientInput.readLine();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            sendLoginRequest(userName, password);
         } else if (clientInput.equals(new String("signup"))) {
-            sendSignupRequest();
+            String password = "";
+            String userName = "";
+            try {
+                userName = readClientInput.readLine();
+                password = readClientInput.readLine();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            sendSignupRequest(userName, password);
         } else if (clientInput.equals(new String("invite"))) {
             System.out.println("enter other user id: ");
             String idToInvite = null;
@@ -114,19 +143,65 @@ public class Client {
         closeConnection();
     }
 
-    public void sendLoginRequest() {
-        messageToServer = new String("login" + "." + id);
+    public void sendLoginRequest(String userName, String password) {
+
+        messageToServer = new String("login" + "." + userName + "." + password);
         writeToServer.println(messageToServer);
     }
 
-    public void sendSignupRequest() {
-        messageToServer = new String("signup" + "." + id);
+    public void sendSignupRequest(String userName, String password) {
+        messageToServer = new String("signup" + "." + userName + "." + password);
         writeToServer.println(messageToServer);
     }
 
     public void sendInviteRequest(String idToInvite) {
         messageToServer = new String("invite." + idToInvite);
         writeToServer.println(messageToServer);
+    }
+
+    public String[] parseClientMessage(String clientMessage) {
+
+        return clientMessage.split("\\.");
+
+    }
+
+    public void signupStatus(String[] message) {
+
+        if (message[0].equals(new String("signup"))) {
+
+            if (message[1].equals(new String("1"))) {
+
+                System.out.println("signup success ");
+
+            } else if (message[1].equals(new String("0"))) {
+
+                System.out.println("the user name is used try another name");
+
+            } else if (message[1].equals(new String("-1"))) {
+                System.out.println("Error, please try later");
+
+            }
+        }
+
+    }
+
+    public void loginStatus(String[] message) {
+      
+       
+
+            if (message[1].equals(new String("0"))) {
+
+                System.out.println("Invalid user name or password");
+
+            } else if (message[1].equals(new String("-1"))) {
+                System.out.println("Error, please try later");
+
+            } else {
+                System.out.println("Loged in success");
+
+            }
+        
+
     }
 
 }

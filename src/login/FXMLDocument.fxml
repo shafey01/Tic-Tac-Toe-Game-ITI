@@ -18,7 +18,7 @@
    <left>
       <AnchorPane prefHeight="1168.0" prefWidth="862.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="AnchorPane" prefHeight="1173.0" prefWidth="1941.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1063.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1063.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fitHeight="648.0" fitWidth="795.0" focusTraversable="true" layoutX="77.0" layoutY="227.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="1111.0965576171875" AnchorPane.topAnchor="227.0">
                      <image>
@@ -36,16 +36,16 @@
    <right>
       <AnchorPane prefHeight="1168.0" prefWidth="1085.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1173.0" prefWidth="1085.6" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField layoutX="168.0" layoutY="426.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="426.0">
+                  <TextField fx:id="userNameTextFieldSignIn" layoutX="168.0" layoutY="426.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="426.0">
                      <font>
-                        <Font name="System Bold Italic" size="13.0" />
+                        <Font name="Yu Gothic Bold" size="30.0" />
                      </font>
                   </TextField>
-                  <PasswordField layoutX="165.0" layoutY="577.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="577.0">
+                  <PasswordField fx:id="passwordTextFieldSignIn" layoutX="165.0" layoutY="577.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="577.0">
                      <font>
-                        <Font name="System Bold Italic" size="13.0" />
+                        <Font name="Yu Gothic Bold" size="30.0" />
                      </font>
                   </PasswordField>
                   <Text fill="#032358" fontSmoothingType="LCD" layoutX="157.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="633.478515625" AnchorPane.topAnchor="372.32421875">
@@ -65,7 +65,7 @@
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Button layoutX="642.0" layoutY="721.0" mnemonicParsing="false" onAction="#loadenter" prefHeight="78.0" prefWidth="174.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="642.0" AnchorPane.topAnchor="721.0">
+                  <Button fx:id="login_bt" layoutX="642.0" layoutY="721.0" mnemonicParsing="false" onAction="#loadenter" prefHeight="78.0" prefWidth="174.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="642.0" AnchorPane.topAnchor="721.0">
                      <font>
                         <Font size="36.0" />
                      </font>

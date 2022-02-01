@@ -10,28 +10,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 
 /**
  *
  * @author Mustafa Raed
  */
 public class Login extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("Loading.fxml"));
         Image icon = new Image(getClass().getResourceAsStream("hobbies-and-free-time.png"));
 
-stage.getIcons().add(icon);
+        stage.getIcons().add(icon);
         Scene scene = new Scene(root);
-stage.setTitle("Tic Tac Toe");
-//stage.initStyle(StageStyle.UNDECORATED);
-      stage.setFullScreen(true);
- 
+
+        stage.setTitle("Tic Tac Toe");
+      //stage.initStyle(StageStyle.UNDECORATED);
+        stage.setFullScreen(true);
+
         stage.setScene(scene);
         stage.show();
     }
@@ -42,5 +46,5 @@ stage.setTitle("Tic Tac Toe");
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

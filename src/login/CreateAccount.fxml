@@ -17,7 +17,7 @@
    <left>
       <AnchorPane prefHeight="1168.0" prefWidth="862.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="AnchorPane" prefHeight="1173.0" prefWidth="1941.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1063.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1063.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fitHeight="648.0" fitWidth="795.0" focusTraversable="true" layoutX="77.0" layoutY="227.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="1111.0965576171875" AnchorPane.topAnchor="227.0">
                      <image>
@@ -35,16 +35,16 @@
    <right>
       <AnchorPane prefHeight="1168.0" prefWidth="1085.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="AnchorPane" focusTraversable="true" layoutX="780.0" prefHeight="1173.0" prefWidth="1085.6" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane id="AnchorPane" focusTraversable="true" layoutX="780.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField layoutX="196.0" layoutY="480.0" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
+                  <TextField id="userNametextFieldSignup" fx:id="userNameTextField_CA" layoutX="196.0" layoutY="480.0" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
                      <font>
-                        <Font name="System Bold Italic" size="13.0" />
+                        <Font name="Yu Gothic Bold" size="30.0" />
                      </font>
                   </TextField>
-                  <PasswordField layoutX="196.0" layoutY="619.0" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
+                  <PasswordField id="passwordTextFieldSignup" fx:id="passwordTextField_CA" layoutX="196.0" layoutY="619.0" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;">
                      <font>
-                        <Font name="System Bold Italic" size="13.0" />
+                        <Font name="Yu Gothic Bold" size="30.0" />
                      </font>
                   </PasswordField>
                   <Text fill="#032358" fontSmoothingType="LCD" layoutX="196.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name">
@@ -64,7 +64,7 @@
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Button layoutX="362.0" layoutY="751.0" mnemonicParsing="false" onAction="#loadaccount" prefHeight="85.0" prefWidth="299.0" style="-fx-background-color: #4886FF;" text="Create " textFill="WHITE">
+                  <Button id="createBtn" fx:id="create_bt" layoutX="362.0" layoutY="751.0" mnemonicParsing="false" onAction="#loadaccount" prefHeight="85.0" prefWidth="299.0" style="-fx-background-color: #4886FF;" text="Create " textFill="WHITE">
                      <font>
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
@@ -76,13 +76,14 @@
                   </Label>
                   <Button layoutX="146.0" layoutY="114.0" mnemonicParsing="false" onAction="#loadend" prefHeight="57.0" prefWidth="67.0" style="-fx-background-color: #ffffff;">
                      <graphic>
-                        <ImageView fitHeight="69.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="back_bt" fitHeight="69.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Img/icons8_back_60px.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button mnemonicParsing="false" text="Button" />
                </children>
                <effect>
                   <DropShadow height="101.71" radius="58.25" spread="0.29" width="133.29" />

@@ -28,18 +28,19 @@ public class LoadingController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     @FXML
-private Circle c1;
+    private Circle c1;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       setRotate(c1,true,360,10); 
-       new SplashScreen().start();
- 
+        new SplashScreen().start();
+
     }
 
     class SplashScreen extends Thread {
 
         public void run() {
             try {
+                setRotate(c1, true, 360, 10);
                 Thread.sleep(5000);
                 Platform.runLater(new Runnable() {
 
