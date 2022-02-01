@@ -1,87 +1,130 @@
-package GameLogic;
+package Game;
 
 public class NewGame {
 
-    private int[][] board = new int[3][3];
+    public static final int BOARDSIZE = 3;
+    private final int MIN_MOVES_TO_WIN = 5;
+    private int[][] board = new int[BOARDSIZE][BOARDSIZE];
+    private int numPlayedMoves;
 
     public NewGame() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        numPlayedMoves = 0;
+        for (int i = 0; i < BOARDSIZE; i++) {
+            for (int j = 0; j < BOARDSIZE; j++) {
                 board[i][j] = 0;
             }
         }
     }
 
+    public boolean isCellEmpty(int rowIndex, int columnIndex) {
+        return board[rowIndex][columnIndex] == 0;
+    }
+
+    public int getCellType(int rowIndex, int columnIndex) {
+        return board[rowIndex][columnIndex];
+    }
+
     public void displayBoard() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < BOARDSIZE; i++) {
+            for (int j = 0; j < BOARDSIZE; j++) {
                 System.out.print(board[i][j]);
             }
-            System.out.println();
+            System.out.print("\n");
         }
+
+        System.out.println("\n");
     }
 
-    public void Insert(int rowIndex, int columnIndex, int choice) {
-        board[rowIndex][columnIndex] = choice;
-    }
+    public int insertAndCheckMove(Move move) {
+        if (isValidMove(move) == false) {
+            return -1;
+        }
+        board[move.getRowIndex()][move.getColumnIndex()] = move.getType();
+        numPlayedMoves++;
+        displayBoard();
+        if (numPlayedMoves >= MIN_MOVES_TO_WIN) {
 
-    // private boolean hasUp(int rowIndex) {
-    // return (rowIndex - 1) >= 0;
-    // }
-    // private boolean hasdown(int rowIndex) {
-    // return (rowIndex + 1) >= 0;
-    // }
-    // private boolean hasLeft(int columnIndex) {
-    // return (columnIndex - 1) >= 0;
-    // }
-    // private boolean hasRight(int columnIndex) {
-    // return (columnIndex - 1) >= 0;
-    // }
-    private boolean checkDiagonals(int choice) {
-        // int i = 0, j = 0;
-        boolean diagonal1, diagonal2;
-        for (int iterDiagonal1 = 0; iterDiagonal1 < 3; iterDiagonal1++) {
-            if (board[iterDiagonal1][iterDiagonal1] != choice) {
-                diagonal1 = false;
+            if (isWon(move)) {
+                return move.getType();
+            }
+
+            if (numPlayedMoves == BOARDSIZE * BOARDSIZE) {
+                return 0;
             }
         }
 
-        for (int iterDiagonal2 = 2; iterDiagonal2 >= 0; iterDiagonal2--) {
-//            if (board[iterDiagonal1][iterDiagonal1] != choice)
-//            {
-//                diagonal1 = false;
-//            }
-
-        }
-        return true;
+        return 3;
     }
 
-    private boolean checkRow(int rowIndex, int choice) {
+    private boolean isValidMove(Move move) {
+        return move.getRowIndex() >= 0 && move.getRowIndex() <= BOARDSIZE
+                && move.getColumnIndex() >= 0 && move.getColumnIndex() <= BOARDSIZE
+                && isCellEmpty(move.getRowIndex(), move.getColumnIndex());
+    }
 
-        for (int i = 0; i < 3; i++) {
-            if (board[rowIndex][i] != choice) {
+    private boolean wonMainDiagonal(Move move) {
+        for (int iterMainDiagonal = 0; iterMainDiagonal < BOARDSIZE; iterMainDiagonal++) {
+            if (board[iterMainDiagonal][iterMainDiagonal] != move.getType()) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean checkColumn(int columnIndex, int choice) {
-        for (int i = 0; i < 3; i++) {
-            if (board[i][columnIndex] != choice) {
+    private boolean wonSecondaryDiagonal(Move move) {
+
+        int iterColumn = 0;
+        for (int iterRow = 2; iterRow >= 0; iterRow--) {
+            if (board[iterRow][iterColumn] != move.getType()) {
+                return false;
+            }
+            iterColumn++;
+        }
+        return true;
+    }
+
+    private boolean wonRow(Move move) {
+
+        for (int i = 0; i < BOARDSIZE; i++) {
+            if (board[move.getRowIndex()][i] != move.getType()) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean checkGameOver(int rowIndex, int columnIndex) {
-//        if 
-//        
-//        return false;
-
+    private boolean wonColumn(Move move) {
+        for (int i = 0; i < BOARDSIZE; i++) {
+            if (board[i][move.getColumnIndex()] != move.getType()) {
+                return false;
+            }
+        }
         return true;
+    }
+
+    private boolean isWon(Move move) {
+
+        return wonColumn(move)
+                || wonRow(move)
+                || wonMainDiagonal(move)
+                || wonSecondaryDiagonal(move);
 
     }
 
 }
+
+// private boolean hasUp(int rowIndex) {
+// return (rowIndex - 1) >= 0;
+// }
+
+// private boolean hasdown(int rowIndex) {
+// return (rowIndex + 1) >= 0;
+// }
+
+// private boolean hasLeft(int columnIndex) {
+// return (columnIndex - 1) >= 0;
+// }
+
+// private boolean hasRight(int columnIndex) {
+// return (columnIndex - 1) >= 0;
+// }
