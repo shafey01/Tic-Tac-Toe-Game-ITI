@@ -32,7 +32,6 @@ public class LoadingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setRotate(c1, true, 360, 10);
         new SplashScreen().start();
 
     }
@@ -41,6 +40,7 @@ public class LoadingController implements Initializable {
 
         public void run() {
             try {
+                setRotate(c1, true, 360, 10);
                 Thread.sleep(5000);
                 Platform.runLater(new Runnable() {
 
