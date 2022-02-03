@@ -37,6 +37,7 @@ This project for learning and practice Java Programming.
 ```
 get clone from this Repo.
 Open Bash and write git clone and the link.
+Java 8 or Later
 Install JRE.
 Open Server.jar
 Open Client.jar
