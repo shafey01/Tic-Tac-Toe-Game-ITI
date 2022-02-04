@@ -4,6 +4,7 @@
  */
 package login;
 
+import ClientServerNew.Client;
 import java.io.IOException;
 import static java.lang.System.out;
 import java.net.URL;
@@ -26,6 +27,8 @@ import javafx.scene.layout.BorderPane;
  */
 public class FXMLDocumentController implements Initializable {
 
+    Client client;
+
     @FXML
     private Hyperlink CreateAccount;
 
@@ -44,6 +47,14 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        try {
+            client = new Client();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
     }
 
     @FXML
@@ -55,11 +66,37 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void loadenter(ActionEvent event) throws IOException {
-        String A = userNameTextFieldSignIn.getText();
-        System.out.println(A);
 
-AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-rootPane.getChildren().setAll(pane);
+        String userNameLogin = new String();
+        String passwordLogin = new String();
+
+        userNameLogin = userNameTextFieldSignIn.getText();
+        passwordLogin = passwordTextFieldSignIn.getText();
+
+        client.sendRequestToServer("login", userNameLogin, passwordLogin);
+
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    public void sendToControllerLogin(int s) throws IOException {
+        System.out.println("before if");
+
+        if (s == 1) {
+//redirect menu page
+            System.out.println("Login Success");
+
+//            BorderPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+//            createaccount.getChildren().setAll(pane);
+        } else if (s == 0) {
+//type this message in the same and reload
+            System.out.println("Wrong user name or password");
+
+        } else {
+//type this message in the same and reload
+            System.err.println("Please try again Later");
+        }
+
     }
 
 }

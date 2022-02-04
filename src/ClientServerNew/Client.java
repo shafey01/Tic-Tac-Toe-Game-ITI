@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.io.BufferedReader;
+import login.CreateAccountController;
+import login.FXMLDocumentController;
 
 public class Client {
 
@@ -14,6 +16,7 @@ public class Client {
     String id;
     String password;
     String userName;
+    public int status2 = 0;
 
     PrintWriter writeToServer;
     BufferedReader readFromServer;
@@ -21,6 +24,8 @@ public class Client {
     String messageToServer;
     String messageFromServer;
     String clientInput;
+    CreateAccountController signup;
+    FXMLDocumentController login;
 
     public Client() throws IOException {
         isOn = true;
@@ -31,8 +36,10 @@ public class Client {
         readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         writeToServer = new PrintWriter(clientSocket.getOutputStream(), true);
         readClientInput = new BufferedReader(new InputStreamReader(System.in));
+        signup = new CreateAccountController();
+        login = new FXMLDocumentController();
         initListenToServerThread();
-        readInputFromClient();
+//        readInputFromClient();
 
     }
 
@@ -46,9 +53,9 @@ public class Client {
                         messageFromServer = readFromServer.readLine();
                         System.out.println(messageFromServer);
                         String[] message = parseClientMessage(messageFromServer);
-                        
+
                         if (message[0].equals(new String("login"))) {
-                           
+
                             loginStatus(message);
                         } else if (message[0].equals(new String("signup"))) {
                             signupStatus(message);
@@ -66,38 +73,37 @@ public class Client {
         }.start();
     }
 
-    public void readInputFromClient() throws IOException {
-        while (isOn) {
-            System.out.println("Enter your input:");
-            clientInput = readClientInput.readLine();
-            sendRequestToServer(clientInput);
-
-        }
-    }
-
-    public void sendRequestToServer(String clientInput) {
+//    public void readInputFromClient() throws IOException {
+//        while (isOn) {
+//            System.out.println("Enter your input:");
+//            clientInput = readClientInput.readLine();
+//            sendRequestToServer(clientInput);
+//
+//        }
+//    }
+    public void sendRequestToServer(String clientInput, String userName, String password) {
 
         if (clientInput.equals(new String("login"))) {
-            String password = "";
-            String userName = "";
-            try {
-                userName = readClientInput.readLine();
-                password = readClientInput.readLine();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            String password = "";
+//            String userName = "";
+//            try {
+//                userName = readClientInput.readLine();
+//                password = readClientInput.readLine();
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             sendLoginRequest(userName, password);
         } else if (clientInput.equals(new String("signup"))) {
-            String password = "";
-            String userName = "";
-            try {
-                userName = readClientInput.readLine();
-                password = readClientInput.readLine();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            String password = "";
+//            String userName = "";
+//            try {
+//                userName = readClientInput.readLine();
+//                password = readClientInput.readLine();
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             sendSignupRequest(userName, password);
         } else if (clientInput.equals(new String("invite"))) {
             System.out.println("enter other user id: ");
@@ -165,42 +171,45 @@ public class Client {
 
     }
 
-    public void signupStatus(String[] message) {
+    public void signupStatus(String[] message) throws IOException {
 
         if (message[0].equals(new String("signup"))) {
 
             if (message[1].equals(new String("1"))) {
-
-                System.out.println("signup success ");
+                status2 = 1;
+//                System.out.println("signup success ");
+                signup.sendToController(1);
 
             } else if (message[1].equals(new String("0"))) {
 
                 System.out.println("the user name is used try another name");
+                signup.sendToController(0);
 
             } else if (message[1].equals(new String("-1"))) {
                 System.out.println("Error, please try later");
+                signup.sendToController(-1);
 
             }
         }
 
     }
 
-    public void loginStatus(String[] message) {
-      
-       
+    public void loginStatus(String[] message) throws IOException {
 
-            if (message[1].equals(new String("0"))) {
+        if (message[1].equals(new String("0"))) {
 
-                System.out.println("Invalid user name or password");
+            System.out.println("Invalid user name or password");
+            login.sendToControllerLogin(0);
 
-            } else if (message[1].equals(new String("-1"))) {
-                System.out.println("Error, please try later");
+        } else if (message[1].equals(new String("-1"))) {
+            System.out.println("Error, please try later");
+            login.sendToControllerLogin(-1);
 
-            } else {
-                System.out.println("Loged in success");
+        } else {
+            System.out.println("Loged in success");
+            login.sendToControllerLogin(1);
 
-            }
-        
+        }
 
     }
 

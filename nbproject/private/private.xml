@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Client.java</file>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/GameLogic/NewGame.java</file>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/DataBase/GamePkg/GameDAO.java</file>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/GameLogic/GameMain.java</file>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/ClientMain.java</file>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/DataBase/PlayerPkg/PlayerDAO.java</file>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/DataBase/UserPkg/ContactDAO.java</file>
-            <file>file:/C:/Users/MBR/Desktop/tic%20tac%20toe%20master/Tic-Tac-Toe-Game-ITI/src/DataBase/UserPkg/ContactPerson.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/login/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Client.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Server.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/login/Login.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/login/CreateAccountController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -33,7 +33,7 @@ public class Login extends Application {
         Scene scene = new Scene(root);
 
         stage.setTitle("Tic Tac Toe");
-      //stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.setFullScreen(true);
 
         stage.setScene(scene);
@@ -43,8 +43,7 @@ public class Login extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
-
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
 }

@@ -4,6 +4,7 @@
  */
 package server_gui;
 
+import ClientServerNew.Server;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -84,10 +85,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> userName_column;
+Server server;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+//server = new Server();
     }    
     
 }
