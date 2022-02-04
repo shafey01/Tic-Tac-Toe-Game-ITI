@@ -7,6 +7,7 @@ package login;
 import ClientServerNew.Client;
 
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -35,6 +36,8 @@ public class CreateAccountController implements Initializable {
 
     Client SignupRequest;
 
+    public static CreateAccountController createacount;
+
     @FXML
     private ImageView back_bt;
 
@@ -45,10 +48,10 @@ public class CreateAccountController implements Initializable {
     private BorderPane createaccount;
 
     @FXML
-    private PasswordField passwordTextField_CA;
+    public PasswordField passwordTextField_CA;
 
     @FXML
-    private TextField userNameTextField_CA;
+    public TextField userNameTextField_CA;
 
 //
 // Thread th  =     new Thread() {
@@ -72,6 +75,7 @@ public class CreateAccountController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        createacount = this;
         try {
             SignupRequest = new Client();
         } catch (Exception e) {
@@ -107,28 +111,35 @@ public class CreateAccountController implements Initializable {
 
     }
 
-    @FXML
-    public void test() throws IOException {
-        System.out.println("test");
-
-//        BorderPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-//        createaccount.getChildren().setAll(pane);
-    }
-
+//    public void test() throws IOException {
+//        System.out.println("test");
+//
+//
+////        BorderPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+////        createaccount.getChildren().setAll(pane);
+//    }
+//
     public void sendToController(int s) throws IOException {
         System.out.println("before if");
 
         if (s == 1) {
-//redirect Login page
 
-            Platform.runLater(() -> {
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    BorderPane pane;
+                    try {
+                        pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+                        createaccount.getChildren().setAll(pane);
 
-                userNameTextField_CA.setText(" ");
-                passwordTextField_CA.setText(" ");
-
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             });
+            userNameTextField_CA.setText("");
+            passwordTextField_CA.setText("");
 
-//          th.start();
             System.out.println("Success");
             System.out.println("Succesvvvvvvvvvvs");
 

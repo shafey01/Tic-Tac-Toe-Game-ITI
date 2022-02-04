@@ -36,8 +36,8 @@ public class Client {
         readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         writeToServer = new PrintWriter(clientSocket.getOutputStream(), true);
         readClientInput = new BufferedReader(new InputStreamReader(System.in));
-        signup = new CreateAccountController();
-        login = new FXMLDocumentController();
+//        signup = new CreateAccountController();
+//        login = new FXMLDocumentController();
         initListenToServerThread();
 //        readInputFromClient();
 
@@ -176,18 +176,19 @@ public class Client {
         if (message[0].equals(new String("signup"))) {
 
             if (message[1].equals(new String("1"))) {
-                status2 = 1;
-//                System.out.println("signup success ");
-                signup.sendToController(1);
+
+                System.out.println("signup success ");
+
+                CreateAccountController.createacount.sendToController(1);
 
             } else if (message[1].equals(new String("0"))) {
 
                 System.out.println("the user name is used try another name");
-                signup.sendToController(0);
+                CreateAccountController.createacount.sendToController(1);
 
             } else if (message[1].equals(new String("-1"))) {
                 System.out.println("Error, please try later");
-                signup.sendToController(-1);
+                CreateAccountController.createacount.sendToController(1);
 
             }
         }
