@@ -5,134 +5,160 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+
 import java.io.BufferedReader;
 
 public class Client {
 
-    Boolean isOn;
-    Socket clientSocket;
-    String id;
-    String password;
-    PrintWriter writeToServer;
-    BufferedReader readFromServer;
-    BufferedReader readClientInput;
-    String messageToServer;
-    String messageFromServer;
-    String clientInput;
+    // private Boolean isOn;
+    private Socket clientSocket;
+    private String id;
+    private PrintWriter writeToServer;
+    private BufferedReader readFromServer;
+    // private String messageToServer;
+    // private String messageFromServer;
+    private Thread listenToServer;
+    /////////////////////////////////
+    // private boolean receiveMonitor;
+    public boolean connectionSuccess;
 
-    public Client(String _id) throws IOException {
-        isOn = true;
+    //////////////////////////// remove throws and add try catch
+    public Client(String _id) {
+        // isOn = true;
+        // receiveMonitor = false;
         id = _id;
-        InetAddress ip = InetAddress.getLocalHost();
-        System.out.println(ip);
-        this.clientSocket = new Socket(ip, 7001);
-        readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        writeToServer = new PrintWriter(clientSocket.getOutputStream(), true);
-        readClientInput = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            ///////////////////////////////////////////
+            this.clientSocket = new Socket(InetAddress.getLocalHost(), 7001);
+            readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            writeToServer = new PrintWriter(clientSocket.getOutputStream(), true);
+            connectionSuccess = true;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            ////////////////
+            connectionSuccess = false;
+            e.printStackTrace();
+        }
+        //////////////// commented
         initListenToServerThread();
-        readInputFromClient();
 
     }
 
-    public void initListenToServerThread() {
-        new Thread() {
+    private void initListenToServerThread() {
+        listenToServer = new Thread() {
+            String messageFromServer;
+
             @Override
             public void run() {
-
-                while (isOn) {
-                    try {
+                try {
+                    while (true) {
                         messageFromServer = readFromServer.readLine();
-                        System.out.println(messageFromServer);
-                    } catch (IOException e) {
-                        // e.printStackTrace();
-                        System.out.println("connection to server closed");
+
+                        //////////////////////////////////////
+                        handleServerReply(messageFromServer);
+
                     }
 
+                } catch (IOException e) {
+                    // e.printStackTrace();
+                    System.out.println("connection to server closed");
                 }
                 System.out.println("thread closed");
+
             }
 
-        }.start();
+        };
     }
 
-    public void readInputFromClient() throws IOException {
-        while (isOn) {
-            System.out.println("Enter your input:");
-            clientInput = readClientInput.readLine();
-            sendRequestToServer(clientInput);
+    ///////////////////////////////////////////// private
 
-        }
-    }
+    private String[] parseServerMessage(String clientMessage) {
 
-    public void sendRequestToServer(String clientInput) {
-
-        if (clientInput.equals(new String("login"))) {
-            sendLoginRequest();
-        }
-
-        else if (clientInput.equals(new String("signup"))) {
-            sendSignupRequest();
-        }
-
-        else if (clientInput.equals(new String("invite"))) {
-            System.out.println("enter other user id: ");
-            String idToInvite = null;
-            try {
-                idToInvite = readClientInput.readLine();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            sendInviteRequest(idToInvite);
-        }
-
-        else if (clientInput.equals(new String("logout"))) {
-            sendLogoutRequest();
-
-            // sleep(2000);
-        }
+        return clientMessage.split("\\.");
 
     }
 
-    public void closeConnection() {
+    private void handleServerReply(String messageFromServer) {
+        System.out.println("received " + messageFromServer);
+        String[] tokens = parseServerMessage(messageFromServer);
+
+        if (tokens[0].equals(new String("invite"))) {
+            // handleInvitaionRequest(tokens[1]);
+        }
+
+        else if (tokens[0].equals(new String("exit"))) {
+            // handleLogoutRequest();
+        }
+    }
+
+    // ====================================================================
+    ////////// private
+    private void closeConnection() {
 
         writeToServer.close();
         try {
             readFromServer.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        try {
             clientSocket.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        isOn = false;
+        // isOn = false;
     }
 
     public void sendLogoutRequest() {
-        messageToServer = "logout";
+        String messageToServer = new String("logout");
         writeToServer.println(messageToServer);
-        closeConnection();
+        // closeConnection();
     }
 
-    public void sendLoginRequest() {
-        messageToServer = new String("login" + "." + id);
+    public int sendLoginRequest(String username, String password) {
+        String messageToServer = new String("login" + "." + username + "." + password);
         writeToServer.println(messageToServer);
+        int defaultLoginReply = 0;
+        try {
+            String messageFromServer = readFromServer.readLine();
+            if (messageFromServer.equals(new String("1"))) {
+                listenToServer.start();
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return defaultLoginReply;
     }
 
-    public void sendSignupRequest() {
-        messageToServer = new String("signup" + "." + id);
+    public int sendSignupRequest(String username, String password) {
+        String messageToServer = new String("signup" + "." + id);
         writeToServer.println(messageToServer);
+        int defaultSignupReply = 0;
+        try {
+            String messageFromServer = readFromServer.readLine();
+            if (messageFromServer.equals(new String("1"))) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return defaultSignupReply;
     }
 
     public void sendInviteRequest(String idToInvite) {
-        messageToServer = new String("invite." + idToInvite);
+        String messageToServer = new String("invite." + idToInvite);
         writeToServer.println(messageToServer);
+    }
+
+    public void sendQuitRequest() {
+        String messageToServer = new String("quit");
+        writeToServer.println(messageToServer);
+        closeConnection();
     }
 
 }

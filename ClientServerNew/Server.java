@@ -13,7 +13,6 @@ public class Server {
 
     private ServerSocket serverSock;
     private Socket internalSock;
-
     private Hashtable<String, ClientHandler> clientsTable = new Hashtable<String, ClientHandler>();
 
     Server() {
@@ -33,17 +32,18 @@ public class Server {
 
     private class ClientHandler extends Thread {
 
-        Socket internalSockHandler;
-        PrintWriter writeToClient;
-        BufferedReader readFromClient;
-        String clientID;
-        String messageFromClient;
-        String messageToClient;
-        boolean isOn;
+        private Socket internalSockHandler;
+        private PrintWriter writeToClient;
+        private BufferedReader readFromClient;
+        private String clientID;
+        private String messageFromClient;
+        private String messageToClient;
+        // private boolean isOn;
+        ///////////////////
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
-            isOn = true;
+            // isOn = true;
             try {
 
                 readFromClient = new BufferedReader(new InputStreamReader(internalSockHandler.getInputStream()));
@@ -56,62 +56,77 @@ public class Server {
 
         }
 
-        public String[] parseClientMessage(String clientMessage) {
+        /////////////////////// private
+        private String[] parseClientMessage(String clientMessage) {
 
             return clientMessage.split("\\.");
 
         }
 
-        public void handleLoginRequest(String _clientID) {
+        private void handleLoginRequest(String _clientID) {
             // database
             clientID = _clientID;
             clientsTable.put(clientID, this);
-            messageToClient = new String("hello " + clientID);
+            messageToClient = new String("0");
             writeToClient.println(messageToClient);
         }
 
-        public void handleSignupRequest() {
+        private void handleSignupRequest() {
             // database
-            messageToClient = new String("signup");
+            messageToClient = new String("1");
             writeToClient.println(messageToClient);
         }
 
-        public void handleInvitaionRequest(String otherClientId) {
-            if (clientsTable.get(otherClientId) != null) {
-                messageToClient = "invitation from " + clientID;
-                clientsTable.get(otherClientId).writeToClient.println(messageToClient);
+        private void handleInvitaionRequest(String otherClientID) {
+            ClientHandler otherClient = clientsTable.get(otherClientID);
+            if (otherClient != null) {
+                messageToClient = new String("invite." + clientID);
+                otherClient.writeToClient.println(messageToClient);
+                writeToClient.println(new String("1"));
             }
 
             else {
-                writeToClient.println("not connected yet");
+                writeToClient.println("0");
             }
         }
 
-        public void closeConnection() {
+        private void handleReplyRequest(String otherClientID, String isAccepted) {
+            ClientHandler otherClient = clientsTable.get(otherClientID);
+            if (otherClient != null) {
+                messageToClient = new String("reply." + clientID + "." + isAccepted);
+                otherClient.writeToClient.println(messageToClient);
+            }
+
+            else {
+                writeToClient.println(new String("0"));
+            }
+        }
+
+        private void closeConnection() {
 
             try {
                 readFromClient.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
 
-            try {
                 internalSockHandler.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             writeToClient.close();
-            isOn = false;
+            // isOn = false;
         }
 
-        public void handleLogoutRequest() {
+        private void handleLogoutRequest() {
             clientsTable.remove(clientID);
+            // closeConnection();
+        }
+
+        private void handleQuitRequest() {
             closeConnection();
         }
 
-        public void handleClientInput() {
+        //////////////////////////////////////// private
+        private void handleClientRequest() {
             System.out.println("received " + messageFromClient);
             String[] tokens = parseClientMessage(messageFromClient);
             if (tokens[0].equals(new String("login"))) {
@@ -125,9 +140,17 @@ public class Server {
             else if (tokens[0].equals(new String("invite"))) {
                 handleInvitaionRequest(tokens[1]);
             }
-
-            else {
+            ///////////////////////////////
+            else if (tokens[0].equals(new String("reply"))) {
+                handleReplyRequest(tokens[1], tokens[2]);
+            }
+            ///////////////////////////////////
+            else if (tokens[0].equals(new String("logout"))) {
                 handleLogoutRequest();
+            }
+
+            else if (tokens[0].equals(new String("quit"))) {
+                handleQuitRequest();
             }
         }
 
@@ -135,12 +158,14 @@ public class Server {
         public void run() {
             try {
 
-                while (isOn) {
+                while (true) {
                     messageFromClient = readFromClient.readLine();
-                    handleClientInput();
+                    handleClientRequest();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+
+                // e.printStackTrace();
+                System.out.println("connection to client closed");
             }
 
             System.out.println("thread closed");
