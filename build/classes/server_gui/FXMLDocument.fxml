@@ -28,7 +28,6 @@
                             <TableColumn fx:id="userName_column" prefWidth="75.0" text="User Name" />
                             <TableColumn fx:id="score_column" prefWidth="75.0" text="Score" />
                               <TableColumn fx:id="state_column" prefWidth="75.0" text="State" />
-                              <TableColumn fx:id="password_column" prefWidth="75.0" text="Password" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -44,10 +43,10 @@
                      <children>
                         <Text layoutX="35.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of users " />
                         <TextField fx:id="numberOfPlayers_TextField" editable="false" focusTraversable="false" layoutX="152.0" layoutY="40.0" prefWidth="108.0" style="-fx-background-color: gray;" />
-                        <TextField fx:id="activePlayers_TextField" editable="false" focusTraversable="false" layoutX="152.0" layoutY="146.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: gray;" />
-                        <TextField fx:id="playersInGame_TextField" editable="false" focusTraversable="false" layoutX="152.0" layoutY="245.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: gray;" />
-                        <Text layoutX="35.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active players" />
-                        <Text layoutX="35.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players in game" />
+                        <TextField fx:id="activePlayers_TextField" editable="false" focusTraversable="false" layoutX="152.0" layoutY="133.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: gray;" />
+                        <TextField fx:id="playersInGame_TextField" editable="false" focusTraversable="false" layoutX="433.0" layoutY="133.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: gray;" />
+                        <Text layoutX="35.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active players" />
+                        <Text layoutX="319.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players in game" />
                         <Separator layoutX="297.0" layoutY="61.0" orientation="VERTICAL" prefHeight="345.6" prefWidth="6.4" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="10.0" />
                         <Text layoutX="325.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score" />
                         <TextField fx:id="highestScore_TextField" editable="false" focusTraversable="false" layoutX="433.0" layoutY="38.0" prefWidth="108.0" style="-fx-background-color: gray;" />
@@ -63,11 +62,6 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="new_menuItem" disable="true" mnemonicParsing="false" text="New" />
-                  <MenuItem fx:id="open_menuItem" disable="true" mnemonicParsing="false" text="Open" />
-                  <MenuItem fx:id="saveCopy_menuItem" mnemonicParsing="false" text="save a copy" />
-                  <MenuItem fx:id="Properties_menuItem" mnemonicParsing="false" text="Properties" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
               <MenuItem fx:id="close_menuItem" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
@@ -77,8 +71,6 @@
                   <CheckMenuItem fx:id="start_menuItem" mnemonicParsing="false" text="Start" />
                   <CheckMenuItem fx:id="stop_menuItem" mnemonicParsing="false" text="Stop" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="copy_menuItem" mnemonicParsing="false" text="Copy" />
-              <MenuItem fx:id="delete_menuItem" mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

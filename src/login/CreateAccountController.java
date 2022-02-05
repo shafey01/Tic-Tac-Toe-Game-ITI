@@ -25,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -40,7 +41,8 @@ public class CreateAccountController implements Initializable {
 
     @FXML
     private ImageView back_bt;
-
+    @FXML
+    private Text wrong_text;
     @FXML
     private Button create_bt;
 
@@ -146,10 +148,36 @@ public class CreateAccountController implements Initializable {
         } else if (s == 0) {
 //type this message in the same and reload
             System.out.println("user is already used");
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                   
+                    try {
+                        wrong_text.setText("user is already used");
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
 
         } else {
 //type this message in the same and reload
             System.out.println("Please try again");
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    
+                    try {
+                        wrong_text.setText("Please try again Later");
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
         }
 
     }

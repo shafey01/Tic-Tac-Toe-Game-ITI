@@ -20,6 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -28,7 +29,9 @@ import javafx.scene.layout.BorderPane;
 public class FXMLDocumentController implements Initializable {
 
     Client client;
-
+    public static FXMLDocumentController logincontroller;
+    @FXML
+    private Text wrong_text_Login;
     @FXML
     private Hyperlink CreateAccount;
 
@@ -47,7 +50,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        logincontroller = this;
         try {
             client = new Client();
         } catch (Exception e) {
@@ -75,8 +78,7 @@ public class FXMLDocumentController implements Initializable {
 
         client.sendRequestToServer("login", userNameLogin, passwordLogin);
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        rootPane.getChildren().setAll(pane);
+        
     }
 
     public void sendToControllerLogin(int s) throws IOException {
@@ -86,14 +88,53 @@ public class FXMLDocumentController implements Initializable {
 //redirect menu page
             System.out.println("Login Success");
 
-//            BorderPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-//            createaccount.getChildren().setAll(pane);
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                        rootPane.getChildren().setAll(pane);
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
         } else if (s == 0) {
 //type this message in the same and reload
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        wrong_text_Login.setText("Wrong user name or password");
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
             System.out.println("Wrong user name or password");
 
         } else {
 //type this message in the same and reload
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        wrong_text_Login.setText("Please try again Later");
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
             System.err.println("Please try again Later");
         }
 

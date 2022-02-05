@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.io.BufferedReader;
 import login.CreateAccountController;
 import login.FXMLDocumentController;
+import static login.FXMLDocumentController.logincontroller;
 
 public class Client {
 
@@ -24,8 +25,6 @@ public class Client {
     String messageToServer;
     String messageFromServer;
     String clientInput;
-    CreateAccountController signup;
-    FXMLDocumentController login;
 
     public Client() throws IOException {
         isOn = true;
@@ -82,43 +81,29 @@ public class Client {
 //        }
 //    }
     public void sendRequestToServer(String clientInput, String userName, String password) {
+        if (!userName.isEmpty() && !password.isEmpty()) {
 
-        if (clientInput.equals(new String("login"))) {
-//            String password = "";
-//            String userName = "";
-//            try {
-//                userName = readClientInput.readLine();
-//                password = readClientInput.readLine();
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            sendLoginRequest(userName, password);
-        } else if (clientInput.equals(new String("signup"))) {
-//            String password = "";
-//            String userName = "";
-//            try {
-//                userName = readClientInput.readLine();
-//                password = readClientInput.readLine();
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            sendSignupRequest(userName, password);
-        } else if (clientInput.equals(new String("invite"))) {
-            System.out.println("enter other user id: ");
-            String idToInvite = null;
-            try {
-                idToInvite = readClientInput.readLine();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            if (clientInput.equals(new String("login"))) {
+
+                sendLoginRequest(userName, password);
+            } else if (clientInput.equals(new String("signup"))) {
+
+                sendSignupRequest(userName, password);
+            } else if (clientInput.equals(new String("invite"))) {
+                System.out.println("enter other user id: ");
+                String idToInvite = null;
+                try {
+                    idToInvite = readClientInput.readLine();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                sendInviteRequest(idToInvite);
+            } else if (clientInput.equals(new String("logout"))) {
+                sendLogoutRequest();
+
+                // sleep(2000);
             }
-            sendInviteRequest(idToInvite);
-        } else if (clientInput.equals(new String("logout"))) {
-            sendLogoutRequest();
-
-            // sleep(2000);
         }
 
     }
@@ -184,11 +169,11 @@ public class Client {
             } else if (message[1].equals(new String("0"))) {
 
                 System.out.println("the user name is used try another name");
-                CreateAccountController.createacount.sendToController(1);
+                CreateAccountController.createacount.sendToController(0);
 
             } else if (message[1].equals(new String("-1"))) {
                 System.out.println("Error, please try later");
-                CreateAccountController.createacount.sendToController(1);
+                CreateAccountController.createacount.sendToController(-1);
 
             }
         }
@@ -200,15 +185,15 @@ public class Client {
         if (message[1].equals(new String("0"))) {
 
             System.out.println("Invalid user name or password");
-            login.sendToControllerLogin(0);
+            FXMLDocumentController.logincontroller.sendToControllerLogin(0);
 
         } else if (message[1].equals(new String("-1"))) {
             System.out.println("Error, please try later");
-            login.sendToControllerLogin(-1);
+            FXMLDocumentController.logincontroller.sendToControllerLogin(-1);
 
         } else {
             System.out.println("Loged in success");
-            login.sendToControllerLogin(1);
+            FXMLDocumentController.logincontroller.sendToControllerLogin(1);
 
         }
 

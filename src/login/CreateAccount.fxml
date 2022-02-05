@@ -83,6 +83,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Text fx:id="wrong_text" fill="RED" layoutX="155.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="739.2001037597656" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="212.19989624023447">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
                </children>
                <effect>
                   <DropShadow height="101.71" radius="58.25" spread="0.29" width="133.29" />

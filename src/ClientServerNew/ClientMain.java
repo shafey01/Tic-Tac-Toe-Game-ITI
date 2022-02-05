@@ -9,22 +9,13 @@ public class ClientMain {
 
     public static void main(String[] args) throws IOException {
 
-new Thread() {
-            @Override
-            public void run() {
-
-               Application.launch(Login.class, args);
-
-        }}.start();
+        Application.launch(Login.class, args);
 
         System.out.println("down thread");
-        
 
-        
-            System.out.println("enter client id");
+        System.out.println("enter client id");
 //            String clientId = scan.next();
 //            new Client();
-        
 
     }
 }

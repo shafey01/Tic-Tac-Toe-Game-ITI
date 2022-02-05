@@ -4,9 +4,12 @@
  */
 package login;
 
+import DataBase.UserPkg.ContactDAO;
+import DataBase.UserPkg.ContactPerson;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Vector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +27,8 @@ import javafx.scene.layout.BorderPane;
  * @author Mustafa Raed
  */
 public class LeaderBordeController implements Initializable {
+
+    ContactDAO c;
 
     @FXML
     private ImageView bt_exit;
@@ -47,23 +52,30 @@ public class LeaderBordeController implements Initializable {
     private Button bt_setting;
 
     @FXML
-    private TableView<?> leaderBordeTableView;
+    private TableView<String> leaderBordeTableView;
 
     @FXML
     private BorderPane leaderborde;
 
     @FXML
-    private TableColumn<?, ?> scoreColumn;
+    private TableColumn<ContactPerson, Integer> scoreColumn;
 
     @FXML
     private AnchorPane topbar;
 
     @FXML
-    private TableColumn<?, ?> userNameColumn;
+    private TableColumn<ContactPerson, String> userNameColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+//userNameColumn.setText("asdf");
+        c = new ContactDAO();
+        Vector<ContactPerson> contactPerson = c.getUsers();
+        System.out.println(contactPerson.get(0).getUsername());
+//        leaderBordeTableView.getItems().set(1, contactPerson.get(0).getUsername());
+
     }
 
     @FXML
@@ -89,4 +101,19 @@ public class LeaderBordeController implements Initializable {
         BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
         leaderborde.getChildren().setAll(pane);
     }
+
+    public void data() {
+
+    }
+
+//    public static void main(String[] args) {
+//        ContactDAO c;
+//        c = new ContactDAO();
+//        Vector<ContactPerson> contactPerson = c.getUsers();
+//
+//        for (ContactPerson i : contactPerson) {
+//            System.out.println(i.getUser_id() + " " + i.getUsername() + " " + i.getPassword() + " " + i.getTotal_score());
+//        }
+//
+//    }
 }

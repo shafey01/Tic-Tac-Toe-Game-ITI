@@ -54,8 +54,11 @@ public class ContactDAO {
     }
 
     public Vector<ContactPerson> getUsers() {
+ System.out.println("DataBase.UserPkg.ContactDAO.getUsers()");
+        this.connect();
         contactPerson = new Vector<ContactPerson>();
         try {
+           
             Statement stat = con.createStatement();
             String query = "select * from user";
             ResultSet st = stat.executeQuery(query);
@@ -65,8 +68,9 @@ public class ContactDAO {
                 contactPerson.add(contact);
             }
             stat.close();
+            this.closeConnection();
         } catch (SQLException ex) {
-            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return contactPerson;
     }
@@ -142,7 +146,7 @@ public class ContactDAO {
 
     public int getUserIdByName(String name, String password) {
         this.connect();
-       
+
         try {
             pst = con.prepareStatement("select * from user where username = ?");
             pst.setString(1, name);
@@ -159,7 +163,7 @@ public class ContactDAO {
                     int id = rs.getInt("user_id");
                     pst.close();
                     this.closeConnection();
-                    
+
                     return id;
 
                 } else {
@@ -178,21 +182,21 @@ public class ContactDAO {
 
     }
 
-    public static void main(String[] args) throws SQLException {
-        ContactDAO cd = new ContactDAO();
-        ContactPerson user = new ContactPerson();
-        cd.connect();
-        Vector<ContactPerson> tbData = cd.getUserByName("menna");
-//        ContactPerson person = new ContactPerson();
-//        person.setUsername("menna");
-//        person.setPassword("1234");
-//        cd.createNewUser(person);
-//        user.setTotal_score(14);
-//        user.setUser_id(1);
-//        cd.UpdateUserTolalScore(user);
-        cd.closeConnection();
-        for (ContactPerson i : tbData) {
-            System.out.println(i.getUser_id() + " " + i.getUsername() + " " + i.getPassword() + " " + i.getTotal_score());
-        }
-    }
+//    public static void main(String[] args) throws SQLException {
+////        ContactDAO cd = new ContactDAO();
+////        ContactPerson user = new ContactPerson();
+////        cd.connect();
+////        Vector<ContactPerson> tbData = cd.getUserByName("menna");
+//////        ContactPerson person = new ContactPerson();
+//////        person.setUsername("menna");
+//////        person.setPassword("1234");
+//////        cd.createNewUser(person);
+//////        user.setTotal_score(14);
+//////        user.setUser_id(1);
+//////        cd.UpdateUserTolalScore(user);
+////        cd.closeConnection();
+////        for (ContactPerson i : tbData) {
+////            System.out.println(i.getUser_id() + " " + i.getUsername() + " " + i.getPassword() + " " + i.getTotal_score());
+////        }
+//    }
 }

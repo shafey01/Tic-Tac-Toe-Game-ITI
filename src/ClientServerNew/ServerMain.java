@@ -1,10 +1,14 @@
 package ClientServerNew;
 
+import javafx.application.Application;
+import login.Login;
+import server_gui.Server_GUI;
+
 public class ServerMain {
 
     public static void main(String[] args) {
-
-        new Server();
+        Application.launch(Server_GUI.class, args);
+//       new Server();
 
     }
 

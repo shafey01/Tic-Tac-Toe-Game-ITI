@@ -80,6 +80,11 @@
                         <Font name="Yu Gothic Bold" size="33.0" />
                      </font>
                   </Hyperlink>
+                  <Text fx:id="wrong_text_Login" fill="RED" layoutX="177.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="686.3999328613281">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="37.0" />
+                     </font>
+                  </Text>
                </children>
                <effect>
                   <DropShadow height="60.77" radius="48.015" width="133.29" />
