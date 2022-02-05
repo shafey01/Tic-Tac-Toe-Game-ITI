@@ -38,8 +38,6 @@ public class Server {
         private String clientID;
         private String messageFromClient;
         private String messageToClient;
-        // private boolean isOn;
-        ///////////////////
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
@@ -56,7 +54,6 @@ public class Server {
 
         }
 
-        /////////////////////// private
         private String[] parseClientMessage(String clientMessage) {
 
             return clientMessage.split("\\.");
@@ -67,7 +64,7 @@ public class Server {
             // database
             clientID = _clientID;
             clientsTable.put(clientID, this);
-            messageToClient = new String("0");
+            messageToClient = new String("1");
             writeToClient.println(messageToClient);
         }
 
@@ -82,11 +79,12 @@ public class Server {
             if (otherClient != null) {
                 messageToClient = new String("invite." + clientID);
                 otherClient.writeToClient.println(messageToClient);
-                writeToClient.println(new String("1"));
+                // writeToClient.println(new String("1"));
             }
 
             else {
-                writeToClient.println("0");
+                System.out.println("not connected yet");
+                // writeToClient.println("invite.");
             }
         }
 
@@ -94,38 +92,37 @@ public class Server {
             ClientHandler otherClient = clientsTable.get(otherClientID);
             if (otherClient != null) {
                 messageToClient = new String("reply." + clientID + "." + isAccepted);
-                otherClient.writeToClient.println(messageToClient);
+                clientsTable.get(otherClientID).writeToClient.println(messageToClient);
             }
 
             else {
-                writeToClient.println(new String("0"));
+                System.out.println("not connected yet");
+                // writeToClient.println(new String("0"));
             }
         }
 
         private void closeConnection() {
-
+            writeToClient.close();
             try {
                 readFromClient.close();
-
                 internalSockHandler.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            writeToClient.close();
+
             // isOn = false;
         }
 
         private void handleLogoutRequest() {
             clientsTable.remove(clientID);
-            // closeConnection();
+            closeConnection();
         }
 
         private void handleQuitRequest() {
             closeConnection();
         }
 
-        //////////////////////////////////////// private
         private void handleClientRequest() {
             System.out.println("received " + messageFromClient);
             String[] tokens = parseClientMessage(messageFromClient);
@@ -140,11 +137,11 @@ public class Server {
             else if (tokens[0].equals(new String("invite"))) {
                 handleInvitaionRequest(tokens[1]);
             }
-            ///////////////////////////////
+
             else if (tokens[0].equals(new String("reply"))) {
                 handleReplyRequest(tokens[1], tokens[2]);
             }
-            ///////////////////////////////////
+
             else if (tokens[0].equals(new String("logout"))) {
                 handleLogoutRequest();
             }

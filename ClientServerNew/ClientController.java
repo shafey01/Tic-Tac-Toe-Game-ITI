@@ -9,17 +9,32 @@ public class ClientController {
     Client currentClient;
 
     public ClientController() throws IOException {
-
         readClientInput = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter client ID");
-        currentClient = new Client(readClientInput.readLine());
-        if (currentClient.connectionSuccess == false) {
+        currentClient = new Client(this);
+        if (currentClient.isConnectionSuccess == false) {
             System.out.println("Error Connecting To Server");
         }
         readInputFromClient();
     }
 
-    public void readInputFromClient() throws IOException {
+    public void invitationControl(String invitationID) {
+
+        System.out.println("invitation from " + invitationID);
+        System.out.println("Do you want to accept");
+        try {
+            String isAccepted = readClientInput.readLine();
+            currentClient.sendReplyRequest(invitationID, isAccepted);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void replyControl(String replyID, String isAccepted) {
+        System.out.println("reply from" + replyID + " " + isAccepted);
+    }
+
+    private void readInputFromClient() throws IOException {
         String clientInput;
         while (true) {
             System.out.println("Enter your input:");
@@ -29,7 +44,7 @@ public class ClientController {
         }
     }
 
-    public void sendRequestToServer(String clientInput) throws IOException {
+    private void sendRequestToServer(String clientInput) throws IOException {
 
         if (clientInput.equals(new String("login"))) {
             String username, password;
@@ -57,6 +72,7 @@ public class ClientController {
             int signupReply = currentClient.sendSignupRequest(username, password);
             if (signupReply == 1) {
                 System.out.println("signup successful");
+
             }
 
             else {

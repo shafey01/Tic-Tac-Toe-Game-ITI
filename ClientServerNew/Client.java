@@ -10,42 +10,45 @@ import java.io.BufferedReader;
 
 public class Client {
 
-    // private Boolean isOn;
     private Socket clientSocket;
     private String id;
     private PrintWriter writeToServer;
     private BufferedReader readFromServer;
-    // private String messageToServer;
-    // private String messageFromServer;
-    private Thread listenToServer;
+    private Thread listenToServerThread;
+    private ClientController controller;
     /////////////////////////////////
-    // private boolean receiveMonitor;
-    public boolean connectionSuccess;
+    // private boolean invitationMonitor;
+    /////////////////// string invid, string repval
+    // public String invitationID;
+    // public boolean replyMonitior;
+    // public String replyValue;
+    // public String replyID;
+    // public boolean exitMonitor;
+    public boolean isConnectionSuccess;
 
-    //////////////////////////// remove throws and add try catch
-    public Client(String _id) {
-        // isOn = true;
-        // receiveMonitor = false;
-        id = _id;
+    public Client(ClientController controller) {
+
+        // id = _id;
+        this.controller = controller;
+        // initMonitors();
         try {
-            ///////////////////////////////////////////
             this.clientSocket = new Socket(InetAddress.getLocalHost(), 7001);
             readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             writeToServer = new PrintWriter(clientSocket.getOutputStream(), true);
-            connectionSuccess = true;
+            isConnectionSuccess = true;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            ////////////////
-            connectionSuccess = false;
-            e.printStackTrace();
+            isConnectionSuccess = false;
         }
-        //////////////// commented
         initListenToServerThread();
 
     }
 
+    // private void initMonitors() {
+    // invitationMonitor = replyMonitior = exitMonitor = false;
+    // }
+
     private void initListenToServerThread() {
-        listenToServer = new Thread() {
+        listenToServerThread = new Thread() {
             String messageFromServer;
 
             @Override
@@ -53,24 +56,16 @@ public class Client {
                 try {
                     while (true) {
                         messageFromServer = readFromServer.readLine();
-
-                        //////////////////////////////////////
                         handleServerReply(messageFromServer);
-
                     }
 
                 } catch (IOException e) {
-                    // e.printStackTrace();
                     System.out.println("connection to server closed");
                 }
                 System.out.println("thread closed");
-
             }
-
         };
     }
-
-    ///////////////////////////////////////////// private
 
     private String[] parseServerMessage(String clientMessage) {
 
@@ -83,7 +78,12 @@ public class Client {
         String[] tokens = parseServerMessage(messageFromServer);
 
         if (tokens[0].equals(new String("invite"))) {
-            // handleInvitaionRequest(tokens[1]);
+            controller.invitationControl(tokens[1]);
+        }
+
+        else if (tokens[0].equals(new String("reply"))) {
+
+            controller.replyControl(tokens[1], tokens[2]);
         }
 
         else if (tokens[0].equals(new String("exit"))) {
@@ -91,8 +91,6 @@ public class Client {
         }
     }
 
-    // ====================================================================
-    ////////// private
     private void closeConnection() {
 
         writeToServer.close();
@@ -104,23 +102,16 @@ public class Client {
             e.printStackTrace();
         }
 
-        // isOn = false;
-    }
-
-    public void sendLogoutRequest() {
-        String messageToServer = new String("logout");
-        writeToServer.println(messageToServer);
-        // closeConnection();
     }
 
     public int sendLoginRequest(String username, String password) {
         String messageToServer = new String("login" + "." + username + "." + password);
         writeToServer.println(messageToServer);
-        int defaultLoginReply = 0;
+        int defaultLoginServerReply = 0;
         try {
             String messageFromServer = readFromServer.readLine();
             if (messageFromServer.equals(new String("1"))) {
-                listenToServer.start();
+                listenToServerThread.start();
                 return 1;
             } else {
                 return 0;
@@ -129,13 +120,13 @@ public class Client {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return defaultLoginReply;
+        return defaultLoginServerReply;
     }
 
     public int sendSignupRequest(String username, String password) {
-        String messageToServer = new String("signup" + "." + id);
+        String messageToServer = new String("signup" + "." + username + "." + password);
         writeToServer.println(messageToServer);
-        int defaultSignupReply = 0;
+        int defaultSignupServerReply = 0;
         try {
             String messageFromServer = readFromServer.readLine();
             if (messageFromServer.equals(new String("1"))) {
@@ -147,11 +138,22 @@ public class Client {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return defaultSignupReply;
+        return defaultSignupServerReply;
+    }
+
+    public void sendLogoutRequest() {
+        String messageToServer = new String("logout");
+        writeToServer.println(messageToServer);
+        closeConnection();
     }
 
     public void sendInviteRequest(String idToInvite) {
         String messageToServer = new String("invite." + idToInvite);
+        writeToServer.println(messageToServer);
+    }
+
+    public void sendReplyRequest(String idToReply, String isAccepted) {
+        String messageToServer = new String("reply." + idToReply + "." + isAccepted);
         writeToServer.println(messageToServer);
     }
 
