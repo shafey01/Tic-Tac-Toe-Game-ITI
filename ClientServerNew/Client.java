@@ -16,21 +16,11 @@ public class Client {
     private BufferedReader readFromServer;
     private Thread listenToServerThread;
     private ClientController controller;
-    /////////////////////////////////
-    // private boolean invitationMonitor;
-    /////////////////// string invid, string repval
-    // public String invitationID;
-    // public boolean replyMonitior;
-    // public String replyValue;
-    // public String replyID;
-    // public boolean exitMonitor;
     public boolean isConnectionSuccess;
 
     public Client(ClientController controller) {
 
-        // id = _id;
         this.controller = controller;
-        // initMonitors();
         try {
             this.clientSocket = new Socket(InetAddress.getLocalHost(), 7001);
             readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -42,10 +32,6 @@ public class Client {
         initListenToServerThread();
 
     }
-
-    // private void initMonitors() {
-    // invitationMonitor = replyMonitior = exitMonitor = false;
-    // }
 
     private void initListenToServerThread() {
         listenToServerThread = new Thread() {
@@ -86,10 +72,20 @@ public class Client {
             controller.replyControl(tokens[1], tokens[2]);
         }
 
+        else if (tokens[0].equals(new String("AIgame"))) {
+            controller.gameMovesControl(tokens[1], tokens[2]);
+        }
+
+        else if (tokens[0].equals(new String("AIover"))) {
+            controller.gameOverControl(tokens[1]);
+        }
+
         else if (tokens[0].equals(new String("exit"))) {
             // handleLogoutRequest();
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void closeConnection() {
 
@@ -141,12 +137,6 @@ public class Client {
         return defaultSignupServerReply;
     }
 
-    public void sendLogoutRequest() {
-        String messageToServer = new String("logout");
-        writeToServer.println(messageToServer);
-        closeConnection();
-    }
-
     public void sendInviteRequest(String idToInvite) {
         String messageToServer = new String("invite." + idToInvite);
         writeToServer.println(messageToServer);
@@ -155,6 +145,22 @@ public class Client {
     public void sendReplyRequest(String idToReply, String isAccepted) {
         String messageToServer = new String("reply." + idToReply + "." + isAccepted);
         writeToServer.println(messageToServer);
+    }
+
+    public void sendAIgameRequest(String computerStarts) {
+        String messageToServer = new String("AIrequest." + computerStarts);
+        writeToServer.println(messageToServer);
+    }
+
+    public void sendAIgameMove(String move) {
+        String messageToServer = new String("AIgame." + move);
+        writeToServer.println(messageToServer);
+    }
+
+    public void sendLogoutRequest() {
+        String messageToServer = new String("logout");
+        writeToServer.println(messageToServer);
+        closeConnection();
     }
 
     public void sendQuitRequest() {

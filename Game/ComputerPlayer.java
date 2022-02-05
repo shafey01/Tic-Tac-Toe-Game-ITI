@@ -12,7 +12,7 @@ public class ComputerPlayer {
         initComputerMove();
     }
 
-    public void initComputerMove() {
+    private void initComputerMove() {
         computerMove = new Move();
         if (computerStarts) {
             computerMove.setType(1);
@@ -46,19 +46,9 @@ public class ComputerPlayer {
             }
 
             else {
-                // System.out.println("here");
                 computerMove.setMove(getValidMove());
-
             }
         }
-
-        // if (computerStarts) {
-        // computerMove.setType(1);
-        // }
-
-        // else {
-        // computerMove.setType(2);
-        // }
 
         return computerMove;
 

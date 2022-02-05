@@ -9,6 +9,9 @@ import java.net.Socket;
 import java.util.Hashtable;
 // import java.util.Map;
 
+import Game.GameWithComputer;
+import Game.Move;
+
 public class Server {
 
     private ServerSocket serverSock;
@@ -37,7 +40,7 @@ public class Server {
         private BufferedReader readFromClient;
         private String clientID;
         private String messageFromClient;
-        private String messageToClient;
+        private GameWithComputer gameWithComputer;
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
@@ -57,48 +60,80 @@ public class Server {
         private String[] parseClientMessage(String clientMessage) {
 
             return clientMessage.split("\\.");
-
         }
+
+        // private Move stringToMove()
 
         private void handleLoginRequest(String _clientID) {
             // database
             clientID = _clientID;
             clientsTable.put(clientID, this);
-            messageToClient = new String("1");
+            String messageToClient = new String("1");
             writeToClient.println(messageToClient);
         }
 
         private void handleSignupRequest() {
             // database
-            messageToClient = new String("1");
+            String messageToClient = new String("1");
             writeToClient.println(messageToClient);
         }
 
         private void handleInvitaionRequest(String otherClientID) {
             ClientHandler otherClient = clientsTable.get(otherClientID);
             if (otherClient != null) {
-                messageToClient = new String("invite." + clientID);
+                String messageToClient = new String("invite." + clientID);
                 otherClient.writeToClient.println(messageToClient);
                 // writeToClient.println(new String("1"));
-            }
-
-            else {
-                System.out.println("not connected yet");
-                // writeToClient.println("invite.");
             }
         }
 
         private void handleReplyRequest(String otherClientID, String isAccepted) {
             ClientHandler otherClient = clientsTable.get(otherClientID);
             if (otherClient != null) {
-                messageToClient = new String("reply." + clientID + "." + isAccepted);
+                String messageToClient = new String("reply." + clientID + "." + isAccepted);
                 clientsTable.get(otherClientID).writeToClient.println(messageToClient);
+            }
+        }
+
+        private void handleAIgameRequest(String computerStarts) {
+
+            if (computerStarts.equals(new String("1"))) {
+                gameWithComputer = new GameWithComputer(true);
+                String messageToClient = new String("AIgame." + gameWithComputer.getComputerMove().toString());
+                writeToClient.println(messageToClient);
+            } else {
+                gameWithComputer = new GameWithComputer(false);
+            }
+        }
+
+        private void handleAIgameMoveRequest(String rowIndex, String columnIndex) {
+            String messageToClient;
+            int gameStatus = gameWithComputer.playMove(Move.stringToMove(rowIndex, columnIndex));
+            if (gameStatus == 3) {
+                messageToClient = new String("AIgame." + gameWithComputer.getComputerMove().toString());
+            }
+
+            else if (gameStatus == 0) {
+                messageToClient = new String("AIover.0");
+            }
+
+            else if (gameStatus == 1) {
+                messageToClient = new String("AIover.1");
             }
 
             else {
-                System.out.println("not connected yet");
-                // writeToClient.println(new String("0"));
+                messageToClient = new String("AIover.-1");
             }
+            writeToClient.println(messageToClient);
+        }
+
+        private void handleLogoutRequest() {
+            clientsTable.remove(clientID);
+            closeConnection();
+        }
+
+        private void handleQuitRequest() {
+            closeConnection();
         }
 
         private void closeConnection() {
@@ -111,15 +146,6 @@ public class Server {
                 e.printStackTrace();
             }
             // isOn = false;
-        }
-
-        private void handleLogoutRequest() {
-            clientsTable.remove(clientID);
-            closeConnection();
-        }
-
-        private void handleQuitRequest() {
-            closeConnection();
         }
 
         private void handleClientRequest() {
@@ -141,6 +167,14 @@ public class Server {
                 handleReplyRequest(tokens[1], tokens[2]);
             }
 
+            else if (tokens[0].equals(new String("AIrequest"))) {
+                handleAIgameRequest(tokens[1]);
+            }
+
+            else if (tokens[0].equals(new String("AIgame"))) {
+                handleAIgameMoveRequest(tokens[1], tokens[2]);
+            }
+
             else if (tokens[0].equals(new String("logout"))) {
                 handleLogoutRequest();
             }
@@ -148,12 +182,12 @@ public class Server {
             else if (tokens[0].equals(new String("quit"))) {
                 handleQuitRequest();
             }
+
         }
 
         @Override
         public void run() {
             try {
-
                 while (true) {
                     messageFromClient = readFromClient.readLine();
                     handleClientRequest();

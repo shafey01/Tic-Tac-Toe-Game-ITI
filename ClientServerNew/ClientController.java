@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ClientController {
-    BufferedReader readClientInput;
-    Client currentClient;
+    private BufferedReader readClientInput;
+    private Client currentClient;
 
     public ClientController() throws IOException {
         readClientInput = new BufferedReader(new InputStreamReader(System.in));
@@ -32,6 +32,25 @@ public class ClientController {
 
     public void replyControl(String replyID, String isAccepted) {
         System.out.println("reply from" + replyID + " " + isAccepted);
+    }
+
+    public void gameMovesControl(String rowIndex, String columnIndex) {
+        // release lock
+        System.out.println("AI played in " + rowIndex + columnIndex);
+    }
+
+    public void gameOverControl(String gameStatus) {
+        if (gameStatus.equals(new String("0"))) {
+            System.out.println("Game Over Nobody wins");
+        }
+
+        else if (gameStatus.equals(new String("1"))) {
+            System.out.println("Game over you win");
+        }
+
+        else {
+            System.out.println("Game over AI wins");
+        }
     }
 
     private void readInputFromClient() throws IOException {
@@ -90,6 +109,21 @@ public class ClientController {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        }
+
+        else if (clientInput.equals(new String("AIrequest"))) {
+            System.out.println("Do you want the computer to start?");
+            String computerStarts = readClientInput.readLine();
+            currentClient.sendAIgameRequest(computerStarts);
+
+        }
+
+        else if (clientInput.equals(new String("AIgame"))) {
+            System.out.println("Enter row index");
+            String rowIndex = readClientInput.readLine();
+            System.out.println("Enter column index");
+            String columnIndex = readClientInput.readLine();
+            currentClient.sendAIgameMove(new String(rowIndex + "." + columnIndex));
         }
 
         else if (clientInput.equals(new String("logout"))) {

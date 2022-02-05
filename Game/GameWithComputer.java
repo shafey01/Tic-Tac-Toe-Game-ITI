@@ -1,7 +1,5 @@
 package Game;
 
-import java.util.Scanner;
-
 public class GameWithComputer {
     private NewGame gameToPlay;
     private Move playerMove;
@@ -9,22 +7,21 @@ public class GameWithComputer {
     private int gameStatus;
     private boolean computerStarts;
     private ComputerPlayer computer;
-    private Scanner scanUserInput;
 
-    GameWithComputer() {
-        scanUserInput = new Scanner(System.in);
-        System.out.println("press 1 for x or 0 for o");
-        if (scanUserInput.nextInt() == 1) {
-            this.computerStarts = false;
-        } else {
-            this.computerStarts = true;
-        }
-        initPlayerMove();
+    public GameWithComputer(Boolean computerStarts) {
         gameToPlay = new NewGame();
+        this.computerStarts = computerStarts;
         computer = new ComputerPlayer(gameToPlay, this.computerStarts);
+        initPlayerMove();
+        computerFirstMove();
         gameStatus = 3;
-        startGame();
+    }
 
+    private void computerFirstMove() {
+        if (computerStarts) {
+            computerMove = computer.playMove(null);
+            gameToPlay.insertAndCheckMove(computerMove);
+        }
     }
 
     private void initPlayerMove() {
@@ -38,45 +35,29 @@ public class GameWithComputer {
         }
     }
 
-    private void startGame() {
+    public Move getComputerMove() {
+        return computerMove;
+    }
 
-        int rowIndex, columnIndex;
-        if (computerStarts) {
-            computerMove = computer.playMove(null);
-            gameToPlay.insertAndCheckMove(computerMove);
+    public int playMove(Move newMove) {
+
+        playerMove.setPosition(newMove.getRowIndex(), newMove.getColumnIndex());
+        gameStatus = gameToPlay.insertAndCheckMove(playerMove);
+
+        if (gameStatus == 3) {
+            computerMove = computer.playMove(playerMove);
+            gameStatus = gameToPlay.insertAndCheckMove(computerMove);
         }
 
-        while (gameStatus == 3) {
-
-            do {
-                System.out.println("Enter Row Index");
-                rowIndex = scanUserInput.nextInt();
-                System.out.println("Enter column Index");
-                columnIndex = scanUserInput.nextInt();
-                playerMove.setPosition(rowIndex, columnIndex);
-                gameStatus = gameToPlay.insertAndCheckMove(playerMove);
-                if (gameStatus == -1) {
-                    System.out.println("Invalid Move");
-                }
-            } while (gameStatus == -1);
-
-            if (gameStatus == 3) {
-                computerMove = computer.playMove(playerMove);
-                gameStatus = gameToPlay.insertAndCheckMove(computerMove);
-            }
+        if (gameStatus == playerMove.getType()) {
+            return 1;
         }
 
-        if (gameStatus == 0) {
-            System.out.println("Game Over Nobody wins");
+        else if (gameStatus == computerMove.getType()) {
+            return -1;
         }
 
-        else if (gameStatus == playerMove.getType()) {
-            System.out.println("Game over you win");
-        }
-
-        else {
-            System.out.println("Game Over Computer wins");
-        }
+        return gameStatus;
 
     }
 
