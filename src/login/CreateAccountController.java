@@ -55,6 +55,9 @@ public class CreateAccountController implements Initializable {
     @FXML
     public TextField userNameTextField_CA;
 
+    @FXML
+    private Button close_bt;
+
 //
 // Thread th  =     new Thread() {
 //
@@ -97,6 +100,13 @@ public class CreateAccountController implements Initializable {
     private void loadend(ActionEvent event) throws IOException {
         BorderPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         createaccount.getChildren().setAll(pane);
+    }
+
+    @FXML
+    void close_fc(ActionEvent event) {
+        Stage stage = (Stage) close_bt.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
 
     @FXML
@@ -151,7 +161,7 @@ public class CreateAccountController implements Initializable {
             javafx.application.Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                   
+
                     try {
                         wrong_text.setText("user is already used");
 
@@ -168,7 +178,7 @@ public class CreateAccountController implements Initializable {
             javafx.application.Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    
+
                     try {
                         wrong_text.setText("Please try again Later");
 

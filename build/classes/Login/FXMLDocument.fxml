@@ -65,7 +65,7 @@
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="login_bt" layoutX="642.0" layoutY="721.0" mnemonicParsing="false" onAction="#loadenter" prefHeight="78.0" prefWidth="174.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="642.0" AnchorPane.topAnchor="721.0">
+                  <Button fx:id="login_bt" defaultButton="true" layoutX="642.0" layoutY="721.0" mnemonicParsing="false" onAction="#loadenter" prefHeight="78.0" prefWidth="174.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="642.0" AnchorPane.topAnchor="721.0">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -80,11 +80,15 @@
                         <Font name="Yu Gothic Bold" size="33.0" />
                      </font>
                   </Hyperlink>
-                  <Text fx:id="wrong_text_Login" fill="RED" layoutX="177.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="686.3999328613281">
-                     <font>
-                        <Font name="Yu Gothic Bold" size="37.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="close_bt" cancelButton="true" layoutX="1032.0" layoutY="35.0" mnemonicParsing="false" onAction="#close_fc" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #ffffff;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+                     <graphic>
+                        <ImageView fitHeight="54.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Img/icons8_exit_sign_52px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
                <effect>
                   <DropShadow height="60.77" radius="48.015" width="133.29" />

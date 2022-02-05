@@ -64,7 +64,7 @@
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Button id="createBtn" fx:id="create_bt" layoutX="362.0" layoutY="751.0" mnemonicParsing="false" onAction="#getText" prefHeight="85.0" prefWidth="299.0" style="-fx-background-color: #4886FF;" text="Create " textFill="WHITE">
+                  <Button id="createBtn" fx:id="create_bt" defaultButton="true" layoutX="362.0" layoutY="751.0" mnemonicParsing="false" onAction="#getText" prefHeight="85.0" prefWidth="299.0" style="-fx-background-color: #4886FF;" text="Create " textFill="WHITE">
                      <font>
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
@@ -74,20 +74,20 @@
                         <Font name="Yu Gothic Bold" size="52.0" />
                      </font>
                   </Label>
-                  <Button layoutX="146.0" layoutY="114.0" mnemonicParsing="false" onAction="#loadend" prefHeight="57.0" prefWidth="67.0" style="-fx-background-color: #ffffff;">
-                     <graphic>
-                        <ImageView fx:id="back_bt" fitHeight="69.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Img/icons8_back_60px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Text fx:id="wrong_text" fill="RED" layoutX="155.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="739.2001037597656" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="212.19989624023447">
+                  <Text fx:id="wrong_text" fill="RED" layoutX="283.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
+                  <Button fx:id="close_bt" cancelButton="true" mnemonicParsing="false" onAction="#close_fc" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #ffffff;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+                     <graphic>
+                        <ImageView fitHeight="54.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Img/icons8_exit_sign_52px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
                <effect>
                   <DropShadow height="101.71" radius="58.25" spread="0.29" width="133.29" />

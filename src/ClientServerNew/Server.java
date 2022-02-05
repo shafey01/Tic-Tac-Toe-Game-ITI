@@ -18,7 +18,7 @@ public class Server {
 
     private Hashtable<String, ClientHandler> clientsTable = new Hashtable<String, ClientHandler>();
 
-  public Server() {
+    public Server() {
         System.out.println("tic.tac.toe.Server.<init>()");
         try {
             serverSock = new ServerSocket(7001);

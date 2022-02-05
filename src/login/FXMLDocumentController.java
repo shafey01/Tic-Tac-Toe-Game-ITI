@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  *
@@ -46,6 +47,11 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TextField userNameTextFieldSignIn;
+
+ 
+  
+        @FXML
+    private Button close_bt;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,6 +86,13 @@ public class FXMLDocumentController implements Initializable {
 
         
     }
+
+ @FXML
+    void close_fc(ActionEvent event) {
+   Stage stage = (Stage) close_bt.getScene().getWindow();
+    // do what you have to do
+    stage.close();
+}
 
     public void sendToControllerLogin(int s) throws IOException {
         System.out.println("before if");

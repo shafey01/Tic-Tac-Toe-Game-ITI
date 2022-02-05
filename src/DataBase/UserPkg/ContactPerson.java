@@ -22,6 +22,12 @@ public class ContactPerson {
         this.total_score = 0;
     }
 
+    public ContactPerson(String username, int total_score) {
+        this.username = username;
+
+        this.total_score = total_score;
+    }
+
     public ContactPerson(int user_id, String username, String password, int total_score) {
         this.user_id = user_id;
         this.username = username;
