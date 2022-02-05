@@ -52,14 +52,6 @@ public class ComputerPlayer {
             }
         }
 
-        // if (computerStarts) {
-        // computerMove.setType(1);
-        // }
-
-        // else {
-        // computerMove.setType(2);
-        // }
-
         return computerMove;
 
     }
