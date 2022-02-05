@@ -52,8 +52,6 @@ public class ComputerPlayer {
             }
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         // if (computerStarts) {
         // computerMove.setType(1);
         // }
@@ -62,10 +60,6 @@ public class ComputerPlayer {
         // computerMove.setType(2);
         // }
 
-=======
->>>>>>> parent of b65a3d7 (Delete Game directory)
-=======
->>>>>>> parent of b65a3d7 (Delete Game directory)
         return computerMove;
 
     }
