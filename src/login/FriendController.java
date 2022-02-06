@@ -100,7 +100,7 @@ public class FriendController implements Initializable {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        FXMLDocumentController.client.sendStateRequest();
+        
 //        stateShow();
 
     }
@@ -129,31 +129,31 @@ public class FriendController implements Initializable {
         friend.getChildren().setAll(pane);
     }
 
-    public void stateShow() {
-        c = new ContactDAO();
-
-        Vector<ContactPerson> contactPerson = c.getUsers();
-        
-        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
-        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
-        leaderBordeTableView.getColumns().add(userNameColumn);
-        leaderBordeTableView.getColumns().add(score);
-        leaderBordeTableView.getColumns().add(stateBoard);
-        System.out.println("number of users: " + state.length);
-        for (ContactPerson i : contactPerson) {
-
-            if (Arrays.asList(state).contains(i.getUsername())) {
-                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), "Online"));
-
-            }
-        }
-
-    }
+//    public void stateShow() {
+//        c = new ContactDAO();
+//
+//        Vector<ContactPerson> contactPerson = c.getUsers();
+//        
+//        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+//        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
+//        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
+//        leaderBordeTableView.getColumns().add(userNameColumn);
+//        leaderBordeTableView.getColumns().add(score);
+//        leaderBordeTableView.getColumns().add(stateBoard);
+//        System.out.println("number of users: " + state.length);
+//        for (ContactPerson i : contactPerson) {
+//
+//            if (Arrays.asList(state).contains(i.getUsername())) {
+//                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), "Online"));
+//
+//            }
+//        }
+//
+//    }
 
     public void getState(String[] state) {
 
-        this.state = state;
+        System.out.println( "state from friend" + state[0]);
 
     }
 
