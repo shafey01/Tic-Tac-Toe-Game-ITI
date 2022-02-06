@@ -5,6 +5,7 @@
 package login;
 
 import ClientServerNew.Client;
+import ClientServerNew.ClientController;
 
 import java.io.IOException;
 import static java.lang.Thread.sleep;
@@ -35,12 +36,12 @@ import javafx.stage.Stage;
  */
 public class CreateAccountController implements Initializable {
 
-    Client SignupRequest;
+    ClientController SignupRequest;
 
     public static CreateAccountController createacount;
 
     @FXML
-    private ImageView back_bt;
+    private Button back_bt;
     @FXML
     private Text wrong_text;
     @FXML
@@ -82,7 +83,7 @@ public class CreateAccountController implements Initializable {
         // TODO
         createacount = this;
         try {
-            SignupRequest = new Client();
+            SignupRequest = new ClientController();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,7 +117,7 @@ public class CreateAccountController implements Initializable {
         String user = userNameTextField_CA.getText();
         String pass = passwordTextField_CA.getText();
 
-        SignupRequest.sendRequestToServer("signup", user, pass);
+        SignupRequest.sendSignupRequest(user, pass);
 
         System.out.println(user);
         System.out.println(pass);

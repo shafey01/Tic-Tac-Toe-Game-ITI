@@ -15,6 +15,7 @@ public class ContactPerson {
     String username;
     String password;
     int total_score;
+    String state;
 
     public ContactPerson(String username, String password) {
         this.username = username;
@@ -25,6 +26,12 @@ public class ContactPerson {
     public ContactPerson(String username, int total_score) {
         this.username = username;
 
+        this.total_score = total_score;
+    }
+
+    public ContactPerson(String username, int total_score, String state) {
+        this.username = username;
+        this.state = state;
         this.total_score = total_score;
     }
 

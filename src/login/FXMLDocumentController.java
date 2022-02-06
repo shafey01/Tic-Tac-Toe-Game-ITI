@@ -5,6 +5,8 @@
 package login;
 
 import ClientServerNew.Client;
+import ClientServerNew.ClientController;
+import java.io.File;
 import java.io.IOException;
 import static java.lang.System.out;
 import java.net.URL;
@@ -20,6 +22,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,7 +33,9 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
 
-    Client client;
+    public static ClientController client;
+
+   
     public static FXMLDocumentController logincontroller;
     @FXML
     private Text wrong_text_Login;
@@ -48,17 +54,22 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField userNameTextFieldSignIn;
 
- 
-  
-        @FXML
+    @FXML
     private Button close_bt;
 
+    String musicFile = "sound1.mp3";
+
+//    Media sound = new Media(new File(musicFile).toURI().toString());
+//    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         logincontroller = this;
+
         try {
-            client = new Client();
+            client = new ClientController();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -82,17 +93,16 @@ public class FXMLDocumentController implements Initializable {
         userNameLogin = userNameTextFieldSignIn.getText();
         passwordLogin = passwordTextFieldSignIn.getText();
 
-        client.sendRequestToServer("login", userNameLogin, passwordLogin);
+        client.sendLoginRequest(userNameLogin, passwordLogin);
 
-        
     }
 
- @FXML
+    @FXML
     void close_fc(ActionEvent event) {
-   Stage stage = (Stage) close_bt.getScene().getWindow();
-    // do what you have to do
-    stage.close();
-}
+        Stage stage = (Stage) close_bt.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
 
     public void sendToControllerLogin(int s) throws IOException {
         System.out.println("before if");
@@ -123,7 +133,7 @@ public class FXMLDocumentController implements Initializable {
                 public void run() {
 
                     try {
-                        wrong_text_Login.setText("Wrong user name or password");
+//                        wrong_text_Login.setText("Wrong user name or password");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -141,7 +151,7 @@ public class FXMLDocumentController implements Initializable {
                 public void run() {
 
                     try {
-                        wrong_text_Login.setText("Please try again Later");
+//                        wrong_text_Login.setText("Please try again Later");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();

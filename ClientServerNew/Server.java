@@ -38,7 +38,7 @@ public class Server {
         private Socket internalSockHandler;
         private PrintWriter writeToClient;
         private BufferedReader readFromClient;
-        private String clientID;
+        private String userName;
         private String messageFromClient;
         private GameWithComputer gameWithComputer;
 
@@ -64,34 +64,39 @@ public class Server {
 
         // private Move stringToMove()
 
-        private void handleLoginRequest(String _clientID) {
+        private void handleLoginRequest(String userName, String password) {
             // database
-            clientID = _clientID;
-            clientsTable.put(clientID, this);
-            String messageToClient = new String("1");
+            int result = databaseContactDAO.getUserIdByName(userName, password);
+            this.userName = userName;
+            if (result != 0 && result != -1) {
+                clientsTable.put(String.valueOf(userName), this);
+            }
+            
+            String messageToClient = new String(String.valueOf(result));
             writeToClient.println(messageToClient);
         }
 
-        private void handleSignupRequest() {
+        private void handleSignupRequest(String userName, String password) {
             // database
-            String messageToClient = new String("1");
+             int resultFromLogin = databaseContactDAO.getUserByNameBoolean(userName, password);
+            String messageToClient = new String(String.valueOf(resultFromLogin));
             writeToClient.println(messageToClient);
         }
 
-        private void handleInvitaionRequest(String otherClientID) {
-            ClientHandler otherClient = clientsTable.get(otherClientID);
+        private void handleInvitaionRequest(String userNameToInvite) {
+            ClientHandler otherClient = clientsTable.get(userNameToInvite);
             if (otherClient != null) {
-                String messageToClient = new String("invite." + clientID);
+                String messageToClient = new String("invite." + userName);
                 otherClient.writeToClient.println(messageToClient);
                 // writeToClient.println(new String("1"));
             }
         }
 
-        private void handleReplyRequest(String otherClientID, String isAccepted) {
-            ClientHandler otherClient = clientsTable.get(otherClientID);
+        private void handleReplyRequest(String otherClientuserName, String isAccepted) {
+            ClientHandler otherClient = clientsTable.get(otherClientuserName);
             if (otherClient != null) {
-                String messageToClient = new String("reply." + clientID + "." + isAccepted);
-                clientsTable.get(otherClientID).writeToClient.println(messageToClient);
+                String messageToClient = new String("reply." + userName + "." + isAccepted);
+                clientsTable.get(otherClientuserName).writeToClient.println(messageToClient);
             }
         }
 
@@ -128,7 +133,7 @@ public class Server {
         }
 
         private void handleLogoutRequest() {
-            clientsTable.remove(clientID);
+            clientsTable.remove(userName);
             closeConnection();
         }
 
@@ -152,11 +157,11 @@ public class Server {
             System.out.println("received " + messageFromClient);
             String[] tokens = parseClientMessage(messageFromClient);
             if (tokens[0].equals(new String("login"))) {
-                handleLoginRequest(tokens[1]);
+                handleLoginRequest(tokens[1], tokens[2]);
             }
 
             else if (tokens[0].equals(new String("signup"))) {
-                handleSignupRequest();
+                handleSignupRequest(tokens[1], tokens[2]);
             }
 
             else if (tokens[0].equals(new String("invite"))) {

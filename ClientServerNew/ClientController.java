@@ -3,8 +3,11 @@ package ClientServerNew;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import login.CreateAccountController;
+import login.FXMLDocumentController;
 
 public class ClientController {
+
     private BufferedReader readClientInput;
     private Client currentClient;
 
@@ -42,13 +45,9 @@ public class ClientController {
     public void gameOverControl(String gameStatus) {
         if (gameStatus.equals(new String("0"))) {
             System.out.println("Game Over Nobody wins");
-        }
-
-        else if (gameStatus.equals(new String("1"))) {
+        } else if (gameStatus.equals(new String("1"))) {
             System.out.println("Game over you win");
-        }
-
-        else {
+        } else {
             System.out.println("Game over AI wins");
         }
     }
@@ -74,15 +73,13 @@ public class ClientController {
             password = readClientInput.readLine();
             int loginReply = currentClient.sendLoginRequest(username, password);
             if (loginReply == 1) {
+                FXMLDocumentController.logincontroller.sendToControllerLogin(1);
                 System.out.println("login successful");
-            }
-
-            else {
+            } else {
+                FXMLDocumentController.logincontroller.sendToControllerLogin(0);
                 System.out.println("login failed");
             }
-        }
-
-        else if (clientInput.equals(new String("signup"))) {
+        } else if (clientInput.equals(new String("signup"))) {
             String username, password;
             System.out.println("Enter username");
             username = readClientInput.readLine();
@@ -91,15 +88,13 @@ public class ClientController {
             currentClient.sendSignupRequest(username, password);
             int signupReply = currentClient.sendSignupRequest(username, password);
             if (signupReply == 1) {
+                CreateAccountController.createacount.sendToController(1);
                 System.out.println("signup successful");
-            }
-
-            else {
+            } else {
+                CreateAccountController.createacount.sendToController(0);
                 System.out.println("signup failed");
             }
-        }
-
-        else if (clientInput.equals(new String("invite"))) {
+        } else if (clientInput.equals(new String("invite"))) {
             System.out.println("enter other user id: ");
 
             try {
@@ -109,24 +104,18 @@ public class ClientController {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }
-
-        else if (clientInput.equals(new String("AIrequest"))) {
+        } else if (clientInput.equals(new String("AIrequest"))) {
             System.out.println("Do you want the computer to start?");
             String computerStarts = readClientInput.readLine();
             currentClient.sendAIgameRequest(computerStarts);
 
-        }
-
-        else if (clientInput.equals(new String("AIgame"))) {
+        } else if (clientInput.equals(new String("AIgame"))) {
             System.out.println("Enter row index");
             String rowIndex = readClientInput.readLine();
             System.out.println("Enter column index");
             String columnIndex = readClientInput.readLine();
             currentClient.sendAIgameMove(new String(rowIndex + "." + columnIndex));
-        }
-
-        else if (clientInput.equals(new String("logout"))) {
+        } else if (clientInput.equals(new String("logout"))) {
             currentClient.sendLogoutRequest();
         }
 

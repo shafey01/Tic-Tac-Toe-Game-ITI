@@ -38,7 +38,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private void loadend(ActionEvent event) throws IOException {
-        BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
+        BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
         main.getChildren().setAll(pane);
     }
 }

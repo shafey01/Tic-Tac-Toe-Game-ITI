@@ -4,6 +4,7 @@
  */
 package login;
 
+import ClientServerNew.ClientController;
 import DataBase.UserPkg.ContactDAO;
 import DataBase.UserPkg.ContactPerson;
 import java.io.IOException;
@@ -30,6 +31,7 @@ import javafx.scene.layout.BorderPane;
 public class LeaderBordeController implements Initializable {
 
     ContactDAO c;
+    ClientController control;
 
     @FXML
     private ImageView bt_exit;
@@ -109,6 +111,8 @@ public class LeaderBordeController implements Initializable {
 
     public void leaderBoradShow() {
         c = new ContactDAO();
+        
+
         Vector<ContactPerson> contactPerson = c.getUsers();
         System.out.println(contactPerson.get(0).getUsername());
 

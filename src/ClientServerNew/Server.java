@@ -1,5 +1,4 @@
 package ClientServerNew;
-//package DataBase.UserPkg;
 
 import DataBase.UserPkg.ContactDAO;
 import java.io.BufferedReader;
@@ -11,11 +10,14 @@ import java.net.Socket;
 import java.util.Hashtable;
 // import java.util.Map;
 
+import Game.GameWithComputer;
+import Game.Move;
+import java.util.Map;
+
 public class Server {
 
     private ServerSocket serverSock;
     private Socket internalSock;
-
     private Hashtable<String, ClientHandler> clientsTable = new Hashtable<String, ClientHandler>();
 
     public Server() {
@@ -35,21 +37,19 @@ public class Server {
 
     private class ClientHandler extends Thread {
 
-        Socket internalSockHandler;
-        PrintWriter writeToClient;
-        BufferedReader readFromClient;
-        String clientID;
-        String messageFromClient;
-        String messageToClient;
-        boolean isOn;
+        private Socket internalSockHandler;
+        private PrintWriter writeToClient;
+        private BufferedReader readFromClient;
+        private String userName;
+        private String messageFromClient;
+        private GameWithComputer gameWithComputer;
         ContactDAO databaseContactDAO;
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
-            databaseContactDAO = new ContactDAO();
-            isOn = true;
+            // isOn = true;
             try {
-
+                databaseContactDAO = new ContactDAO();
                 readFromClient = new BufferedReader(new InputStreamReader(internalSockHandler.getInputStream()));
                 writeToClient = new PrintWriter(internalSockHandler.getOutputStream(), true);
 
@@ -60,66 +60,114 @@ public class Server {
 
         }
 
-        public String[] parseClientMessage(String clientMessage) {
+        private String[] parseClientMessage(String clientMessage) {
 
             return clientMessage.split("\\.");
-
         }
 
-        public void handleLoginRequest(String userName, String password) {
-
+        // private Move stringToMove()
+        private void handleLoginRequest(String userName, String password) {
             // database
             int result = databaseContactDAO.getUserIdByName(userName, password);
+            System.out.println("rsult from db: " + result);
+            this.userName = userName;
             if (result != 0 && result != -1) {
-                clientsTable.put(String.valueOf(result), this);
+                clientsTable.put(String.valueOf(userName), this);
             }
 
-            messageToClient = new String(String.valueOf("login." + result));
+            String messageToClient = new String(String.valueOf(result));
             writeToClient.println(messageToClient);
         }
 
-        public void handleSignupRequest(String userName, String password) {
+        private void handleSignupRequest(String userName, String password) {
             // database
             int resultFromLogin = databaseContactDAO.getUserByNameBoolean(userName, password);
-
-            messageToClient = new String(String.valueOf("signup." + resultFromLogin));
+            String messageToClient = new String(String.valueOf(resultFromLogin));
             writeToClient.println(messageToClient);
         }
 
-        public void handleInvitaionRequest(String otherClientId) {
-            if (clientsTable.get(otherClientId) != null) {
-                messageToClient = "invitation from " + clientID;
-                clientsTable.get(otherClientId).writeToClient.println(messageToClient);
-            } else {
-                writeToClient.println("not connected yet");
+        private void handleInvitaionRequest(String userNameToInvite) {
+            ClientHandler otherClient = clientsTable.get(userNameToInvite);
+            if (otherClient != null) {
+                String messageToClient = new String("invite." + userName);
+                otherClient.writeToClient.println(messageToClient);
+                // writeToClient.println(new String("1"));
             }
         }
 
-        public void closeConnection() {
+        private void handleReplyRequest(String otherClientuserName, String isAccepted) {
+            ClientHandler otherClient = clientsTable.get(otherClientuserName);
+            if (otherClient != null) {
+                String messageToClient = new String("reply." + userName + "." + isAccepted);
+                clientsTable.get(otherClientuserName).writeToClient.println(messageToClient);
+            }
+        }
 
+        private void handleStateRequest() {
+            String messageToClient = new String("state.");
+            int x = clientsTable.size();
+            System.out.println("size: " + x);
+            for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
+
+                messageToClient += new String(hashEntry.getKey() + ".");
+
+            }
+            System.out.println("fush");
+            writeToClient.flush();
+            writeToClient.println(messageToClient);
+            
+            System.out.println("handleState" + messageToClient);
+
+        }
+
+        private void handleAIgameRequest(String computerStarts) {
+
+            if (computerStarts.equals(new String("1"))) {
+                gameWithComputer = new GameWithComputer(true);
+                String messageToClient = new String("AIgame." + gameWithComputer.getComputerMove().toString());
+                writeToClient.println(messageToClient);
+            } else {
+                gameWithComputer = new GameWithComputer(false);
+            }
+        }
+
+        private void handleAIgameMoveRequest(String rowIndex, String columnIndex) {
+            String messageToClient;
+            int gameStatus = gameWithComputer.playMove(Move.stringToMove(rowIndex, columnIndex));
+            if (gameStatus == 3) {
+                messageToClient = new String("AIgame." + gameWithComputer.getComputerMove().toString());
+            } else if (gameStatus == 0) {
+                messageToClient = new String("AIover.0");
+            } else if (gameStatus == 1) {
+                messageToClient = new String("AIover.1");
+            } else {
+                messageToClient = new String("AIover.-1");
+            }
+            writeToClient.println(messageToClient);
+        }
+
+        private void handleLogoutRequest() {
+            clientsTable.remove(userName);
+            closeConnection();
+        }
+
+        private void handleQuitRequest() {
+            closeConnection();
+        }
+
+        private void closeConnection() {
+            writeToClient.close();
             try {
                 readFromClient.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            try {
                 internalSockHandler.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            writeToClient.close();
-            isOn = false;
+            // isOn = false;
         }
 
-        public void handleLogoutRequest() {
-            clientsTable.remove(clientID);
-            closeConnection();
-        }
-
-        public void handleClientInput() {
+        private void handleClientRequest() {
             System.out.println("received " + messageFromClient);
             String[] tokens = parseClientMessage(messageFromClient);
             if (tokens[0].equals(new String("login"))) {
@@ -128,25 +176,42 @@ public class Server {
                 handleSignupRequest(tokens[1], tokens[2]);
             } else if (tokens[0].equals(new String("invite"))) {
                 handleInvitaionRequest(tokens[1]);
-            } else {
+            } else if (tokens[0].equals(new String("reply"))) {
+                handleReplyRequest(tokens[1], tokens[2]);
+            } else if (tokens[0].equals(new String("AIrequest"))) {
+                handleAIgameRequest(tokens[1]);
+            } else if (tokens[0].equals(new String("AIgame"))) {
+                handleAIgameMoveRequest(tokens[1], tokens[2]);
+            } else if (tokens[0].equals(new String("state"))) {
+                handleStateRequest();
+            } else if (tokens[0].equals(new String("logout"))) {
                 handleLogoutRequest();
+            } else if (tokens[0].equals(new String("quit"))) {
+                handleQuitRequest();
             }
+
         }
 
         @Override
         public void run() {
+            int i = 0;
             try {
-
-                while (isOn) {
+                while (true) {
+                    i++;
                     messageFromClient = readFromClient.readLine();
-                    handleClientInput();
+                    System.out.println("AAA" + messageFromClient);
+                    handleClientRequest();
+
+                    System.out.println("under handleClientRequest");
                 }
             } catch (IOException e) {
+
                 e.printStackTrace();
+                System.out.println("connection to client closed");
             }
 
             System.out.println("thread closed");
-
+            System.out.println(i);
         }
     }
 

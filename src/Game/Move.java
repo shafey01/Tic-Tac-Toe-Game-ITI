@@ -49,4 +49,12 @@ public class Move {
         this.rowIndex = move.rowIndex;
         this.columnIndex = move.columnIndex;
     }
+
+    public String toString() {
+        return new String(String.valueOf(rowIndex) + "." + String.valueOf(columnIndex));
+    }
+
+    public static Move stringToMove(String rowIndex, String columnIndex) {
+        return new Move(Integer.parseInt(rowIndex), Integer.parseInt(columnIndex));
+    }
 }

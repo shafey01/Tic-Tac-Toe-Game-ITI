@@ -160,11 +160,11 @@ public class ContactDAO {
             } else {
 
                 if (rs.getString("password").equals(new String(password))) {
-                    int id = rs.getInt("user_id");
+                   
                     pst.close();
                     this.closeConnection();
 
-                    return id;
+                    return 1;
 
                 } else {
                     pst.close();

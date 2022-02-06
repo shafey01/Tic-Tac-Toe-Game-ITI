@@ -88,6 +88,15 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button fx:id="back_bt" layoutX="32.0" layoutY="73.0" mnemonicParsing="false" onAction="#loadend" style="-fx-background-color: #ffffff;">
+                     <graphic>
+                        <ImageView fitHeight="69.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Img/icons8_back_60px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
                <effect>
                   <DropShadow height="101.71" radius="58.25" spread="0.29" width="133.29" />

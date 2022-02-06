@@ -8,6 +8,7 @@ import java.net.Socket;
 
 import java.io.BufferedReader;
 
+
 public class Client {
 
     private Socket clientSocket;
@@ -65,28 +66,19 @@ public class Client {
 
         if (tokens[0].equals(new String("invite"))) {
             controller.invitationControl(tokens[1]);
-        }
-
-        else if (tokens[0].equals(new String("reply"))) {
+        } else if (tokens[0].equals(new String("reply"))) {
 
             controller.replyControl(tokens[1], tokens[2]);
-        }
-
-        else if (tokens[0].equals(new String("AIgame"))) {
+        } else if (tokens[0].equals(new String("AIgame"))) {
             controller.gameMovesControl(tokens[1], tokens[2]);
-        }
-
-        else if (tokens[0].equals(new String("AIover"))) {
+        } else if (tokens[0].equals(new String("AIover"))) {
             controller.gameOverControl(tokens[1]);
-        }
-
-        else if (tokens[0].equals(new String("exit"))) {
+        } else if (tokens[0].equals(new String("exit"))) {
             // handleLogoutRequest();
         }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     private void closeConnection() {
 
         writeToServer.close();
@@ -108,8 +100,10 @@ public class Client {
             String messageFromServer = readFromServer.readLine();
             if (messageFromServer.equals(new String("1"))) {
                 listenToServerThread.start();
+                
                 return 1;
             } else {
+                
                 return 0;
             }
         } catch (IOException e) {
@@ -126,8 +120,10 @@ public class Client {
         try {
             String messageFromServer = readFromServer.readLine();
             if (messageFromServer.equals(new String("1"))) {
+               
                 return 1;
             } else {
+                
                 return 0;
             }
         } catch (IOException e) {
@@ -137,13 +133,13 @@ public class Client {
         return defaultSignupServerReply;
     }
 
-    public void sendInviteRequest(String idToInvite) {
-        String messageToServer = new String("invite." + idToInvite);
+    public void sendInviteRequest(String userNameToInvite) {
+        String messageToServer = new String("invite." + userNameToInvite);
         writeToServer.println(messageToServer);
     }
 
-    public void sendReplyRequest(String idToReply, String isAccepted) {
-        String messageToServer = new String("reply." + idToReply + "." + isAccepted);
+    public void sendReplyRequest(String userNameToReply, String isAccepted) {
+        String messageToServer = new String("reply." + userNameToReply + "." + isAccepted);
         writeToServer.println(messageToServer);
     }
 

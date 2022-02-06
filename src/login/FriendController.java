@@ -4,9 +4,14 @@
  */
 package login;
 
+import ClientServerNew.ClientController;
+import DataBase.UserPkg.ContactDAO;
+import DataBase.UserPkg.ContactPerson;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Vector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +20,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
 
 /**
  * FXML Controller class
@@ -25,6 +32,11 @@ import javafx.scene.layout.BorderPane;
  * @author Mustafa Raed
  */
 public class FriendController implements Initializable {
+
+    ContactDAO c;
+    ClientController clientcontrol;
+    public static FriendController friendControl;
+    public String[] state;
 
     @FXML
     private ImageView bt_exit;
@@ -51,29 +63,46 @@ public class FriendController implements Initializable {
     private BorderPane friend;
 
     @FXML
-    private TableView<?> friendTableView;
-
-    @FXML
     private Button invite_bt;
 
     @FXML
-    private TableColumn<?, ?> scoreTableColumn;
+    private TableView<ContactPerson> leaderBordeTableView;
 
     @FXML
-    private TableColumn<?, ?> stateTableColumn;
+    private TableColumn<ContactPerson, String> userNameColumn;
+    @FXML
+    private TableColumn<ContactPerson, Integer> score;
+
+    @FXML
+    private TableColumn<ContactPerson, String> stateBoard;
 
     @FXML
     private AnchorPane topbar;
 
     @FXML
-    private TableColumn<?, ?> userNameTableColumn;
-
-    @FXML
     private TextField userNameTexetField;
+
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        friendControl = this;
+        userNameColumn = new TableColumn<>("user Name");
+
+        stateBoard = new TableColumn<>("State");
+
+        score = new TableColumn<>("Total Score");
+//userNameColumn.setText("asdf");
+        userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+//        try {
+//            clientcontrol = FXMLDocumentController.client;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        FXMLDocumentController.client.sendStateRequest();
+//        stateShow();
+
     }
 
     @FXML
@@ -99,4 +128,33 @@ public class FriendController implements Initializable {
         BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
         friend.getChildren().setAll(pane);
     }
+
+    public void stateShow() {
+        c = new ContactDAO();
+
+        Vector<ContactPerson> contactPerson = c.getUsers();
+        
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
+        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
+        leaderBordeTableView.getColumns().add(userNameColumn);
+        leaderBordeTableView.getColumns().add(score);
+        leaderBordeTableView.getColumns().add(stateBoard);
+        System.out.println("number of users: " + state.length);
+        for (ContactPerson i : contactPerson) {
+
+            if (Arrays.asList(state).contains(i.getUsername())) {
+                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), "Online"));
+
+            }
+        }
+
+    }
+
+    public void getState(String[] state) {
+
+        this.state = state;
+
+    }
+
 }

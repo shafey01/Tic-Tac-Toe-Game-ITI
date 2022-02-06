@@ -5,197 +5,185 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+
 import java.io.BufferedReader;
-import login.CreateAccountController;
-import login.FXMLDocumentController;
-import static login.FXMLDocumentController.logincontroller;
 
 public class Client {
 
-    Boolean isOn;
-    Socket clientSocket;
-    String id;
-    String password;
-    String userName;
-    public int status2 = 0;
+    private Socket clientSocket;
+    private String id;
+    private PrintWriter writeToServer;
+    private BufferedReader readFromServer;
+    private Thread listenToServerThread;
+    private ClientController controller;
+    public boolean isConnectionSuccess;
 
-    PrintWriter writeToServer;
-    BufferedReader readFromServer;
-    BufferedReader readClientInput;
-    String messageToServer;
-    String messageFromServer;
-    String clientInput;
+    public Client(ClientController controller) {
 
-    public Client() throws IOException {
-        isOn = true;
-
-        InetAddress ip = InetAddress.getLocalHost();
-        System.out.println(ip);
-        this.clientSocket = new Socket(ip, 7001);
-        readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        writeToServer = new PrintWriter(clientSocket.getOutputStream(), true);
-        readClientInput = new BufferedReader(new InputStreamReader(System.in));
-//        signup = new CreateAccountController();
-//        login = new FXMLDocumentController();
+        this.controller = controller;
+        try {
+            this.clientSocket = new Socket(InetAddress.getLocalHost(), 7001);
+            readFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            writeToServer = new PrintWriter(clientSocket.getOutputStream(), true);
+            isConnectionSuccess = true;
+        } catch (IOException e) {
+            isConnectionSuccess = false;
+        }
         initListenToServerThread();
-//        readInputFromClient();
 
     }
 
-    public void initListenToServerThread() {
-        new Thread() {
+    private void initListenToServerThread() {
+        listenToServerThread = new Thread() {
+            String messageFromServer;
+
             @Override
             public void run() {
-
-                while (isOn) {
-                    try {
+                System.out.println("run");
+                try {
+                    while (true) {
                         messageFromServer = readFromServer.readLine();
-                        System.out.println(messageFromServer);
-                        String[] message = parseClientMessage(messageFromServer);
-
-                        if (message[0].equals(new String("login"))) {
-
-                            loginStatus(message);
-                        } else if (message[0].equals(new String("signup"))) {
-                            signupStatus(message);
-                        }
-
-                    } catch (IOException e) {
-                        // e.printStackTrace();
-                        System.out.println("connection to server closed");
+                        handleServerReply(messageFromServer);
                     }
 
+                } catch (IOException e) {
+                    System.out.println("connection to server closed");
                 }
                 System.out.println("thread closed");
             }
-
-        }.start();
+        };
     }
 
-//    public void readInputFromClient() throws IOException {
-//        while (isOn) {
-//            System.out.println("Enter your input:");
-//            clientInput = readClientInput.readLine();
-//            sendRequestToServer(clientInput);
-//
-//        }
-//    }
-    public void sendRequestToServer(String clientInput, String userName, String password) {
-        if (!userName.isEmpty() && !password.isEmpty()) {
+    private String[] parseServerMessage(String clientMessage) {
 
-            if (clientInput.equals(new String("login"))) {
+        return clientMessage.split("\\.");
 
-                sendLoginRequest(userName, password);
-            } else if (clientInput.equals(new String("signup"))) {
+    }
 
-                sendSignupRequest(userName, password);
-            } else if (clientInput.equals(new String("invite"))) {
-                System.out.println("enter other user id: ");
-                String idToInvite = null;
-                try {
-                    idToInvite = readClientInput.readLine();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                sendInviteRequest(idToInvite);
-            } else if (clientInput.equals(new String("logout"))) {
-                sendLogoutRequest();
+    private void handleServerReply(String messageFromServer) {
+        System.out.println("received " + messageFromServer);
+        String[] tokens = parseServerMessage(messageFromServer);
 
-                // sleep(2000);
+        if (tokens[0].equals(new String("invite"))) {
+            controller.invitationControl(tokens[1]);
+        } else if (tokens[0].equals(new String("reply"))) {
+
+            controller.replyControl(tokens[1], tokens[2]);
+        } else if (tokens[0].equals(new String("AIgame"))) {
+            controller.gameMovesControl(tokens[1], tokens[2]);
+        } else if (tokens[0].equals(new String("AIover"))) {
+            controller.gameOverControl(tokens[1]);
+        } else if (tokens[0].equals(new String("state"))) {
+            String[] state = new String[tokens.length - 1];
+            for (int i = 1; i < tokens.length; i++) {
+
+                state[i] = new String(tokens[i]);
             }
+            controller.stateControl(state);
+        } else if (tokens[0].equals(new String("exit"))) {
+            // handleLogoutRequest();
         }
-
     }
 
-    public void closeConnection() {
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void closeConnection() {
 
         writeToServer.close();
         try {
             readFromServer.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        try {
             clientSocket.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        isOn = false;
+    }
+
+    public int sendLoginRequest(String username, String password) {
+        String messageToServer = new String("login" + "." + username + "." + password);
+        writeToServer.println(messageToServer);
+        int defaultLoginServerReply = 0;
+        try {
+            String messageFromServer = readFromServer.readLine();
+            if (messageFromServer.equals(new String("1"))) {
+                listenToServerThread.start();
+
+                return 1;
+            } else {
+
+                return 0;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return defaultLoginServerReply;
+    }
+
+    public int sendSignupRequest(String username, String password) {
+        String messageToServer = new String("signup" + "." + username + "." + password);
+        writeToServer.println(messageToServer);
+        int defaultSignupServerReply = 0;
+        try {
+            String messageFromServer = readFromServer.readLine();
+            if (messageFromServer.equals(new String("1"))) {
+
+                return 1;
+            } else {
+
+                return 0;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return defaultSignupServerReply;
+    }
+
+    public void sendInviteRequest(String userNameToInvite) {
+        String messageToServer = new String("invite." + userNameToInvite);
+        writeToServer.println(messageToServer);
+    }
+
+    public void sendReplyRequest(String userNameToReply, String isAccepted) {
+        String messageToServer = new String("reply." + userNameToReply + "." + isAccepted);
+        writeToServer.println(messageToServer);
+    }
+
+    public void sendAIgameRequest(String computerStarts) {
+        String messageToServer = new String("AIrequest." + computerStarts);
+        writeToServer.println(messageToServer);
+    }
+
+    public void sendAIgameMove(String move) {
+        String messageToServer = new String("AIgame." + move);
+        writeToServer.println(messageToServer);
     }
 
     public void sendLogoutRequest() {
-        messageToServer = "logout";
+        String messageToServer = new String("logout");
         writeToServer.println(messageToServer);
         closeConnection();
     }
 
-    public void sendLoginRequest(String userName, String password) {
-
-        messageToServer = new String("login" + "." + userName + "." + password);
+    public void sendQuitRequest() {
+        String messageToServer = new String("quit");
         writeToServer.println(messageToServer);
+        closeConnection();
     }
 
-    public void sendSignupRequest(String userName, String password) {
-        messageToServer = new String("signup" + "." + userName + "." + password);
+    public void sendLeaderBoardRequest() {
+
+        String messageToServer = new String("LeaderBoard");
         writeToServer.println(messageToServer);
+        closeConnection();
+
     }
 
-    public void sendInviteRequest(String idToInvite) {
-        messageToServer = new String("invite." + idToInvite);
+    public void sendState() {
+        String messageToServer = new String("state.");
         writeToServer.println(messageToServer);
-    }
-
-    public String[] parseClientMessage(String clientMessage) {
-
-        return clientMessage.split("\\.");
-
-    }
-
-    public void signupStatus(String[] message) throws IOException {
-
-        if (message[0].equals(new String("signup"))) {
-
-            if (message[1].equals(new String("1"))) {
-
-                System.out.println("signup success ");
-
-                CreateAccountController.createacount.sendToController(1);
-
-            } else if (message[1].equals(new String("0"))) {
-
-                System.out.println("the user name is used try another name");
-                CreateAccountController.createacount.sendToController(0);
-
-            } else if (message[1].equals(new String("-1"))) {
-                System.out.println("Error, please try later");
-                CreateAccountController.createacount.sendToController(-1);
-
-            }
-        }
-
-    }
-
-    public void loginStatus(String[] message) throws IOException {
-
-        if (message[1].equals(new String("0"))) {
-
-            System.out.println("Invalid user name or password");
-            FXMLDocumentController.logincontroller.sendToControllerLogin(0);
-
-        } else if (message[1].equals(new String("-1"))) {
-            System.out.println("Error, please try later");
-            FXMLDocumentController.logincontroller.sendToControllerLogin(-1);
-
-        } else {
-            System.out.println("Loged in success");
-            FXMLDocumentController.logincontroller.sendToControllerLogin(1);
-
-        }
+        closeConnection();
 
     }
 

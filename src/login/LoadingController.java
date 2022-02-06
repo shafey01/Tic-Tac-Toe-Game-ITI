@@ -41,7 +41,7 @@ public class LoadingController implements Initializable {
         public void run() {
             try {
                 setRotate(c1, true, 360, 10);
-                Thread.sleep(5000);
+                Thread.sleep(2000);
                 Platform.runLater(new Runnable() {
 
                     public void run() {
