@@ -3,26 +3,47 @@ package ClientServerNew;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ResourceBundle;
 import login.CreateAccountController;
 import login.FXMLDocumentController;
 import login.FriendController;
 import static login.FriendController.friendControl;
 
-public class ClientController {
+public  class ClientController {
 
     private BufferedReader readClientInput;
     private Client currentClient;
-    public static  ClientController CONTROL;
+    private static ClientController CONTROL;
+    private static int a=1;
 
+    public static int getA() {
+        return a;
+    }
+//    private FriendController friend;
+     String[] state;
     public ClientController() throws IOException {
         readClientInput = new BufferedReader(new InputStreamReader(System.in));
         currentClient = new Client(this);
-        CONTROL = this;
+             if(a==1){
+            CONTROL = this;
+            a++  ; 
+            }
+                      System.out.println("1"+this);
+
         if (currentClient.isConnectionSuccess == false) {
             System.out.println("Error Connecting To Server");
         }
 //        readInputFromClient();
     }
+    
+   
+      
+   
+    public static ClientController getCONTROL() {
+        return CONTROL;
+    }
+
 
 //public ClientController()
 //{
@@ -62,14 +83,18 @@ public class ClientController {
         }
     }
 
-    public String[] stateControl(String[] state) {
+    public void stateControl(String[] state) {
         // release lock
         System.out.println("Controller: " + state[0]);
-        FriendController.friendControl.getState(state);
+        this.state = state;
+      // friend = new FriendController();
+      // friend.getFriendControl().getState(state);
 
-        return state;
+     //   return state;
     }
-
+    public String[] sendState2() {
+return this.state;
+}
 //    private void readInputFromClient() throws IOException {
 //
 //        String clientInput;

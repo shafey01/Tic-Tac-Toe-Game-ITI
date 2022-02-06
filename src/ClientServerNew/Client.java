@@ -181,6 +181,7 @@ public class Client {
     }
 
     public void sendState() {
+
         String messageToServer = new String("state.");
         writeToServer.println(messageToServer);
         closeConnection();
