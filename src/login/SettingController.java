@@ -90,4 +90,9 @@ public class SettingController implements Initializable {
         setting.getChildren().setAll(pane);
     }
 
+    @FXML
+    void music_Action(ActionEvent event) {
+
+    }
+
 }

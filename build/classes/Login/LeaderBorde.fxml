@@ -47,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="907.0" layoutY="10.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="39.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="969.8" AnchorPane.topAnchor="10.0">
+            <Button fx:id="refresh" layoutX="907.0" layoutY="10.0" mnemonicParsing="false" onAction="#refresh_Action" prefHeight="18.0" prefWidth="39.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="969.8" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -27,8 +27,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import static login.FriendController.friendControl;
 
 /**
  *
@@ -94,10 +92,10 @@ public class FXMLDocumentController implements Initializable {
     private CheckMenuItem stop_menuItem;
 
     @FXML
-    private TableColumn<ContactPerson, String> userName_column;
 
-    FXMLDocumentController serverGui;
+    private TableColumn<ContactPerson, String> userName_column;
     Server server;
+    FXMLDocumentController serverGui;
     ContactDAO c;
    
  @Override
@@ -131,8 +129,9 @@ public class FXMLDocumentController implements Initializable {
     void github_bt(ActionEvent event) throws URISyntaxException, IOException {
  Desktop.getDesktop().browse(new URI("https://github.com/shafey01/Tic-Tac-Toe-Game-ITI/tree/master"));
     }
-@FXML
-private void refresh_menuItemAction(ActionEvent event)  {
+
+    @FXML
+    private void refresh_menuItemAction(ActionEvent event) {
         System.out.println("Button Action\n");
            stateShow();
     }
@@ -166,9 +165,29 @@ private void refresh_menuItemAction(ActionEvent event)  {
          highestScore_TextField.setText(String.valueOf(maxScore));
          numberOfPlayers_TextField.setText(String.valueOf(contactPerson.size()));
          activePlayers_TextField.setText(String.valueOf(state.length));
+}
+    @FXML
+    void close(ActionEvent event) {
+
+        System.exit(0);
+
+    }
+    @FXML
+    void aboutServer_menuItemAction(ActionEvent event) {
 
     }
 
+
+
+    @FXML
+    void start_menuItemAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void stop_menuItemAction(ActionEvent event) {
+
+    }
 
 }
  

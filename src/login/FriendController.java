@@ -59,6 +59,9 @@ public class FriendController implements Initializable {
     private Button bt_loadleaderborde;
 
     @FXML
+    private Button refresh;
+
+    @FXML
     private Button bt_setting;
 
     @FXML
@@ -166,22 +169,9 @@ public class FriendController implements Initializable {
 
     }
 
+ @FXML
+    void refresh_Action(ActionEvent event) {
 
-}
- class User{
-
-    String username;
-    int total_score;
-    String State;
-
-    
-   
-
-    public User(String username, int total_score, String State) {
-        this.username = username;
-        this.State = State;
-        this.total_score = total_score;
     }
-
-
 }
+ 

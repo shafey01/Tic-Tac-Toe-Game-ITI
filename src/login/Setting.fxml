@@ -74,7 +74,7 @@
                         <Font name="Yu Gothic Bold" size="46.0" />
                      </font>
                   </Text>
-                  <RadioButton fx:id="music_bt" layoutX="1395.0" layoutY="104.0" mnemonicParsing="false" style="-fx-cursor: hand;" text="On/Off" textFill="#f89a36">
+                  <RadioButton fx:id="music_bt" layoutX="1395.0" layoutY="104.0" mnemonicParsing="false" onAction="#music_Action" style="-fx-cursor: hand;" text="On/Off" textFill="#f89a36">
                      <font>
                         <Font name="Yu Gothic Bold" size="31.0" />
                      </font>
