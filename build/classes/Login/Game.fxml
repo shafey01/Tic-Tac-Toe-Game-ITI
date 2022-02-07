@@ -21,17 +21,10 @@
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Img/icons8_exit_64px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
-            <Button fx:id="sound_btn" layoutX="1640.0" layoutY="50.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" style="-fx-background-radius: 150; -fx-background-color: #032358;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="20.0">
+            <Button fx:id="sound_btn" layoutX="1640.0" layoutY="50.0" mnemonicParsing="false" onAction="#muteSound" prefHeight="110.0" prefWidth="110.0" style="-fx-background-radius: 150; -fx-background-color: #032358;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="20.0">
                <graphic>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="muteSoundImage" fitHeight="121.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Img/icons8_speaker_64px.png" />
                      </image>
@@ -43,11 +36,16 @@
                   <Image url="@../Img/Screenshot%20(42).png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="112.0" fitWidth="120.0" layoutX="1789.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Img/icons8_exit_64px.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="627.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="937.0" prefWidth="688.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="Xscore" alignment="CENTER" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: F89A36;" text="0" textAlignment="CENTER" textFill="#0048ba" AnchorPane.leftAnchor="203.5" AnchorPane.topAnchor="30.0">
                <font>
@@ -64,6 +62,7 @@
                   <Image url="@../Img/woman.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="youwin" fitHeight="825.0" fitWidth="685.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </left>
@@ -87,7 +86,7 @@
                         <Glow />
                      </effect>
                      <graphic>
-                        <ImageView fx:id="img_view" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="img_view00" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                   <Button fx:id="btn_20" mnemonicParsing="false" onAction="#move_20" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #032358;" GridPane.rowIndex="2">
@@ -102,39 +101,57 @@
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view10" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_01" mnemonicParsing="false" onAction="#move_01" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1">
                      <effect>
                         <Glow />
                      </effect>
                      <graphic>
-                        <ImageView fx:id="img_view2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="img_view01" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                   <Button fx:id="btn_11" mnemonicParsing="false" onAction="#move_11" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view11" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_12" mnemonicParsing="false" onAction="#move_12" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view12" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_02" mnemonicParsing="false" onAction="#move_02" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2">
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view02" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_21" mnemonicParsing="false" onAction="#move_21" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view21" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_22" mnemonicParsing="false" onAction="#move_22" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view22" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                </children>
                <effect>

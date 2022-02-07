@@ -35,7 +35,6 @@ public class FXMLDocumentController implements Initializable {
 
     public ClientController client;
 
-   
     public static FXMLDocumentController logincontroller;
     @FXML
     private Text wrong_text_Login;
@@ -56,20 +55,16 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button close_bt;
+    @FXML
+    private Label loginStatusLabel;
 
-    String musicFile = "sound1.mp3";
-
-//    Media sound = new Media(new File(musicFile).toURI().toString());
-//    MediaPlayer mediaPlayer = new MediaPlayer(sound);
-
-   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         logincontroller = this;
 
         try {
-            
+
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -93,14 +88,14 @@ public class FXMLDocumentController implements Initializable {
         userNameLogin = userNameTextFieldSignIn.getText();
         passwordLogin = passwordTextFieldSignIn.getText();
         try {
-        client = new ClientController();
+            client = new ClientController();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         client.getCONTROL().sendLoginRequest(userNameLogin, passwordLogin);
-                 System.out.println("5"+client);
-                 System.out.println("6"+client.getCONTROL());
+        System.out.println("5" + client);
+        System.out.println("6" + client.getCONTROL());
     }
 
     @FXML
@@ -140,6 +135,8 @@ public class FXMLDocumentController implements Initializable {
 
                     try {
 //                        wrong_text_Login.setText("Wrong user name or password");
+loginStatusLabel.setText("Wrong user name or password");
+
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -158,6 +155,7 @@ public class FXMLDocumentController implements Initializable {
 
                     try {
 //                        wrong_text_Login.setText("Please try again Later");
+loginStatusLabel.setText("Please try again Later");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();

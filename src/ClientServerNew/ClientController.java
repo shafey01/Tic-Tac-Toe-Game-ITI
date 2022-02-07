@@ -13,19 +13,19 @@ import login.Game_v3Controller;
 import login.Game_v3Controller1;
 
 public class ClientController {
-    
+
     private BufferedReader readClientInput;
     private Client currentClient;
     private int moveType;
     private static ClientController CONTROL;
     private static int a = 1;
-    
+
     public static int getA() {
         return a;
     }
 //    private FriendController friend;
     String[] state;
-    
+
     public ClientController() throws IOException {
         readClientInput = new BufferedReader(new InputStreamReader(System.in));
         currentClient = new Client(this);
@@ -34,13 +34,13 @@ public class ClientController {
             a++;
         }
         System.out.println("1" + this);
-        
+
         if (currentClient.isConnectionSuccess == false) {
             System.out.println("Error Connecting To Server");
         }
 //        readInputFromClient();
     }
-    
+
     public static ClientController getCONTROL() {
         return CONTROL;
     }
@@ -51,7 +51,7 @@ public class ClientController {
 //
 //}
     public void invitationControl(String userNameToInvite) {
-        
+
         System.out.println("invitation from " + userNameToInvite);
         System.out.println("Do you want to accept");
         try {
@@ -60,39 +60,44 @@ public class ClientController {
             if (isAccepted.equals(new String("1"))) {
                 currentClient.sendReplyRequest(userNameToInvite);
             }
-            
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-    
+
     public void gameStartControl(String acceptUserName) {
 
 //Game from GUI
         System.out.println("Start game with " + acceptUserName);
     }
-    
+
     public void replyControl(String replyID, String isAccepted) {
         System.out.println("reply from" + replyID + " " + isAccepted);
     }
-    
+
     public void gameMovesControl(String rowIndex, String columnIndex) {
         // release lock
         Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
         System.out.println("AI played in " + rowIndex + columnIndex);
     }
-    
+
     public void gameOverControl(String gameStatus) {
         if (gameStatus.equals(new String("0"))) {
             System.out.println("Game Over Nobody wins");
+            Game_v3Controller1.gameControl.gameStatuswithAi("0");
         } else if (gameStatus.equals(new String("1"))) {
             System.out.println("Game over you win");
+            Game_v3Controller1.gameControl.gameStatuswithAi("1");
+
         } else {
             System.out.println("Game over AI wins");
+            Game_v3Controller1.gameControl.gameStatuswithAi("-1");
+
         }
     }
-    
+
     public void stateControl(String[] state) {
         // release lock
         System.out.println("Controller: " + state[0]);
@@ -102,7 +107,7 @@ public class ClientController {
 
         //   return state;
     }
-    
+
     public String[] sendState2() {
         return this.state;
     }
@@ -118,19 +123,19 @@ public class ClientController {
 //    }
 
     public void sendLoginRequest(String userName, String password) {
-        
+
         int loginReply = currentClient.sendLoginRequest(userName, password);
-        
+
         System.out.println(loginReply);
         if (loginReply == 1) {
             try {
                 System.out.println("inside send login request");
-                
+
                 FXMLDocumentController.logincontroller.sendToControllerLogin(1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
             System.out.println("login successful");
         } else {
             try {
@@ -140,67 +145,67 @@ public class ClientController {
             }
             System.out.println("login failed");
         }
-        
+
     }
-    
+
     public void sendSignupRequest(String userName, String password) {
-        
+
         int signupReply = currentClient.sendSignupRequest(userName, password);
         if (signupReply == 1) {
-            
+
             try {
                 CreateAccountController.createacount.sendToController(1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
             System.out.println("signup successful");
         } else {
-            
+
             try {
                 CreateAccountController.createacount.sendToController(0);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
             System.out.println("signup failed");
         }
-        
+
     }
-    
+
     public void sendInviteRequest(String userNameToInvite) {
-        
+
         try {
-            
+
             currentClient.sendInviteRequest(userNameToInvite);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
     }
-    
+
     public void AIRequest() {
-        
+
         String computerStarts = "0";
         currentClient.sendAIgameRequest(computerStarts);
-        
+
     }
-    
+
     public void AIMove(String rowIndex, String columnIndex) {
-        
+
         currentClient.sendAIgameMove(new String(rowIndex + "." + columnIndex));
-        
+
     }
-    
+
     public void sendStateRequest() {
         currentClient.sendState();
-        
+
     }
-    
+
     public void LogOut() {
-        
+
         currentClient.sendLogoutRequest();
     }
-    
+
 }
