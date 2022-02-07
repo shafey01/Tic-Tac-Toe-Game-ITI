@@ -77,7 +77,7 @@ public class Client {
             String[] state = new String[tokens.length - 1];
             for (int i = 1; i < tokens.length; i++) {
 
-                state[i] = new String(tokens[i]);
+                state[i-1] = new String(tokens[i]);
             }
             controller.stateControl(state);
         } else if (tokens[0].equals(new String("exit"))) {
@@ -105,7 +105,10 @@ public class Client {
         int defaultLoginServerReply = 0;
         try {
             String messageFromServer = readFromServer.readLine();
+            
+          
             if (messageFromServer.equals(new String("1"))) {
+       
                 listenToServerThread.start();
 
                 return 1;
@@ -169,22 +172,21 @@ public class Client {
     public void sendQuitRequest() {
         String messageToServer = new String("quit");
         writeToServer.println(messageToServer);
-        closeConnection();
+       closeConnection();
     }
 
     public void sendLeaderBoardRequest() {
 
         String messageToServer = new String("LeaderBoard");
         writeToServer.println(messageToServer);
-        closeConnection();
+       
 
     }
 
     public void sendState() {
-
         String messageToServer = new String("state.");
         writeToServer.println(messageToServer);
-        closeConnection();
+       
 
     }
 

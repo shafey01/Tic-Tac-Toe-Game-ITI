@@ -114,9 +114,9 @@ public class Server {
             }
             System.out.println("fush");
             writeToClient.flush();
+         
             writeToClient.println(messageToClient);
-            
-            System.out.println("handleState" + messageToClient);
+            System.out.println( messageToClient+" " +messageToClient.getClass().getName());
 
         }
 
@@ -167,7 +167,7 @@ public class Server {
             // isOn = false;
         }
 
-        private void handleClientRequest() {
+        private void handleClientRequest(String messageFromClient ) {
             System.out.println("received " + messageFromClient);
             String[] tokens = parseClientMessage(messageFromClient);
             if (tokens[0].equals(new String("login"))) {
@@ -194,13 +194,14 @@ public class Server {
 
         @Override
         public void run() {
-            int i = 0;
+          
             try {
                 while (true) {
-                    i++;
-                    messageFromClient = readFromClient.readLine();
+                   
+                    String messageFromClient = new String(readFromClient.readLine());
+                    handleClientRequest(messageFromClient);
                     System.out.println("AAA" + messageFromClient);
-                    handleClientRequest();
+                    
 
                     System.out.println("under handleClientRequest");
                 }
@@ -211,7 +212,7 @@ public class Server {
             }
 
             System.out.println("thread closed");
-            System.out.println(i);
+            
         }
     }
 
