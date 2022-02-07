@@ -35,6 +35,7 @@ public class Game_v3Controller1 implements Initializable {
     public static String musicFileClick;
     public MediaPlayer mediaPlayer;
     public Boolean mute = false;
+    public static int viewFlag = 0;
     @FXML
     private Button Exit_btn;
 
@@ -109,6 +110,10 @@ public class Game_v3Controller1 implements Initializable {
 
     @FXML
     private ImageView youwin;
+    @FXML
+    private ImageView block_view;
+    @FXML
+    private ImageView muteSoundImage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,6 +124,7 @@ public class Game_v3Controller1 implements Initializable {
         musicFileWin = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\winSound.mp3";
         musicFileClick = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\clickSound.mp3";
         playSound(musicFileClick);
+        block_view.setVisible(false);
 
     }
 
@@ -143,85 +149,123 @@ public class Game_v3Controller1 implements Initializable {
         });
     }
 
+    public void changeBlockView() {
+//        if (viewFlag == 1) {
+//            block_view.setVisible(true);
+//            System.out.println("nochange");
+//        } else {
+//            System.out.println("change");
+//            block_view.setVisible(false);
+//        }
+
+    }
+
     @FXML
     void move_00(ActionEvent event) {
+        changeBlockView();
 
         System.out.println("login.Game_v3Controller.move_00()");
         playSound(musicFileClick);
         ClientController.getCONTROL().AIMove(new String("0"), new String("0"));
         changeViewForPlayer(img_view00);
+        viewFlag = 1;
+
     }
 
     @FXML
     void move_01(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove(new String("0"), new String("1"));
         changeViewForPlayer(img_view01);
+        viewFlag = 1;
 
     }
 
     @FXML
     void move_02(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove("0", "2");
         changeViewForPlayer(img_view02);
+        viewFlag = 1;
 
     }
 
     @FXML
     void move_10(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove("1", "0");
         changeViewForPlayer(img_view10);
+        viewFlag = 1;
 
     }
 
     @FXML
     void move_11(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove("1", "1");
         changeViewForPlayer(img_view11);
+        viewFlag = 1;
 
     }
 
     @FXML
     void move_12(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove("1", "2");
         changeViewForPlayer(img_view12);
+        viewFlag = 1;
 
     }
 
     @FXML
     void move_20(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove("2", "0");
 
         changeViewForPlayer(img_view20);
+        viewFlag = 1;
 
     }
 
     @FXML
     void move_21(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove("2", "1");
         changeViewForPlayer(img_view21);
+        viewFlag = 1;
 
     }
 
     @FXML
     void move_22(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
         ClientController.getCONTROL().AIMove("2", "2");
         changeViewForPlayer(img_view22);
+        viewFlag = 1;
 
     }
 
@@ -230,35 +274,51 @@ public class Game_v3Controller1 implements Initializable {
         String idAi = new String(rowIndex + columnIndex);
         System.out.println(idAi);
         if (idAi.equals(new String("00"))) {
-
+            viewFlag = 0;
             changeViewForAi(img_view00);
+
             System.out.println("00");
         } else if (idAi.equals(new String("01"))) {
             System.out.println("01");
+            viewFlag = 0;
 
             changeViewForAi(img_view01);
 
         } else if (idAi.equals(new String("02"))) {
+            viewFlag = 0;
+
             changeViewForAi(img_view02);
 
             System.out.println("02");
 
         } else if (idAi.equals(new String("10"))) {
+            viewFlag = 0;
+
             changeViewForAi(img_view10);
 
         } else if (idAi.equals(new String("11"))) {
+            viewFlag = 0;
+
             changeViewForAi(img_view11);
 
         } else if (idAi.equals(new String("12"))) {
+            viewFlag = 0;
+
             changeViewForAi(img_view12);
 
         } else if (idAi.equals(new String("20"))) {
+            viewFlag = 0;
+
             changeViewForAi(img_view20);
 
         } else if (idAi.equals(new String("21"))) {
+            viewFlag = 0;
+
             changeViewForAi(img_view21);
 
         } else if (idAi.equals(new String("22"))) {
+            viewFlag = 0;
+
             changeViewForAi(img_view22);
 
         }
@@ -276,6 +336,38 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     void muteSound(ActionEvent event) {
         mute = !mute;
+        if (mute == false) {
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    BorderPane pane;
+                    try {
+                        Image image = new Image(getClass().getResourceAsStream("mute.png"));
+                        muteSoundImage.setImage(image);
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+        } else {
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    BorderPane pane;
+                    try {
+                        Image image = new Image(getClass().getResourceAsStream("icons8_speaker_64px.png"));
+                        muteSoundImage.setImage(image);
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+        }
     }
 
     public void gameStatuswithAi(String status) {

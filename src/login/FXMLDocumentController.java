@@ -135,8 +135,7 @@ public class FXMLDocumentController implements Initializable {
 
                     try {
 //                        wrong_text_Login.setText("Wrong user name or password");
-loginStatusLabel.setText("Wrong user name or password");
-
+                        loginStatusLabel.setText("Wrong user name or password");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -155,7 +154,7 @@ loginStatusLabel.setText("Wrong user name or password");
 
                     try {
 //                        wrong_text_Login.setText("Please try again Later");
-loginStatusLabel.setText("Please try again Later");
+                        loginStatusLabel.setText("Please try again Later");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
