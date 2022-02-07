@@ -165,6 +165,7 @@ public class FXMLDocumentController implements Initializable {
          highestScore_TextField.setText(String.valueOf(maxScore));
          numberOfPlayers_TextField.setText(String.valueOf(contactPerson.size()));
          activePlayers_TextField.setText(String.valueOf(state.length));
+     
 }
     @FXML
     void close(ActionEvent event) {

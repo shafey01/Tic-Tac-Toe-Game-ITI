@@ -79,7 +79,11 @@ public class LeaderBordeController implements Initializable {
         score = new TableColumn<>("Total Score");
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
 
+        leaderBordeTableView.getColumns().add(userNameColumn);
+        leaderBordeTableView.getColumns().add(score);
         leaderBoradShow();
 
     }
@@ -87,7 +91,7 @@ public class LeaderBordeController implements Initializable {
 
     @FXML
     void refresh_Action(ActionEvent event) {
-
+        leaderBoradShow();
     }
     @FXML
     private void loadsetting(ActionEvent event) throws IOException {
@@ -120,15 +124,11 @@ public class LeaderBordeController implements Initializable {
     public void leaderBoradShow() {
         c = new ContactDAO();
         
-
+         leaderBordeTableView.getItems().clear();
         Vector<ContactPerson> contactPerson = c.getUsers();
         System.out.println(contactPerson.get(0).getUsername());
 
-        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
-
-        leaderBordeTableView.getColumns().add(userNameColumn);
-        leaderBordeTableView.getColumns().add(score);
+        
 
         for (ContactPerson i : contactPerson) {
             leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score()));

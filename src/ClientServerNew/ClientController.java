@@ -100,12 +100,9 @@ public class ClientController {
 
     public void stateControl(String[] state) {
         // release lock
-        System.out.println("Controller: " + state[0]);
+        
         this.state = state;
-        // friend = new FriendController();
-        // friend.getFriendControl().getState(state);
-
-        //   return state;
+        
     }
 
     public String[] sendState2() {

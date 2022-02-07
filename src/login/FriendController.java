@@ -103,7 +103,13 @@ public class FriendController implements Initializable {
 
 
         
-        ClientController.getCONTROL().sendStateRequest();
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
+        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
+        leaderBordeTableView.getColumns().add(userNameColumn);
+        leaderBordeTableView.getColumns().add(score);
+        leaderBordeTableView.getColumns().add(stateBoard);
+        
         System.out.println("2"+ClientController.getCONTROL());
 
         stateShow();
@@ -141,18 +147,12 @@ public class FriendController implements Initializable {
 
     public void stateShow() {
  c = new ContactDAO();
-        
+        ClientController.getCONTROL().sendStateRequest();
 
         Vector<ContactPerson> contactPerson = c.getUsers();
        
 
-        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
-        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
-        leaderBordeTableView.getColumns().add(userNameColumn);
-        leaderBordeTableView.getColumns().add(score);
-        leaderBordeTableView.getColumns().add(stateBoard);
-         
+          leaderBordeTableView.getItems().clear();
         // state = ClientController.getCONTROL().sendState2();
         String[] state = ClientController.getCONTROL().sendState2();  
              
@@ -171,7 +171,7 @@ public class FriendController implements Initializable {
 
  @FXML
     void refresh_Action(ActionEvent event) {
-
+      stateShow();
     }
 }
  

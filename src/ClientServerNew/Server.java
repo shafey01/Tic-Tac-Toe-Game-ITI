@@ -235,17 +235,13 @@ public class Server {
         }
     }
    public String[] serverRequestState(){
-            String serverGuiMessage = new String("");
-            int x = clientsTable.size();
-            System.out.println("size: " + x);
+            String[] state = new String[clientsTable.size()];
+            int i = 0;
             for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
 
-                serverGuiMessage += new String(hashEntry.getKey() + ".");
-
+                state[i] = new String(hashEntry.getKey());
+                i++;
             }
-            System.out.println(serverGuiMessage);
-            String[] state = serverGuiMessage.split("\\.");
-
             return state;
         }
 }
