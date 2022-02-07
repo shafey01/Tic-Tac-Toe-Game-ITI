@@ -5,6 +5,10 @@
 package server_gui;
 
 import ClientServerNew.Server;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,14 +20,15 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
  * @author Mustafa Raed
  */
 public class FXMLDocumentController implements Initializable {
-    
-     @FXML
+
+    @FXML
     private TableView<?> DB_TableView;
 
     @FXML
@@ -85,17 +90,44 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> userName_column;
-Server server;
+    Server server;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 //server = new Server();
-    }    
+    }
 
- @FXML
-    private void refresh_menuItemAction(ActionEvent event)  {
+    @FXML
+    private void refresh_menuItemAction(ActionEvent event) {
         System.out.println("Button Action\n");
     }
-    
+
+    @FXML
+    void github_bt(ActionEvent event) throws URISyntaxException, IOException {
+        Desktop.getDesktop().browse(new URI("https://github.com/shafey01/Tic-Tac-Toe-Game-ITI/tree/master"));
+    }
+
+    @FXML
+    void close(ActionEvent event) {
+
+        System.exit(0);
+
+    }
+    @FXML
+    void aboutServer_menuItemAction(ActionEvent event) {
+
+    }
+
+
+
+    @FXML
+    void start_menuItemAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void stop_menuItemAction(ActionEvent event) {
+
+    }
 }

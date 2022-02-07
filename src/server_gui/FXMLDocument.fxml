@@ -22,7 +22,7 @@
         <menus>
           <Menu mnemonicParsing="false" style="-fx-cursor: hand;" text="File">
             <items>
-              <MenuItem fx:id="close_menuItem" mnemonicParsing="false" style="-fx-cursor: hand;" text="   Exit  ">
+              <MenuItem fx:id="close_menuItem" mnemonicParsing="false" onAction="#close" style="-fx-cursor: hand;" text="   Exit  ">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -43,7 +43,7 @@
                         </ImageView>
                      </graphic></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="refresh_menuItem1" mnemonicParsing="false" style="-fx-cursor: hand;" text="   Start">
+                  <MenuItem fx:id="refresh_menuItem1" mnemonicParsing="false" onAction="#start_menuItemAction" style="-fx-cursor: hand;" text="   Start">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,7 +52,7 @@
                         </ImageView>
                      </graphic>
                   </MenuItem>
-                  <MenuItem fx:id="refresh_menuItem2" mnemonicParsing="false" style="-fx-cursor: hand;" text="   Stop">
+                  <MenuItem fx:id="refresh_menuItem2" mnemonicParsing="false" onAction="#stop_menuItemAction" style="-fx-cursor: hand;" text="   Stop">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -65,18 +65,18 @@
           </Menu>
           <Menu mnemonicParsing="false" style="-fx-cursor: hand;" text="Help">
             <items>
-              <MenuItem fx:id="aboutServer_menuItem" mnemonicParsing="false" style="-fx-cursor: hand;" text="   About Server">
+              <MenuItem fx:id="aboutServer_menuItem" mnemonicParsing="false" onAction="#aboutServer_menuItemAction" style="-fx-cursor: hand;" text="   About Server">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Img/icons8_repository_128px.png" />
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="connectWithUs_menuItem" mnemonicParsing="false" style="-fx-cursor: hand;" text="   Connect with us">
+                  <MenuItem fx:id="connectWithUs_menuItem" mnemonicParsing="false" onAction="#github_bt" style="-fx-cursor: hand;" text="   Connect with us">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Img/icons8_github_100px.png" />
                            </image>

@@ -61,6 +61,9 @@ public class FriendController implements Initializable {
     private Button bt_loadleaderborde;
 
     @FXML
+    private Button refresh;
+
+    @FXML
     private Button bt_setting;
 
     @FXML
@@ -185,5 +188,9 @@ public class FriendController implements Initializable {
         this.total_score = total_score;
     }
 
+    @FXML
+    void refresh_Action(ActionEvent event) {
+
+    }
 
 }

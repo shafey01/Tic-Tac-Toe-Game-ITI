@@ -64,6 +64,9 @@ public class LeaderBordeController implements Initializable {
     private AnchorPane topbar;
 
     @FXML
+    private Button refresh;
+
+    @FXML
     private TableColumn<ContactPerson, String> userNameColumn;
     @FXML
     private TableColumn<ContactPerson, Integer> score;
@@ -81,6 +84,11 @@ public class LeaderBordeController implements Initializable {
 
     }
 
+
+    @FXML
+    void refresh_Action(ActionEvent event) {
+
+    }
     @FXML
     private void loadsetting(ActionEvent event) throws IOException {
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
