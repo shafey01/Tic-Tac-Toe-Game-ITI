@@ -89,6 +89,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Label fx:id="loginStatusLabel" layoutX="153.0" layoutY="251.0" prefHeight="56.0" prefWidth="638.0" textFill="#ec0909">
+                     <font>
+                        <Font name="Times New Roman Bold" size="34.0" />
+                     </font>
+                  </Label>
                </children>
                <effect>
                   <DropShadow height="60.77" radius="48.015" width="133.29" />

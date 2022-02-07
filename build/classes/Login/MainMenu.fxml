@@ -13,12 +13,12 @@
             <Image url="@../Img/Screenshot%20(42).png" />
          </image>
       </ImageView>
-      <Button fx:id="ai_bt" layoutX="422.0" layoutY="842.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #032358;" textFill="#032358">
+      <Button fx:id="ai_bt" layoutX="422.0" layoutY="842.0" mnemonicParsing="false" onAction="#game" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #032358;" textFill="#032358">
          <font>
             <Font name="Yu Gothic Bold" size="18.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="136.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_ai" fitHeight="136.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/icons8_broken_robot_200px.png" />
                </image>
@@ -30,7 +30,7 @@
             <Font name="Yu Gothic Bold" size="18.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="133.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_online" fitHeight="133.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/icons8_online_64px.png" />
                </image>

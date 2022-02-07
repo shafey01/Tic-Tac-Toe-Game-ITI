@@ -82,47 +82,47 @@
                   <RowConstraints maxHeight="220.0" minHeight="10.0" prefHeight="220.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="btn_00" mnemonicParsing="false" prefHeight="220.0" prefWidth="250.0" style="-fx-background-color: #032358;">
+                  <Button fx:id="btn_00" mnemonicParsing="false" onAction="#move_00" prefHeight="220.0" prefWidth="250.0" style="-fx-background-color: #032358;">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_20" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #032358;" GridPane.rowIndex="2">
+                  <Button fx:id="btn_20" mnemonicParsing="false" onAction="#move_20" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #032358;" GridPane.rowIndex="2">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_10" mnemonicParsing="false" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.rowIndex="1">
+                  <Button fx:id="btn_10" mnemonicParsing="false" onAction="#move_10" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.rowIndex="1">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_01" mnemonicParsing="false" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1">
+                  <Button fx:id="btn_01" mnemonicParsing="false" onAction="#move_01" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_11" mnemonicParsing="false" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="btn_11" mnemonicParsing="false" onAction="#move_11" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_12" mnemonicParsing="false" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Button fx:id="btn_12" mnemonicParsing="false" onAction="#move_12" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_02" mnemonicParsing="false" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2">
+                  <Button fx:id="btn_02" mnemonicParsing="false" onAction="#move_02" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_21" mnemonicParsing="false" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="btn_21" mnemonicParsing="false" onAction="#move_21" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
                         <Glow />
                      </effect>
                   </Button>
-                  <Button fx:id="btn_22" mnemonicParsing="false" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button fx:id="btn_22" mnemonicParsing="false" onAction="#move_22" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <effect>
                         <Glow />
                      </effect>

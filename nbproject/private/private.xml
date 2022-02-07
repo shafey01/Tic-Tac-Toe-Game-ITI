@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Client.java</file>
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/DataBase/GamePkg/GameDAO.java</file>
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/login/FXMLDocumentController.java</file>
@@ -16,6 +17,14 @@
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/ClientController.java</file>
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/login/LeaderBordeController.java</file>
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Server.java</file>
+=======
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/login/MainMenuController.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Client.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/ClientController.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/login/Game_v3Controller.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Server.java</file>
+            <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/Game/GameWithComputer.java</file>
+>>>>>>> 7b5a12808d5df335e4ddc23fc520cd2d0d28e5df
         </group>
     </open-files>
 </project-private>

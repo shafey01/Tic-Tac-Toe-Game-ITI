@@ -12,6 +12,7 @@ import java.util.Hashtable;
 
 import Game.GameWithComputer;
 import Game.Move;
+import Game.MultiplayerGame;
 import java.util.Map;
 
 public class Server {
@@ -41,9 +42,11 @@ public class Server {
         private PrintWriter writeToClient;
         private BufferedReader readFromClient;
         private String userName;
-        private String messageFromClient;
+//        private String messageFromClient;
         private GameWithComputer gameWithComputer;
         ContactDAO databaseContactDAO;
+        private MultiplayerGame multiplayerGame;
+        private int moveType;
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
@@ -57,6 +60,7 @@ public class Server {
                 e.printStackTrace();
 
             }
+            moveType = 1;
 
         }
 
@@ -89,16 +93,19 @@ public class Server {
         private void handleInvitaionRequest(String userNameToInvite) {
             ClientHandler otherClient = clientsTable.get(userNameToInvite);
             if (otherClient != null) {
-                String messageToClient = new String("invite." + userName);
-                otherClient.writeToClient.println(messageToClient);
-                // writeToClient.println(new String("1"));
+                String messageToOtherClient = new String("invite." + userName);
+                otherClient.writeToClient.println(messageToOtherClient);
+
             }
         }
 
-        private void handleReplyRequest(String otherClientuserName, String isAccepted) {
+        private void handleReplyRequest(String otherClientuserName) {
             ClientHandler otherClient = clientsTable.get(otherClientuserName);
             if (otherClient != null) {
-                String messageToClient = new String("reply." + userName + "." + isAccepted);
+                this.multiplayerGame = new MultiplayerGame();
+                this.moveType = 2;
+                clientsTable.get(otherClientuserName).multiplayerGame = this.multiplayerGame;
+                String messageToClient = new String("reply." + userName + ".");
                 clientsTable.get(otherClientuserName).writeToClient.println(messageToClient);
             }
         }
@@ -114,9 +121,9 @@ public class Server {
             }
             System.out.println("fush");
             writeToClient.flush();
-         
+
             writeToClient.println(messageToClient);
-            System.out.println( messageToClient+" " +messageToClient.getClass().getName());
+            System.out.println(messageToClient + " " + messageToClient.getClass().getName());
 
         }
 
@@ -128,11 +135,14 @@ public class Server {
                 writeToClient.println(messageToClient);
             } else {
                 gameWithComputer = new GameWithComputer(false);
+                System.out.println("Else computer");
             }
+            
         }
 
         private void handleAIgameMoveRequest(String rowIndex, String columnIndex) {
             String messageToClient;
+            System.out.println("game computer" + rowIndex + columnIndex + gameWithComputer);
             int gameStatus = gameWithComputer.playMove(Move.stringToMove(rowIndex, columnIndex));
             if (gameStatus == 3) {
                 messageToClient = new String("AIgame." + gameWithComputer.getComputerMove().toString());
@@ -167,7 +177,7 @@ public class Server {
             // isOn = false;
         }
 
-        private void handleClientRequest(String messageFromClient ) {
+        private void handleClientRequest(String messageFromClient) {
             System.out.println("received " + messageFromClient);
             String[] tokens = parseClientMessage(messageFromClient);
             if (tokens[0].equals(new String("login"))) {
@@ -177,7 +187,7 @@ public class Server {
             } else if (tokens[0].equals(new String("invite"))) {
                 handleInvitaionRequest(tokens[1]);
             } else if (tokens[0].equals(new String("reply"))) {
-                handleReplyRequest(tokens[1], tokens[2]);
+                handleReplyRequest(tokens[1]);
             } else if (tokens[0].equals(new String("AIrequest"))) {
                 handleAIgameRequest(tokens[1]);
             } else if (tokens[0].equals(new String("AIgame"))) {
@@ -194,14 +204,13 @@ public class Server {
 
         @Override
         public void run() {
-          
+
             try {
                 while (true) {
-                   
+
                     String messageFromClient = new String(readFromClient.readLine());
                     handleClientRequest(messageFromClient);
                     System.out.println("AAA" + messageFromClient);
-                    
 
                     System.out.println("under handleClientRequest");
                 }
@@ -212,7 +221,7 @@ public class Server {
             }
 
             System.out.println("thread closed");
-            
+
         }
     }
 

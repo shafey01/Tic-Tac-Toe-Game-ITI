@@ -23,8 +23,8 @@ public class PlayerDAO {
 
     public static final String DB_URL = "jdbc:mysql://localhost:3306/gamedb";
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String USER = "root";
-    public static final String PASS = "";
+    public static final String USER = "shafey";
+    public static final String PASS = "shafey";
     Connection con;
     PreparedStatement pst = null;
     Vector<PlayerTable> playerTable;

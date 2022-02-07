@@ -99,11 +99,14 @@ public class FriendController implements Initializable {
         stateBoard = new TableColumn<>("State");
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+
+
         
         ClientController.getCONTROL().sendStateRequest();
         System.out.println("2"+ClientController.getCONTROL());
 
         stateShow();
+
 
     }
 
@@ -131,6 +134,10 @@ public class FriendController implements Initializable {
         friend.getChildren().setAll(pane);
     }
 
+
+  
+
+
     public void stateShow() {
  c = new ContactDAO();
         
@@ -156,6 +163,7 @@ public class FriendController implements Initializable {
             
             }
         }
+
 
 
     }

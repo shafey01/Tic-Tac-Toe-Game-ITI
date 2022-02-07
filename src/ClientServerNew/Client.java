@@ -43,7 +43,10 @@ public class Client {
                 try {
                     while (true) {
                         messageFromServer = readFromServer.readLine();
+                        System.out.println(".run 1()");
                         handleServerReply(messageFromServer);
+                        System.out.println(".run 2()");
+
                     }
 
                 } catch (IOException e) {
@@ -66,20 +69,25 @@ public class Client {
 
         if (tokens[0].equals(new String("invite"))) {
             controller.invitationControl(tokens[1]);
-        } else if (tokens[0].equals(new String("reply"))) {
+        } else if (tokens[0].equals(new String("multistart"))) {
 
-            controller.replyControl(tokens[1], tokens[2]);
+            controller.gameStartControl(tokens[1]);
+            
         } else if (tokens[0].equals(new String("AIgame"))) {
             controller.gameMovesControl(tokens[1], tokens[2]);
         } else if (tokens[0].equals(new String("AIover"))) {
             controller.gameOverControl(tokens[1]);
         } else if (tokens[0].equals(new String("state"))) {
+
             String[] state = new String[tokens.length - 1];
             for (int i = 1; i < tokens.length; i++) {
 
-                state[i-1] = new String(tokens[i]);
+                state[i - 1] = new String(tokens[i]);
+
             }
+
             controller.stateControl(state);
+
         } else if (tokens[0].equals(new String("exit"))) {
             // handleLogoutRequest();
         }
@@ -105,10 +113,9 @@ public class Client {
         int defaultLoginServerReply = 0;
         try {
             String messageFromServer = readFromServer.readLine();
-            
-          
+
             if (messageFromServer.equals(new String("1"))) {
-       
+
                 listenToServerThread.start();
 
                 return 1;
@@ -148,8 +155,8 @@ public class Client {
         writeToServer.println(messageToServer);
     }
 
-    public void sendReplyRequest(String userNameToReply, String isAccepted) {
-        String messageToServer = new String("reply." + userNameToReply + "." + isAccepted);
+    public void sendReplyRequest(String userNameToReply) {
+        String messageToServer = new String("reply." + userNameToReply);
         writeToServer.println(messageToServer);
     }
 
@@ -172,21 +179,19 @@ public class Client {
     public void sendQuitRequest() {
         String messageToServer = new String("quit");
         writeToServer.println(messageToServer);
-       closeConnection();
+        closeConnection();
     }
 
     public void sendLeaderBoardRequest() {
 
         String messageToServer = new String("LeaderBoard");
         writeToServer.println(messageToServer);
-       
 
     }
 
     public void sendState() {
         String messageToServer = new String("state.");
         writeToServer.println(messageToServer);
-       
 
     }
 
