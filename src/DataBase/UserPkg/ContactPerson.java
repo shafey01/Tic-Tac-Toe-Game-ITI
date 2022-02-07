@@ -32,15 +32,25 @@ public class ContactPerson {
     public ContactPerson(String username, int total_score, String State) {
         this.username = username;
         this.State = State;
-         System.out.println(this.State);
         this.total_score = total_score;
     }
-
-    public ContactPerson(int user_id, String username, String password, int total_score) {
+public ContactPerson(int user_id, String username, String password, int total_score) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
         this.total_score = total_score;
+        
+    }
+
+    public String getState() {
+        return State;
+    }
+    public ContactPerson(int user_id, String username, String password, int total_score,String State) {
+        this.user_id = user_id;
+        this.username = username;
+        this.password = password;
+        this.total_score = total_score;
+        this.State = State;
     }
 
     public ContactPerson() {
