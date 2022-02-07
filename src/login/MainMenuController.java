@@ -4,6 +4,7 @@
  */
 package login;
 
+import ClientServerNew.ClientController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,4 +42,24 @@ public class MainMenuController implements Initializable {
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
         main.getChildren().setAll(pane);
     }
+
+//    @FXML
+//    void startGameAi(ActionEvent event) throws IOException {
+//        BorderPane pane = FXMLLoader.load(getClass().getResource("Game_v3.fxml"));
+//        main.getChildren().setAll(pane);
+////        ClientController.getCONTROL().AIRequest();
+//
+//    }
+//    @FXML
+//    void GameAi(ActionEvent event) throws IOException {
+//        BorderPane pane = FXMLLoader.load(getClass().getResource("Game_v3.fxml"));
+//        main.getChildren().setAll(pane);
+//    }
+    @FXML
+    void game(ActionEvent event) throws IOException {
+        BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+        main.getChildren().setAll(pane);
+ClientController.getCONTROL().AIRequest();
+    }
+
 }

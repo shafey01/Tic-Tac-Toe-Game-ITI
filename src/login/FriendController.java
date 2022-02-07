@@ -147,16 +147,19 @@ public class FriendController implements Initializable {
 
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
-        stateBoard.setCellValueFactory(new PropertyValueFactory<>("state"));
+        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
         leaderBordeTableView.getColumns().add(userNameColumn);
         leaderBordeTableView.getColumns().add(score);
         leaderBordeTableView.getColumns().add(stateBoard);
          
-         state = ClientController.getCONTROL().sendState2();
-            for (ContactPerson i : contactPerson) {
+        // state = ClientController.getCONTROL().sendState2();
+        String[] state = ClientController.getCONTROL().sendState2();  
+        String online = new String("online");        
+        for (ContactPerson i : contactPerson) {
 
             if (Arrays.asList(state).contains(i.getUsername())) {
-                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), "Online"));
+
+                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), online));
 
             }
         }

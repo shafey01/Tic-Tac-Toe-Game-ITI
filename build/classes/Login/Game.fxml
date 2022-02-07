@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Game_v3Controller1">
    <top>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="193.0" prefWidth="1941.0" BorderPane.alignment="CENTER">
          <children>
@@ -86,11 +86,17 @@
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_20" mnemonicParsing="false" onAction="#move_20" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #032358;" GridPane.rowIndex="2">
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view20" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_10" mnemonicParsing="false" onAction="#move_10" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.rowIndex="1">
                      <effect>
@@ -101,6 +107,9 @@
                      <effect>
                         <Glow />
                      </effect>
+                     <graphic>
+                        <ImageView fx:id="img_view2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btn_11" mnemonicParsing="false" onAction="#move_11" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #032358;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>

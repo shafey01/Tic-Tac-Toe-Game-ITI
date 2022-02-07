@@ -69,24 +69,24 @@ public class Client {
 
         if (tokens[0].equals(new String("invite"))) {
             controller.invitationControl(tokens[1]);
-        } else if (tokens[0].equals(new String("reply"))) {
+        } else if (tokens[0].equals(new String("multistart"))) {
 
-            controller.replyControl(tokens[1], tokens[2]);
+            controller.gameStartControl(tokens[1]);
+            
         } else if (tokens[0].equals(new String("AIgame"))) {
             controller.gameMovesControl(tokens[1], tokens[2]);
         } else if (tokens[0].equals(new String("AIover"))) {
             controller.gameOverControl(tokens[1]);
         } else if (tokens[0].equals(new String("state"))) {
-            System.err.println("Stateeeeeeeeee");
+
             String[] state = new String[tokens.length - 1];
             for (int i = 1; i < tokens.length; i++) {
 
-                state[i] = new String(tokens[i]);
-                System.out.println("state[i]" + state[i]);
+                state[i - 1] = new String(tokens[i]);
+
             }
-            System.out.println("contrler above");
+
             controller.stateControl(state);
-            System.out.println("contrler under");
 
         } else if (tokens[0].equals(new String("exit"))) {
             // handleLogoutRequest();
@@ -113,10 +113,10 @@ public class Client {
         int defaultLoginServerReply = 0;
         try {
             String messageFromServer = readFromServer.readLine();
+
             if (messageFromServer.equals(new String("1"))) {
-                System.out.println("above lisent");
+
                 listenToServerThread.start();
-                System.out.println("under lisent");
 
                 return 1;
             } else {
@@ -155,8 +155,8 @@ public class Client {
         writeToServer.println(messageToServer);
     }
 
-    public void sendReplyRequest(String userNameToReply, String isAccepted) {
-        String messageToServer = new String("reply." + userNameToReply + "." + isAccepted);
+    public void sendReplyRequest(String userNameToReply) {
+        String messageToServer = new String("reply." + userNameToReply);
         writeToServer.println(messageToServer);
     }
 
@@ -186,15 +186,12 @@ public class Client {
 
         String messageToServer = new String("LeaderBoard");
         writeToServer.println(messageToServer);
-        closeConnection();
 
     }
 
     public void sendState() {
-
         String messageToServer = new String("state.");
         writeToServer.println(messageToServer);
-        closeConnection();
 
     }
 
