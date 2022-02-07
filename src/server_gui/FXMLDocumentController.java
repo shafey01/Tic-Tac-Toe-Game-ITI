@@ -92,5 +92,10 @@ Server server;
         // TODO
 //server = new Server();
     }    
+
+ @FXML
+    private void refresh_menuItemAction(ActionEvent event)  {
+        System.out.println("Button Action\n");
+    }
     
 }

@@ -13,7 +13,7 @@
    <top>
       <AnchorPane fx:id="topbar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="818.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bt_setting" layoutX="201.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="10.0">
+            <Button fx:id="bt_setting" layoutX="201.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -22,7 +22,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bt_loadfriend" layoutX="630.0" layoutY="11.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="10.0">
+            <Button fx:id="bt_loadfriend" layoutX="630.0" layoutY="11.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fx:id="bt_friend" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -31,7 +31,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bt_loadleaderborde" layoutX="1124.0" layoutY="12.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="10.0">
+            <Button fx:id="bt_loadleaderborde" layoutX="1124.0" layoutY="12.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fx:id="bt_leaderborde" fitHeight="39.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -40,7 +40,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+            <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fx:id="bt_exit" fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,7 +49,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="904.0" layoutY="32.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="39.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="969.8" AnchorPane.topAnchor="10.0">
+            <Button layoutX="904.0" layoutY="32.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="39.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="969.8" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                      <image>
