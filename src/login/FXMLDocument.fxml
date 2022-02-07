@@ -38,12 +38,12 @@
          <children>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField fx:id="userNameTextFieldSignIn" layoutX="168.0" layoutY="426.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="426.0">
+                  <TextField fx:id="userNameTextFieldSignIn" layoutX="168.0" layoutY="426.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF; -fx-cursor: hand;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="426.0">
                      <font>
                         <Font name="Yu Gothic Bold" size="30.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="passwordTextFieldSignIn" layoutX="165.0" layoutY="577.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF;" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="577.0">
+                  <PasswordField fx:id="passwordTextFieldSignIn" layoutX="165.0" layoutY="577.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF; -fx-cursor: hand;" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="577.0">
                      <font>
                         <Font name="Yu Gothic Bold" size="30.0" />
                      </font>
@@ -65,7 +65,7 @@
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="login_bt" defaultButton="true" layoutX="642.0" layoutY="721.0" mnemonicParsing="false" onAction="#loadenter" prefHeight="78.0" prefWidth="174.0" style="-fx-background-color: #4886FF;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="642.0" AnchorPane.topAnchor="721.0">
+                  <Button fx:id="login_bt" defaultButton="true" layoutX="642.0" layoutY="721.0" mnemonicParsing="false" onAction="#loadenter" prefHeight="78.0" prefWidth="174.0" style="-fx-background-color: #4886FF; -fx-cursor: hand;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="642.0" AnchorPane.topAnchor="721.0">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -75,12 +75,12 @@
                         <Font name="Yu Gothic Bold" size="59.0" />
                      </font>
                   </Label>
-                  <Hyperlink fx:id="CreateAccount" layoutX="165.0" layoutY="731.0" onAction="#loadCreate" text="Create account" textFill="#4886ff" wrapText="true" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="731.0">
+                  <Hyperlink fx:id="CreateAccount" layoutX="165.0" layoutY="731.0" onAction="#loadCreate" style="-fx-cursor: hand;" text="Create account" textFill="#4886ff" wrapText="true" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="731.0">
                      <font>
                         <Font name="Yu Gothic Bold" size="33.0" />
                      </font>
                   </Hyperlink>
-                  <Button fx:id="close_bt" cancelButton="true" layoutX="1032.0" layoutY="35.0" mnemonicParsing="false" onAction="#close_fc" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #ffffff;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+                  <Button fx:id="close_bt" cancelButton="true" layoutX="1032.0" layoutY="35.0" mnemonicParsing="false" onAction="#close_fc" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #ffffff; -fx-cursor: hand;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
                      <graphic>
                         <ImageView fitHeight="54.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                            <image>

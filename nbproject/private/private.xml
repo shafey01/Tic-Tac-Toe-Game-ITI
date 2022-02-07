@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Client.java</file>
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/DataBase/GamePkg/GameDAO.java</file>
@@ -10,5 +13,6 @@
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/DataBase/PlayerPkg/PlayerDAO.java</file>
             <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Server.java</file>
         </group>
+>>>>>>> 5bd9ec6ae15acfd33c1952f12612fa86de0010ec
     </open-files>
 </project-private>
