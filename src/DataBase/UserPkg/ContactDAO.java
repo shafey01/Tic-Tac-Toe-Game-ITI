@@ -64,7 +64,7 @@ public class ContactDAO {
             ResultSet st = stat.executeQuery(query);
             while (st.next()) {
 
-                ContactPerson contact = new ContactPerson(st.getInt("user_id"), st.getString("username"), st.getString("password"), st.getInt("total_score"));
+                ContactPerson contact = new ContactPerson(st.getInt("user_id"), st.getString("username"), st.getString("password"), st.getInt("total_score"),"online");
                 contactPerson.add(contact);
             }
             stat.close();

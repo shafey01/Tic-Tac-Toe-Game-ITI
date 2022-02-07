@@ -70,7 +70,7 @@ public class FriendController implements Initializable {
     private Button invite_bt;
 
     @FXML
-    private TableView<ContactPerson> leaderBordeTableView;
+    private TableView<ContactPerson> leaderBordeTableView2;
 
     @FXML
     private TableColumn<ContactPerson, String> userNameColumn;
@@ -94,9 +94,9 @@ public class FriendController implements Initializable {
         friendControl = this;
         userNameColumn = new TableColumn<>("user Name");
 
-        stateBoard = new TableColumn<>("State");
-
         score = new TableColumn<>("Total Score");
+
+        stateBoard = new TableColumn<>("State");
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
 
@@ -148,19 +148,19 @@ public class FriendController implements Initializable {
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
         stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
-        leaderBordeTableView.getColumns().add(userNameColumn);
-        leaderBordeTableView.getColumns().add(score);
-        leaderBordeTableView.getColumns().add(stateBoard);
+        leaderBordeTableView2.getColumns().add(userNameColumn);
+        leaderBordeTableView2.getColumns().add(score);
+        leaderBordeTableView2.getColumns().add(stateBoard);
          
         // state = ClientController.getCONTROL().sendState2();
         String[] state = ClientController.getCONTROL().sendState2();  
-        String online = new String("online");        
+             
         for (ContactPerson i : contactPerson) {
 
             if (Arrays.asList(state).contains(i.getUsername())) {
-
-                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), online));
-
+            
+          leaderBordeTableView2.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
+            
             }
         }
 
@@ -168,10 +168,22 @@ public class FriendController implements Initializable {
 
     }
 
-//    public void getState(String[] state) {
-//
-//        this.state = state;
-//
-//    }
+
+}
+ class User{
+
+    String username;
+    int total_score;
+    String State;
+
+    
+   
+
+    public User(String username, int total_score, String State) {
+        this.username = username;
+        this.State = State;
+        this.total_score = total_score;
+    }
+
 
 }
