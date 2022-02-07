@@ -19,6 +19,11 @@ public class Server {
     private Hashtable<String, ClientHandler> clientsTable = new Hashtable<String, ClientHandler>();
 
     Server() {
+        startServer();
+    }
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    public void startServer() {
         System.out.println("tic.tac.toe.Server.<init>()");
         try {
             serverSock = new ServerSocket(7001);
@@ -30,8 +35,15 @@ public class Server {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
+
+    public void stopServer() {
+        for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
+            hashEntry.getValue().writeToClient.println("exit");
+            hashEntry.getValue().closeConnection();
+        }
+    }
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
     private class ClientHandler extends Thread {
 
@@ -42,7 +54,9 @@ public class Server {
         private GameWithComputer gameWithComputer;
         private MultiplayerGame multiplayerGame;
         private int moveType;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         private String multiClientID;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
@@ -266,10 +280,9 @@ public class Server {
         public void run() {
             try {
                 while (true) {
-                    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
                     String messageFromClient = new String(readFromClient.readLine());
                     handleClientRequest(messageFromClient);
-                    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 }
             } catch (IOException e) {
 

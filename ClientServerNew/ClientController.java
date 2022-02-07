@@ -32,6 +32,12 @@ public class ClientController {
         }
     }
 
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    public void exitControl() {
+        System.out.println("Server Exit");
+    }
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
     public void invitationControl(String invitationID) {
 
         System.out.println("invitation from " + invitationID);

@@ -86,12 +86,14 @@ public class Client {
         // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
         else if (tokens[0].equals(new String("exit"))) {
-            // handleLogoutRequest();
+            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+            controller.exitControl();
+            closeConnection();
+            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         }
 
         else if (tokens[0].equals(new String("state"))) {
             System.out.println(tokens[1]);
-            // handleLogoutRequest();
         }
     }
 
