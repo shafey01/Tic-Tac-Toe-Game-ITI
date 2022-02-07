@@ -37,9 +37,7 @@ public class FriendController implements Initializable {
     ClientController clientcontrol;
     public static FriendController friendControl;
 
-    public static FriendController getFriendControl() {
-        return friendControl;
-    }
+    
     public String[] state;
 
     @FXML
@@ -70,7 +68,7 @@ public class FriendController implements Initializable {
     private Button invite_bt;
 
     @FXML
-    private TableView<ContactPerson> leaderBordeTableView2;
+    private TableView<ContactPerson> leaderBordeTableView;
 
     @FXML
     private TableColumn<ContactPerson, String> userNameColumn;
@@ -148,9 +146,9 @@ public class FriendController implements Initializable {
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
         stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
-        leaderBordeTableView2.getColumns().add(userNameColumn);
-        leaderBordeTableView2.getColumns().add(score);
-        leaderBordeTableView2.getColumns().add(stateBoard);
+        leaderBordeTableView.getColumns().add(userNameColumn);
+        leaderBordeTableView.getColumns().add(score);
+        leaderBordeTableView.getColumns().add(stateBoard);
          
         // state = ClientController.getCONTROL().sendState2();
         String[] state = ClientController.getCONTROL().sendState2();  
@@ -159,7 +157,7 @@ public class FriendController implements Initializable {
 
             if (Arrays.asList(state).contains(i.getUsername())) {
             
-          leaderBordeTableView2.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
+          leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
             
             }
         }

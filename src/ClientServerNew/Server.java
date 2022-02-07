@@ -19,10 +19,20 @@ public class Server {
 
     private ServerSocket serverSock;
     private Socket internalSock;
+    private static Server server;
+
+    public static Server getServer() {
+        return server;
+    }
+    private static int a = 1;
     private Hashtable<String, ClientHandler> clientsTable = new Hashtable<String, ClientHandler>();
 
     public Server() {
         System.out.println("tic.tac.toe.Server.<init>()");
+         if (a == 1) {
+            server = this;
+            a++;
+        }
         try {
             serverSock = new ServerSocket(7001);
             while (true) {
@@ -68,7 +78,7 @@ public class Server {
 
             return clientMessage.split("\\.");
         }
-
+        
         // private Move stringToMove()
         private void handleLoginRequest(String userName, String password) {
             // database
@@ -224,7 +234,20 @@ public class Server {
 
         }
     }
+   public String[] serverRequestState(){
+            String serverGuiMessage = new String("");
+            int x = clientsTable.size();
+            System.out.println("size: " + x);
+            for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
 
+                serverGuiMessage += new String(hashEntry.getKey() + ".");
+
+            }
+            System.out.println(serverGuiMessage);
+            String[] state = serverGuiMessage.split("\\.");
+
+            return state;
+        }
 }
 
 // for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
