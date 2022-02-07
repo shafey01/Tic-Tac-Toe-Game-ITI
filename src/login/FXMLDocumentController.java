@@ -33,7 +33,7 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
 
-    public static ClientController client;
+    public ClientController client;
 
    
     public static FXMLDocumentController logincontroller;
@@ -69,7 +69,7 @@ public class FXMLDocumentController implements Initializable {
         logincontroller = this;
 
         try {
-            client = new ClientController();
+            
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -92,9 +92,15 @@ public class FXMLDocumentController implements Initializable {
 
         userNameLogin = userNameTextFieldSignIn.getText();
         passwordLogin = passwordTextFieldSignIn.getText();
+        try {
+        client = new ClientController();
 
-        client.sendLoginRequest(userNameLogin, passwordLogin);
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        client.getCONTROL().sendLoginRequest(userNameLogin, passwordLogin);
+                 System.out.println("5"+client);
+                 System.out.println("6"+client.getCONTROL());
     }
 
     @FXML

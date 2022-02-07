@@ -36,6 +36,10 @@ public class FriendController implements Initializable {
     ContactDAO c;
     ClientController clientcontrol;
     public static FriendController friendControl;
+
+    public static FriendController getFriendControl() {
+        return friendControl;
+    }
     public String[] state;
 
     @FXML
@@ -95,13 +99,14 @@ public class FriendController implements Initializable {
         score = new TableColumn<>("Total Score");
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
-//        try {
-//            clientcontrol = FXMLDocumentController.client;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
+
         
-//        stateShow();
+        ClientController.getCONTROL().sendStateRequest();
+        System.out.println("2"+ClientController.getCONTROL());
+
+        stateShow();
+
 
     }
 
@@ -129,32 +134,41 @@ public class FriendController implements Initializable {
         friend.getChildren().setAll(pane);
     }
 
-//    public void stateShow() {
-//        c = new ContactDAO();
-//
-//        Vector<ContactPerson> contactPerson = c.getUsers();
-//        
-//        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-//        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
-//        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
-//        leaderBordeTableView.getColumns().add(userNameColumn);
-//        leaderBordeTableView.getColumns().add(score);
-//        leaderBordeTableView.getColumns().add(stateBoard);
-//        System.out.println("number of users: " + state.length);
-//        for (ContactPerson i : contactPerson) {
-//
-//            if (Arrays.asList(state).contains(i.getUsername())) {
-//                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), "Online"));
-//
-//            }
-//        }
-//
-//    }
 
-    public void getState(String[] state) {
+  
 
-        System.out.println( "state from friend" + state[0]);
+
+    public void stateShow() {
+ c = new ContactDAO();
+        
+
+        Vector<ContactPerson> contactPerson = c.getUsers();
+       
+
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
+        stateBoard.setCellValueFactory(new PropertyValueFactory<>("state"));
+        leaderBordeTableView.getColumns().add(userNameColumn);
+        leaderBordeTableView.getColumns().add(score);
+        leaderBordeTableView.getColumns().add(stateBoard);
+         
+         state = ClientController.getCONTROL().sendState2();
+            for (ContactPerson i : contactPerson) {
+
+            if (Arrays.asList(state).contains(i.getUsername())) {
+                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), "Online"));
+
+            }
+        }
+
+
 
     }
+
+//    public void getState(String[] state) {
+//
+//        this.state = state;
+//
+//    }
 
 }

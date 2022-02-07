@@ -43,7 +43,10 @@ public class Client {
                 try {
                     while (true) {
                         messageFromServer = readFromServer.readLine();
+                        System.out.println(".run 1()");
                         handleServerReply(messageFromServer);
+                        System.out.println(".run 2()");
+
                     }
 
                 } catch (IOException e) {
@@ -74,12 +77,17 @@ public class Client {
         } else if (tokens[0].equals(new String("AIover"))) {
             controller.gameOverControl(tokens[1]);
         } else if (tokens[0].equals(new String("state"))) {
+            System.err.println("Stateeeeeeeeee");
             String[] state = new String[tokens.length - 1];
             for (int i = 1; i < tokens.length; i++) {
 
                 state[i] = new String(tokens[i]);
+                System.out.println("state[i]" + state[i]);
             }
+            System.out.println("contrler above");
             controller.stateControl(state);
+            System.out.println("contrler under");
+
         } else if (tokens[0].equals(new String("exit"))) {
             // handleLogoutRequest();
         }
@@ -106,7 +114,9 @@ public class Client {
         try {
             String messageFromServer = readFromServer.readLine();
             if (messageFromServer.equals(new String("1"))) {
+                System.out.println("above lisent");
                 listenToServerThread.start();
+                System.out.println("under lisent");
 
                 return 1;
             } else {
@@ -181,6 +191,7 @@ public class Client {
     }
 
     public void sendState() {
+
         String messageToServer = new String("state.");
         writeToServer.println(messageToServer);
         closeConnection();

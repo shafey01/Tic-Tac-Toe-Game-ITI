@@ -26,10 +26,10 @@ import javafx.stage.StageStyle;
  */
 public class Login extends Application {
 
-    String musicFile = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\sound1.mp3";     // For example
+   // String musicFile = "C:\\Users\\go\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\sound1.mp3";     // For example
 
-    Media sound = new Media(new File(musicFile).toURI().toString());
-    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+//    Media sound = new Media(new File(musicFile).toURI().toString());
+ //   MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
     @Override
     public void start(Stage stage) throws Exception {
