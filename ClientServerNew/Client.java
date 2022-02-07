@@ -66,21 +66,30 @@ public class Client {
         if (tokens[0].equals(new String("invite"))) {
             controller.invitationControl(tokens[1]);
         }
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        // else if (tokens[0].equals(new String("reply"))) {
+        else if (tokens[0].equals(new String("multistart"))) {
 
-        else if (tokens[0].equals(new String("reply"))) {
-
-            controller.replyControl(tokens[1], tokens[2]);
+            controller.gameStartControl(tokens[1]);
+            controller.readNextInput();
         }
-
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         else if (tokens[0].equals(new String("AIgame"))) {
             controller.gameMovesControl(tokens[1], tokens[2]);
+            controller.readNextInput();
         }
 
         else if (tokens[0].equals(new String("AIover"))) {
             controller.gameOverControl(tokens[1]);
+            controller.readNextInput();
         }
 
         else if (tokens[0].equals(new String("exit"))) {
+            // handleLogoutRequest();
+        }
+
+        else if (tokens[0].equals(new String("state"))) {
+            System.out.println(tokens[1]);
             // handleLogoutRequest();
         }
     }
@@ -142,10 +151,12 @@ public class Client {
         writeToServer.println(messageToServer);
     }
 
-    public void sendReplyRequest(String idToReply, String isAccepted) {
-        String messageToServer = new String("reply." + idToReply + "." + isAccepted);
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    public void sendReplyRequest(String idToReply) {
+        String messageToServer = new String("reply." + idToReply);
         writeToServer.println(messageToServer);
     }
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
     public void sendAIgameRequest(String computerStarts) {
         String messageToServer = new String("AIrequest." + computerStarts);
@@ -167,6 +178,11 @@ public class Client {
         String messageToServer = new String("quit");
         writeToServer.println(messageToServer);
         closeConnection();
+    }
+
+    public void sendStateRequest() {
+        String messageToServer = new String("state");
+        writeToServer.println(messageToServer);
     }
 
 }

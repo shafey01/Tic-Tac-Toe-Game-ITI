@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 public class ClientController {
     private BufferedReader readClientInput;
     private Client currentClient;
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    private int moveType;
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
     public ClientController() throws IOException {
         readClientInput = new BufferedReader(new InputStreamReader(System.in));
@@ -14,29 +17,49 @@ public class ClientController {
         if (currentClient.isConnectionSuccess == false) {
             System.out.println("Error Connecting To Server");
         }
-        readInputFromClient();
+        readNextInput();
+        waitForReply();
     }
 
-    public void invitationControl(String invitationID) {
-
-        System.out.println("invitation from " + invitationID);
-        System.out.println("Do you want to accept");
+    public void readNextInput() {
+        String clientInput;
+        System.out.println("Enter your input:");
         try {
-            String isAccepted = readClientInput.readLine();
-            currentClient.sendReplyRequest(invitationID, isAccepted);
+            clientInput = readClientInput.readLine();
+            sendRequestToServer(clientInput);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public void replyControl(String replyID, String isAccepted) {
-        System.out.println("reply from" + replyID + " " + isAccepted);
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    public void invitationControl(String invitationID) {
+
+        System.out.println("invitation from " + invitationID);
+        System.out.println("Do you want to accept");
+        try {
+            String isAccepted = readClientInput.readLine();
+            if (isAccepted.equals(new String("1"))) {
+                currentClient.sendReplyRequest(invitationID);
+            }
+            readNextInput();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    public void gameStartControl(String replyID) {
+        System.out.println("Start game with " + replyID);
+    }
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
     public void gameMovesControl(String rowIndex, String columnIndex) {
         // release lock
-        System.out.println("AI played in " + rowIndex + columnIndex);
+        System.out.println("move played in " + rowIndex + columnIndex);
     }
 
     public void gameOverControl(String gameStatus) {
@@ -53,13 +76,9 @@ public class ClientController {
         }
     }
 
-    private void readInputFromClient() throws IOException {
+    private void waitForReply() {
 
-        String clientInput;
         while (true) {
-            System.out.println("Enter your input:");
-            clientInput = readClientInput.readLine();
-            sendRequestToServer(clientInput);
 
         }
     }
@@ -80,6 +99,7 @@ public class ClientController {
             else {
                 System.out.println("login failed");
             }
+            readNextInput();
         }
 
         else if (clientInput.equals(new String("signup"))) {
@@ -97,6 +117,7 @@ public class ClientController {
             else {
                 System.out.println("signup failed");
             }
+            readNextInput();
         }
 
         else if (clientInput.equals(new String("invite"))) {
@@ -130,5 +151,8 @@ public class ClientController {
             currentClient.sendLogoutRequest();
         }
 
+        else if (clientInput.equals(new String("state"))) {
+            currentClient.sendStateRequest();
+        }
     }
 }

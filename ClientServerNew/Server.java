@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
-// import java.util.Map;
+import java.util.Map;
 
 import Game.GameWithComputer;
 import Game.Move;
@@ -39,8 +39,14 @@ public class Server {
         private PrintWriter writeToClient;
         private BufferedReader readFromClient;
         private String clientID;
-        private String messageFromClient;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        // private String messageFromClient;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         private GameWithComputer gameWithComputer;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        private MultiplayerGame multiplayerGame;
+        private int moveType;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
@@ -54,15 +60,15 @@ public class Server {
                 e.printStackTrace();
 
             }
-
+            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+            moveType = 1;
+            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         }
 
         private String[] parseClientMessage(String clientMessage) {
 
             return clientMessage.split("\\.");
         }
-
-        // private Move stringToMove()
 
         private void handleLoginRequest(String _clientID) {
             // database
@@ -81,19 +87,29 @@ public class Server {
         private void handleInvitaionRequest(String otherClientID) {
             ClientHandler otherClient = clientsTable.get(otherClientID);
             if (otherClient != null) {
-                String messageToClient = new String("invite." + clientID);
-                otherClient.writeToClient.println(messageToClient);
-                // writeToClient.println(new String("1"));
+                // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                String messageToOtherClient = new String("invite." + clientID);
+                otherClient.writeToClient.println(messageToOtherClient);
+                // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
             }
         }
 
-        private void handleReplyRequest(String otherClientID, String isAccepted) {
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        private void handleReplyRequest(String otherClientID) {
+
             ClientHandler otherClient = clientsTable.get(otherClientID);
             if (otherClient != null) {
-                String messageToClient = new String("reply." + clientID + "." + isAccepted);
-                clientsTable.get(otherClientID).writeToClient.println(messageToClient);
+                this.multiplayerGame = new MultiplayerGame();
+                this.moveType = 2;
+                clientsTable.get(otherClientID).multiplayerGame = this.multiplayerGame;
+                String messageToOtherClient = new String("multistart." + clientID);
+                clientsTable.get(otherClientID).writeToClient.println(messageToOtherClient);
+
             }
+
         }
+
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
         private void handleAIgameRequest(String computerStarts) {
 
@@ -136,6 +152,15 @@ public class Server {
             closeConnection();
         }
 
+        private void handleStateRequest() {
+            String messageToClient = new String("state.");
+            for (Map.Entry<String, ClientHandler> hashEntry : clientsTable.entrySet()) {
+                messageToClient = messageToClient + hashEntry.getKey() + "/";
+            }
+            System.out.println("will send" + messageToClient);
+            writeToClient.println(messageToClient);
+        }
+
         private void closeConnection() {
             writeToClient.close();
             try {
@@ -148,7 +173,7 @@ public class Server {
             // isOn = false;
         }
 
-        private void handleClientRequest() {
+        private void handleClientRequest(String messageFromClient) {
             System.out.println("received " + messageFromClient);
             String[] tokens = parseClientMessage(messageFromClient);
             if (tokens[0].equals(new String("login"))) {
@@ -162,11 +187,11 @@ public class Server {
             else if (tokens[0].equals(new String("invite"))) {
                 handleInvitaionRequest(tokens[1]);
             }
-
+            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
             else if (tokens[0].equals(new String("reply"))) {
-                handleReplyRequest(tokens[1], tokens[2]);
+                handleReplyRequest(tokens[1]);
             }
-
+            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
             else if (tokens[0].equals(new String("AIrequest"))) {
                 handleAIgameRequest(tokens[1]);
             }
@@ -183,14 +208,20 @@ public class Server {
                 handleQuitRequest();
             }
 
+            else if (tokens[0].equals(new String("state"))) {
+                handleStateRequest();
+            }
+
         }
 
         @Override
         public void run() {
             try {
                 while (true) {
-                    messageFromClient = readFromClient.readLine();
-                    handleClientRequest();
+                    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                    String messageFromClient = new String(readFromClient.readLine());
+                    handleClientRequest(messageFromClient);
+                    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 }
             } catch (IOException e) {
 
