@@ -18,6 +18,7 @@ public class Client {
     private ClientController controller;
     public boolean isConnectionSuccess;
 
+
     public Client(ClientController controller) {
 
         this.controller = controller;

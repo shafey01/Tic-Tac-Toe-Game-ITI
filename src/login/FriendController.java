@@ -5,6 +5,7 @@
 package login;
 
 import ClientServerNew.ClientController;
+import ClientServerNew.Server;
 import DataBase.UserPkg.ContactDAO;
 import DataBase.UserPkg.ContactPerson;
 import java.io.IOException;
@@ -13,6 +14,11 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,8 +47,10 @@ public class FriendController implements Initializable {
     ContactDAO c;
     ClientController clientcontrol;
     public static FriendController friendControl;
-
+//    public static int status;
+    AtomicInteger status;
     public String[] state;
+    public CountDownLatch latchToWaitForJavaFx;
 
     @FXML
     private ImageView bt_exit;
@@ -95,12 +103,15 @@ public class FriendController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         friendControl = this;
+        status = new AtomicInteger(0);
+        latchToWaitForJavaFx = new CountDownLatch(1);
+
         userNameColumn = new TableColumn<>("user Name");
 
         score = new TableColumn<>("Total Score");
 
         stateBoard = new TableColumn<>("State");
-//userNameColumn.setText("asdf");
+
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
 
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -130,6 +141,7 @@ public class FriendController implements Initializable {
 
     @FXML
     private void loadexite2(ActionEvent event) throws IOException {
+        status.set(0);
         BorderPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
         friend.getChildren().setAll(pane);
     }
@@ -147,7 +159,6 @@ public class FriendController implements Initializable {
         Vector<ContactPerson> contactPerson = c.getUsers();
 
         leaderBordeTableView.getItems().clear();
-        // state = ClientController.getCONTROL().sendState2();
         String[] state = ClientController.getCONTROL().sendState2();
 
         for (ContactPerson i : contactPerson) {
@@ -166,8 +177,7 @@ public class FriendController implements Initializable {
 
         String userName = userNameTexetField.getText();
 
-//        ClientController.getCONTROL().gameStartControl(userName);
-        ClientController.getCONTROL().invitationControl(userName);
+        ClientController.getCONTROL().sendInviteRequest(userName);
 
         userNameTexetField.setText("");
 
@@ -177,7 +187,6 @@ public class FriendController implements Initializable {
 
         if (s.equals(new String("1"))) {
 
-            
             javafx.application.Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -196,49 +205,81 @@ public class FriendController implements Initializable {
     }
 
     @FXML
-    public int inviteAction() throws IOException {
-//        System.out.println("You clicked me!");
-//        label.setText("Hello World!");
+    public int inviteAction() throws IOException, InterruptedException {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("You get Invite From: ...");
-        alert.setContentText(" ");
-        alert.initStyle(StageStyle.UNDECORATED);
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
-        ButtonType buttonTypeOK = new ButtonType("OK", ButtonData.OK_DONE);
-        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+        javafx.application.Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
 
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
-        dialogPane.getStyleClass().add("myDialog");
-//        dialogPane.setGraphic(new ImageView(this.getClass().getResource("icons8_invite_50px.png").toString()));
+                try {
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeOK) {
-            System.out.println("OK");
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("You get Invite From: ...");
+                    alert.setContentText(" ");
+                    alert.initStyle(StageStyle.UNDECORATED);
+                    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+                    ButtonType buttonTypeOK = new ButtonType("OK", ButtonData.OK_DONE);
+                    alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
 
-            javafx.application.Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
+                    DialogPane dialogPane = alert.getDialogPane();
+                    dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == buttonTypeOK) {
+                        System.out.println("OK");
 
-                    try {
-                        BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+                        status.set(1);
+                        BorderPane pane;
+                        pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
                         topbar.getChildren().setAll(pane);
+                        System.out.println("Status1 " + status);
+                    } else {
+                        status.set(0);
 
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
                     }
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            });
+                latchToWaitForJavaFx.countDown();
+            }
 
-            return 1;
-//            System.out.println("OK");
+        });
 
-        } else {
-            return 0;
-//            System.out.println("Cancel");
-        }
+        latchToWaitForJavaFx.await();
 
+        System.out.println("status = " + status);
+
+//        if (status.get() == 1) {
+//            System.out.println("inside if");
+//            javafx.application.Platform.runLater(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    System.out.println("second runlater");
+//
+//                    try {
+//                        BorderPane pane;
+//                        pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+//                        topbar.getChildren().setAll(pane);
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(FriendController.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//
+//                }
+//
+//            });
+
+//        }
+
+//try{
+//Thread.sleep(2000);
+//}
+//catch(Exception e)
+//{
+//e.printStackTrace();
+//}
+        return status.get();
     }
 
     public void game() throws IOException {

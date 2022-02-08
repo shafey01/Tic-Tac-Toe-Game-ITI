@@ -32,9 +32,14 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button online_bt;
 
+public  int ai_button;
+public static MainMenuController mainmenucotrller;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+mainmenucotrller = this;
+ai_button = 0;
     }
 
     @FXML
@@ -57,6 +62,7 @@ public class MainMenuController implements Initializable {
 //    }
     @FXML
     void game(ActionEvent event) throws IOException {
+ai_button = 1;
         BorderPane pane = FXMLLoader.load(getClass().getResource("game.fxml"));
         main.getChildren().setAll(pane);
         ClientController.getCONTROL().AIRequest();
