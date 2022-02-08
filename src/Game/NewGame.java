@@ -37,7 +37,7 @@ public class NewGame {
 
     public int insertAndCheckMove(Move move) {
         if (isValidMove(move) == false) {
-            return -1;
+            return 4;
         }
         board[move.getRowIndex()][move.getColumnIndex()] = move.getType();
         numPlayedMoves++;
@@ -112,19 +112,3 @@ public class NewGame {
     }
 
 }
-
-// private boolean hasUp(int rowIndex) {
-// return (rowIndex - 1) >= 0;
-// }
-
-// private boolean hasdown(int rowIndex) {
-// return (rowIndex + 1) >= 0;
-// }
-
-// private boolean hasLeft(int columnIndex) {
-// return (columnIndex - 1) >= 0;
-// }
-
-// private boolean hasRight(int columnIndex) {
-// return (columnIndex - 1) >= 0;
-// }

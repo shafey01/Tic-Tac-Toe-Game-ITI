@@ -92,12 +92,16 @@ public class PlayerDAO {
         return playerTable;
     }
 
-    public void createNewUser(PlayerTable newPlayer) {
+    public void createNewUser(int userId, int gameId) {
+        this.connect();
+        PlayerTable playerTable = new PlayerTable(userId, gameId, 0);
         try {
-            PreparedStatement pst = con.prepareStatement("INSERT INTO player(gameId, playerId, gameScore) VALUES (  ? ,? , 0 )");
-            pst.setInt(1, newPlayer.getGameId());
-            pst.setInt(2, newPlayer.getPlayerId());
+            PreparedStatement pst = con.prepareStatement("INSERT INTO player(gameId, userId, totalScore) VALUES (  ? ,? , 0 )");
+            pst.setInt(1, playerTable.getGameId());
+            pst.setInt(2, playerTable.getPlayerId());
             pst.execute();
+            pst.close();
+            this.closeConnection();
         } catch (Exception ex) {
             ex.getMessage();
         }

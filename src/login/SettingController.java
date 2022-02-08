@@ -90,4 +90,19 @@ public class SettingController implements Initializable {
         setting.getChildren().setAll(pane);
     }
 
+    @FXML
+    void music_Action(ActionEvent event) {
+
+    }
+
+  public void inviteStatus(String s) throws IOException {
+
+        if (s.equals(new String("1"))) {
+
+            BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+            topbar.getChildren().setAll(pane);
+        }
+
+    }
+
 }

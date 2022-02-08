@@ -44,8 +44,14 @@ public class Client {
                     while (true) {
                         messageFromServer = readFromServer.readLine();
                         System.out.println(".run 1()");
+try{
                         handleServerReply(messageFromServer);
-                        System.out.println(".run 2()");
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}    
+                    System.out.println(".run 2()");
 
                     }
 
@@ -63,7 +69,7 @@ public class Client {
 
     }
 
-    private void handleServerReply(String messageFromServer) {
+    private void handleServerReply(String messageFromServer) throws InterruptedException, IOException {
         System.out.println("received " + messageFromServer);
         String[] tokens = parseServerMessage(messageFromServer);
 
@@ -72,10 +78,10 @@ public class Client {
         } else if (tokens[0].equals(new String("multistart"))) {
 
             controller.gameStartControl(tokens[1]);
-            
-        } else if (tokens[0].equals(new String("AIgame"))) {
+
+        } else if (tokens[0].equals(new String("game"))) {
             controller.gameMovesControl(tokens[1], tokens[2]);
-        } else if (tokens[0].equals(new String("AIover"))) {
+        } else if (tokens[0].equals(new String("over"))) {
             controller.gameOverControl(tokens[1]);
         } else if (tokens[0].equals(new String("state"))) {
 
@@ -89,7 +95,8 @@ public class Client {
             controller.stateControl(state);
 
         } else if (tokens[0].equals(new String("exit"))) {
-            // handleLogoutRequest();
+            controller.exitControl();
+            closeConnection();
         }
     }
 
@@ -167,6 +174,11 @@ public class Client {
 
     public void sendAIgameMove(String move) {
         String messageToServer = new String("AIgame." + move);
+        writeToServer.println(messageToServer);
+    }
+
+    public void sendMultigameMove(String move) {
+        String messageToServer = new String("multigame." + move);
         writeToServer.println(messageToServer);
     }
 

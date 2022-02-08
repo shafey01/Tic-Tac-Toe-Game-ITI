@@ -25,7 +25,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-
 /**
  * FXML Controller class
  *
@@ -37,9 +36,6 @@ public class FriendController implements Initializable {
     ClientController clientcontrol;
     public static FriendController friendControl;
 
-    public static FriendController getFriendControl() {
-        return friendControl;
-    }
     public String[] state;
 
     @FXML
@@ -59,6 +55,9 @@ public class FriendController implements Initializable {
 
     @FXML
     private Button bt_loadleaderborde;
+
+    @FXML
+    private Button refresh;
 
     @FXML
     private Button bt_setting;
@@ -86,27 +85,28 @@ public class FriendController implements Initializable {
     @FXML
     private TextField userNameTexetField;
 
-   
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         friendControl = this;
         userNameColumn = new TableColumn<>("user Name");
 
-        stateBoard = new TableColumn<>("State");
-
         score = new TableColumn<>("Total Score");
+
+        stateBoard = new TableColumn<>("State");
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
 
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
+        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
+        leaderBordeTableView.getColumns().add(userNameColumn);
+        leaderBordeTableView.getColumns().add(score);
+        leaderBordeTableView.getColumns().add(stateBoard);
 
-        
-        ClientController.getCONTROL().sendStateRequest();
-        System.out.println("2"+ClientController.getCONTROL());
+        System.out.println("2" + ClientController.getCONTROL());
 
         stateShow();
-
 
     }
 
@@ -134,44 +134,59 @@ public class FriendController implements Initializable {
         friend.getChildren().setAll(pane);
     }
 
-
-  
-
-
     public void stateShow() {
- c = new ContactDAO();
-        
+        c = new ContactDAO();
+        ClientController.getCONTROL().sendStateRequest();
 
         Vector<ContactPerson> contactPerson = c.getUsers();
-       
 
-        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
-        stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
-        leaderBordeTableView.getColumns().add(userNameColumn);
-        leaderBordeTableView.getColumns().add(score);
-        leaderBordeTableView.getColumns().add(stateBoard);
-         
+        leaderBordeTableView.getItems().clear();
         // state = ClientController.getCONTROL().sendState2();
-        String[] state = ClientController.getCONTROL().sendState2();  
-        String online = new String("online");        
+        String[] state = ClientController.getCONTROL().sendState2();
+
         for (ContactPerson i : contactPerson) {
 
             if (Arrays.asList(state).contains(i.getUsername())) {
 
-                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), online));
+                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
 
             }
         }
 
+    }
 
+    @FXML
+    void inviteButton(ActionEvent event) throws IOException {
+
+        String userName = userNameTexetField.getText();
+
+//        ClientController.getCONTROL().gameStartControl(userName);
+
+
+ClientController.getCONTROL().invitationControl(userName);
+
+        userNameTexetField.setText("");
 
     }
 
-//    public void getState(String[] state) {
+    public void inviteStatus(String s) throws IOException {
+
+        if (s.equals(new String("1"))) {
+
+            BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+            topbar.getChildren().setAll(pane);
+        }
+
+    }
+
+//    public void game() throws IOException {
 //
-//        this.state = state;
-//
+//        BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+//        topbar.getChildren().setAll(pane);
 //    }
 
+    @FXML
+    void refresh_Action(ActionEvent event) {
+        stateShow();
+    }
 }

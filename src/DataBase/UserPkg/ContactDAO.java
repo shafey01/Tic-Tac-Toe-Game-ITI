@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class ContactDAO {
 
-    public static final String DB_URL = "jdbc:mysql://localhost:3306/" + "gamedb?zeroDateTimeBehavior=convertToNull";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/gamedb";
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String USER = "shafey";
     public static final String PASS = "shafey";
@@ -64,7 +64,7 @@ public class ContactDAO {
             ResultSet st = stat.executeQuery(query);
             while (st.next()) {
 
-                ContactPerson contact = new ContactPerson(st.getInt("user_id"), st.getString("username"), st.getString("password"), st.getInt("total_score"));
+                ContactPerson contact = new ContactPerson(st.getInt("user_id"), st.getString("username"), st.getString("password"), st.getInt("total_score"),"online");
                 contactPerson.add(contact);
             }
             stat.close();
@@ -181,6 +181,38 @@ public class ContactDAO {
         }
 
     }
+
+public int getUserIdByName(String name) {
+        this.connect();
+
+        try {
+            pst = con.prepareStatement("select * from user where username = ?");
+            pst.setString(1, name);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next() == false) {
+
+                pst.close();
+                this.closeConnection();
+                System.out.println("first if");
+                return 0;
+            } else {
+
+                int id = rs.getInt("user_id");
+                    pst.close();
+                    this.closeConnection();
+                    System.out.println("else ");
+                    return id;
+                
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+
+    }
+
 
 //    public static void main(String[] args) throws SQLException {
 ////        ContactDAO cd = new ContactDAO();

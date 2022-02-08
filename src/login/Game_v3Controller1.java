@@ -169,6 +169,7 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove(new String("0"), new String("0"));
         changeViewForPlayer(img_view00);
         viewFlag = 1;
+        btn_00.setDisable(true);
 
     }
 
@@ -181,7 +182,7 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove(new String("0"), new String("1"));
         changeViewForPlayer(img_view01);
         viewFlag = 1;
-
+        btn_01.setDisable(true);
     }
 
     @FXML
@@ -193,6 +194,7 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove("0", "2");
         changeViewForPlayer(img_view02);
         viewFlag = 1;
+        btn_01.setDisable(true);
 
     }
 
@@ -205,6 +207,7 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove("1", "0");
         changeViewForPlayer(img_view10);
         viewFlag = 1;
+        btn_10.setDisable(true);
 
     }
 
@@ -217,6 +220,7 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove("1", "1");
         changeViewForPlayer(img_view11);
         viewFlag = 1;
+        btn_11.setDisable(true);
 
     }
 
@@ -229,6 +233,7 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove("1", "2");
         changeViewForPlayer(img_view12);
         viewFlag = 1;
+        btn_12.setDisable(true);
 
     }
 
@@ -242,6 +247,7 @@ public class Game_v3Controller1 implements Initializable {
 
         changeViewForPlayer(img_view20);
         viewFlag = 1;
+        btn_20.setDisable(true);
 
     }
 
@@ -254,6 +260,7 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove("2", "1");
         changeViewForPlayer(img_view21);
         viewFlag = 1;
+        btn_21.setDisable(true);
 
     }
 
@@ -266,16 +273,19 @@ public class Game_v3Controller1 implements Initializable {
         ClientController.getCONTROL().AIMove("2", "2");
         changeViewForPlayer(img_view22);
         viewFlag = 1;
+        btn_22.setDisable(true);
 
     }
 
-    public void aiMove(String rowIndex, String columnIndex) {
+    public void aiMove(String rowIndex, String columnIndex) throws InterruptedException {
+        Thread.sleep(1000);
         System.err.println("aimove");
         String idAi = new String(rowIndex + columnIndex);
         System.out.println(idAi);
         if (idAi.equals(new String("00"))) {
             viewFlag = 0;
             changeViewForAi(img_view00);
+            btn_00.setDisable(true);
 
             System.out.println("00");
         } else if (idAi.equals(new String("01"))) {
@@ -283,9 +293,11 @@ public class Game_v3Controller1 implements Initializable {
             viewFlag = 0;
 
             changeViewForAi(img_view01);
+            btn_01.setDisable(true);
 
         } else if (idAi.equals(new String("02"))) {
             viewFlag = 0;
+            btn_02.setDisable(true);
 
             changeViewForAi(img_view02);
 
@@ -295,14 +307,17 @@ public class Game_v3Controller1 implements Initializable {
             viewFlag = 0;
 
             changeViewForAi(img_view10);
+            btn_10.setDisable(true);
 
         } else if (idAi.equals(new String("11"))) {
             viewFlag = 0;
 
             changeViewForAi(img_view11);
+            btn_11.setDisable(true);
 
         } else if (idAi.equals(new String("12"))) {
             viewFlag = 0;
+            btn_12.setDisable(true);
 
             changeViewForAi(img_view12);
 
@@ -310,16 +325,19 @@ public class Game_v3Controller1 implements Initializable {
             viewFlag = 0;
 
             changeViewForAi(img_view20);
+            btn_20.setDisable(true);
 
         } else if (idAi.equals(new String("21"))) {
             viewFlag = 0;
 
             changeViewForAi(img_view21);
+            btn_21.setDisable(true);
 
         } else if (idAi.equals(new String("22"))) {
             viewFlag = 0;
 
             changeViewForAi(img_view22);
+            btn_22.setDisable(true);
 
         }
     }
@@ -344,7 +362,6 @@ public class Game_v3Controller1 implements Initializable {
                     try {
                         Image image = new Image(getClass().getResourceAsStream("mute.png"));
                         muteSoundImage.setImage(image);
-
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

@@ -104,12 +104,22 @@ public class Exit1Controller implements Initializable {
         exit2.getChildren().setAll(pane);
     }
 
-@FXML
-    private void closeButtonAction(){
-    // get a handle to the stage
-    Stage stage = (Stage) exit_bt.getScene().getWindow();
-    // do what you have to do
-    stage.close();
-}
+    @FXML
+    private void closeButtonAction() {
+        // get a handle to the stage
+        Stage stage = (Stage) exit_bt.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
+   public void inviteStatus(String s) throws IOException {
+
+        if (s.equals(new String("1"))) {
+
+            BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+            topbar.getChildren().setAll(pane);
+        }
+
+    }
 
 }

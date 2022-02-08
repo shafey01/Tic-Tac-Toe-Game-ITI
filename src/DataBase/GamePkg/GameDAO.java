@@ -28,8 +28,6 @@ public class GameDAO {
     public static final String USER = "shafey";
     public static final String PASS = "shafey";
 
-
-
     Connection con;
     PreparedStatement pst = null;
     Vector<GameTable> gameTable;
@@ -79,13 +77,30 @@ public class GameDAO {
         return gameTable;
     }
 
-    public void createNewGame(GameTable newGame) throws SQLException {
-
-        PreparedStatement pst = con.prepareStatement("INSERT INTO game(map) VALUES ( ? )");
+    public int createNewGame() throws SQLException {
+        this.connect();
+        GameTable newGame = new GameTable();
+        String generatedColumns[] = {"id"};
+        PreparedStatement pst = con.prepareStatement("INSERT INTO game(map) VALUES ( ? )", generatedColumns);
         pst.setString(1, Arrays.deepToString(newGame.getMap()));
+        int affectedRows = pst.executeUpdate();
 
-        pst.execute();
+        if (affectedRows == 0) {
+            throw new SQLException("Creating user failed, no rows affected.");
+        }
 
+        try (ResultSet generatedKeys = pst.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                newGame.setId(generatedKeys.getInt(1));
+            } else {
+                throw new SQLException("Creating user failed, no ID obtained.");
+            }
+//            pst.execute();
+            pst.close();
+            this.closeConnection();
+
+        }
+        return newGame.getId();
     }
 
     public void updateGameMap(GameTable game) throws SQLException {
@@ -127,15 +142,10 @@ public class GameDAO {
     }
 
     public static void main(String[] args) throws SQLException {
-        GameDAO cd = new GameDAO();
-        cd.connect();
-        GameTable game = new GameTable();
-        cd.createNewGame(game);
-        // Vector<GameTable> tbData = cd.getGameInfo();
 
-        cd.closeConnection();
-//        for(GameTable i : tbData) {
-//            System.out.println(i.getId()+" "+i.getWinnerId()+" "+Arrays.deepToString(i.getMap()));
-//        }
+        GameDAO c = new GameDAO();
+        int x = c.createNewGame();
+        System.out.println(x);
+
     }
 }

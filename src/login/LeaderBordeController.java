@@ -33,6 +33,8 @@ public class LeaderBordeController implements Initializable {
     ContactDAO c;
     ClientController control;
 
+public static  LeaderBordeController LeaderBordeController;
+
     @FXML
     private ImageView bt_exit;
 
@@ -64,6 +66,9 @@ public class LeaderBordeController implements Initializable {
     private AnchorPane topbar;
 
     @FXML
+    private Button refresh;
+
+    @FXML
     private TableColumn<ContactPerson, String> userNameColumn;
     @FXML
     private TableColumn<ContactPerson, Integer> score;
@@ -71,16 +76,25 @@ public class LeaderBordeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+LeaderBordeController = this;
         userNameColumn = new TableColumn<>("user Name");
         score = new TableColumn<>("Total Score");
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
 
+        leaderBordeTableView.getColumns().add(userNameColumn);
+        leaderBordeTableView.getColumns().add(score);
         leaderBoradShow();
 
     }
 
+
+    @FXML
+    void refresh_Action(ActionEvent event) {
+        leaderBoradShow();
+    }
     @FXML
     private void loadsetting(ActionEvent event) throws IOException {
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
@@ -112,18 +126,24 @@ public class LeaderBordeController implements Initializable {
     public void leaderBoradShow() {
         c = new ContactDAO();
         
-
+         leaderBordeTableView.getItems().clear();
         Vector<ContactPerson> contactPerson = c.getUsers();
         System.out.println(contactPerson.get(0).getUsername());
 
-        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
-
-        leaderBordeTableView.getColumns().add(userNameColumn);
-        leaderBordeTableView.getColumns().add(score);
+        
 
         for (ContactPerson i : contactPerson) {
             leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score()));
+        }
+
+    }
+
+ public void inviteStatus(String s) throws IOException {
+
+        if (s.equals(new String("1"))) {
+
+            BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+            topbar.getChildren().setAll(pane);
         }
 
     }

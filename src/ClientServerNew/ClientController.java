@@ -11,6 +11,7 @@ import login.FriendController;
 import static login.FriendController.friendControl;
 import login.Game_v3Controller;
 import login.Game_v3Controller1;
+import login.LeaderBordeController;
 
 public class ClientController {
 
@@ -55,21 +56,28 @@ public class ClientController {
         System.out.println("invitation from " + userNameToInvite);
         System.out.println("Do you want to accept");
         try {
-            String isAccepted = readClientInput.readLine();
+            String isAccepted = new String("1");
 ///alert from GUI
             if (isAccepted.equals(new String("1"))) {
+
                 currentClient.sendReplyRequest(userNameToInvite);
+
+                FriendController.friendControl.inviteStatus("1");
+
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public void gameStartControl(String acceptUserName) {
+    public void gameStartControl(String acceptUserName) throws IOException {
 
 //Game from GUI
+        FriendController.friendControl.inviteStatus( new String("1") );
+        LeaderBordeController.LeaderBordeController.inviteStatus(new String("1"));
+
         System.out.println("Start game with " + acceptUserName);
     }
 
@@ -77,7 +85,7 @@ public class ClientController {
         System.out.println("reply from" + replyID + " " + isAccepted);
     }
 
-    public void gameMovesControl(String rowIndex, String columnIndex) {
+    public void gameMovesControl(String rowIndex, String columnIndex) throws InterruptedException {
         // release lock
         Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
         System.out.println("AI played in " + rowIndex + columnIndex);
@@ -100,27 +108,18 @@ public class ClientController {
 
     public void stateControl(String[] state) {
         // release lock
-        System.out.println("Controller: " + state[0]);
-        this.state = state;
-        // friend = new FriendController();
-        // friend.getFriendControl().getState(state);
 
-        //   return state;
+        this.state = state;
+
     }
 
     public String[] sendState2() {
         return this.state;
     }
-//    private void readInputFromClient() throws IOException {
-//
-//        String clientInput;
-//        while (true) {
-//            System.out.println("Enter your input:");
-//            clientInput = readClientInput.readLine();
-//            sendRequestToServer(clientInput);
-//
-//        }
-//    }
+
+    public void exitControl() {
+        System.out.println("Server Exit");
+    }
 
     public void sendLoginRequest(String userName, String password) {
 
@@ -196,6 +195,11 @@ public class ClientController {
 
         currentClient.sendAIgameMove(new String(rowIndex + "." + columnIndex));
 
+    }
+
+    public void MultiplayerMove(String rowIndex, String columnIndex) {
+
+        currentClient.sendMultigameMove(new String(rowIndex + "." + columnIndex));
     }
 
     public void sendStateRequest() {
