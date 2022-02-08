@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -34,7 +35,10 @@ public class Game_v3Controller1 implements Initializable {
     public static String musicFileWin;
     public static String musicFileClick;
     public MediaPlayer mediaPlayer;
-    public Boolean mute = false;
+    public Boolean mute;
+    public static int viewFlag;
+    public static String gameFlag = "";
+    public static String XOFLAG = "";
     @FXML
     private Button Exit_btn;
 
@@ -109,32 +113,55 @@ public class Game_v3Controller1 implements Initializable {
 
     @FXML
     private ImageView youwin;
+    @FXML
+    private ImageView block_view;
+    @FXML
+    private ImageView muteSoundImage;
+    @FXML
+    private AnchorPane topbar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         gameControl = this;
-
+        mute = false;
+        viewFlag = 0;
         musicFileLose = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\loseSound.mp3";
         musicFileWin = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\winSound.mp3";
         musicFileClick = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\clickSound.mp3";
         playSound(musicFileClick);
+        block_view.setVisible(false);
 
     }
 
     public void changeViewForPlayer(ImageView img) {
-        Image image = new Image(getClass().getResourceAsStream("1.png"));
-        img.setImage(image);
+
+        if (XOFLAG.equals(new String("x"))) {
+            Image image = new Image(getClass().getResourceAsStream("1.png"));
+            img.setImage(image);
+
+        } else {
+            Image image = new Image(getClass().getResourceAsStream("2.png"));
+            img.setImage(image);
+
+        }
     }
 
     public void changeViewForAi(ImageView img) {
         javafx.application.Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                BorderPane pane;
+
                 try {
-                    Image image = new Image(getClass().getResourceAsStream("2.png"));
-                    img.setImage(image);
+                    if (XOFLAG.equals(new String("x"))) {
+                        Image image = new Image(getClass().getResourceAsStream("2.png"));
+                        img.setImage(image);
+
+                    } else {
+                        Image image = new Image(getClass().getResourceAsStream("1.png"));
+                        img.setImage(image);
+
+                    }
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -143,139 +170,436 @@ public class Game_v3Controller1 implements Initializable {
         });
     }
 
+    public void changeBlockView() {
+
+        javafx.application.Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                BorderPane pane;
+                try {
+
+                    if (viewFlag == 1) {
+                        block_view.setVisible(true);
+                        System.out.println("nochange");
+                    } else {
+                        System.out.println("change");
+                        block_view.setVisible(false);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+    }
+
     @FXML
     void move_00(ActionEvent event) {
+        changeBlockView();
 
         System.out.println("login.Game_v3Controller.move_00()");
         playSound(musicFileClick);
-        ClientController.getCONTROL().AIMove(new String("0"), new String("0"));
-        changeViewForPlayer(img_view00);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_00.setDisable(true);
+            changeViewForPlayer(img_view00);
+
+            ClientController.getCONTROL().AIMove(new String("0"), new String("0"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_00.setDisable(true);
+
+            changeViewForPlayer(img_view00);
+            ClientController.getCONTROL().MultiplayerMove(new String("0"), new String("0"));
+
+        }
+
     }
 
     @FXML
     void move_01(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove(new String("0"), new String("1"));
-        changeViewForPlayer(img_view01);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_01.setDisable(true);
+            changeViewForPlayer(img_view01);
+
+            ClientController.getCONTROL().AIMove(new String("0"), new String("1"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_01.setDisable(true);
+            changeViewForPlayer(img_view01);
+
+            ClientController.getCONTROL().MultiplayerMove(new String("0"), new String("1"));
+
+        }
 
     }
 
     @FXML
     void move_02(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove("0", "2");
-        changeViewForPlayer(img_view02);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_01.setDisable(true);
+            changeViewForPlayer(img_view02);
+
+            ClientController.getCONTROL().AIMove(new String("0"), new String("2"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_01.setDisable(true);
+            changeViewForPlayer(img_view02);
+
+            ClientController.getCONTROL().MultiplayerMove(new String("0"), new String("2"));
+
+        }
 
     }
 
     @FXML
     void move_10(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove("1", "0");
-        changeViewForPlayer(img_view10);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_10.setDisable(true);
+            changeViewForPlayer(img_view10);
+
+            ClientController.getCONTROL().AIMove(new String("1"), new String("0"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_10.setDisable(true);
+            changeViewForPlayer(img_view10);
+
+            ClientController.getCONTROL().MultiplayerMove(new String("1"), new String("0"));
+
+        }
 
     }
 
     @FXML
     void move_11(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove("1", "1");
-        changeViewForPlayer(img_view11);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_11.setDisable(true);
+            changeViewForPlayer(img_view11);
+
+            ClientController.getCONTROL().AIMove(new String("1"), new String("1"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_11.setDisable(true);
+            changeViewForPlayer(img_view11);
+
+            ClientController.getCONTROL().MultiplayerMove(new String("1"), new String("1"));
+
+        }
 
     }
 
     @FXML
     void move_12(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove("1", "2");
-        changeViewForPlayer(img_view12);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_12.setDisable(true);
+            changeViewForPlayer(img_view12);
+
+            ClientController.getCONTROL().AIMove(new String("1"), new String("2"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_12.setDisable(true);
+            changeViewForPlayer(img_view12);
+
+            ClientController.getCONTROL().MultiplayerMove(new String("1"), new String("2"));
+
+        }
 
     }
 
     @FXML
     void move_20(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove("2", "0");
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_20.setDisable(true);
+            changeViewForPlayer(img_view20);
 
-        changeViewForPlayer(img_view20);
+            ClientController.getCONTROL().AIMove(new String("2"), new String("0"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_20.setDisable(true);
+            changeViewForPlayer(img_view20);
+
+            ClientController.getCONTROL().MultiplayerMove(new String("2"), new String("0"));
+
+        }
 
     }
 
     @FXML
     void move_21(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove("2", "1");
-        changeViewForPlayer(img_view21);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_21.setDisable(true);
+            changeViewForPlayer(img_view21);
+
+            ClientController.getCONTROL().AIMove(new String("2"), new String("1"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_21.setDisable(true);
+            changeViewForPlayer(img_view21);
+
+            ClientController.getCONTROL().MultiplayerMove(new String("2"), new String("1"));
+
+        }
 
     }
 
     @FXML
     void move_22(ActionEvent event) {
+        changeBlockView();
+
         playSound(musicFileClick);
 
-        ClientController.getCONTROL().AIMove("2", "2");
-        changeViewForPlayer(img_view22);
+        if (gameFlag.equals(new String("ai"))) {
+            viewFlag = 1;
+            btn_22.setDisable(true);
+            changeViewForPlayer(img_view22);
 
-    }
+            ClientController.getCONTROL().AIMove(new String("2"), new String("2"));
+        } else if (gameFlag.equals(new String("normal"))) {
+            viewFlag = 1;
+            btn_22.setDisable(true);
+            changeViewForPlayer(img_view22);
 
-    public void aiMove(String rowIndex, String columnIndex) {
-        System.err.println("aimove");
-        String idAi = new String(rowIndex + columnIndex);
-        System.out.println(idAi);
-        if (idAi.equals(new String("00"))) {
-
-            changeViewForAi(img_view00);
-            System.out.println("00");
-        } else if (idAi.equals(new String("01"))) {
-            System.out.println("01");
-
-            changeViewForAi(img_view01);
-
-        } else if (idAi.equals(new String("02"))) {
-            changeViewForAi(img_view02);
-
-            System.out.println("02");
-
-        } else if (idAi.equals(new String("10"))) {
-            changeViewForAi(img_view10);
-
-        } else if (idAi.equals(new String("11"))) {
-            changeViewForAi(img_view11);
-
-        } else if (idAi.equals(new String("12"))) {
-            changeViewForAi(img_view12);
-
-        } else if (idAi.equals(new String("20"))) {
-            changeViewForAi(img_view20);
-
-        } else if (idAi.equals(new String("21"))) {
-            changeViewForAi(img_view21);
-
-        } else if (idAi.equals(new String("22"))) {
-            changeViewForAi(img_view22);
+            ClientController.getCONTROL().MultiplayerMove(new String("2"), new String("2"));
 
         }
+
     }
 
-    public void playSound(String musicFile) {
+    @FXML
+    void muteSound2(ActionEvent event) {
+        mute = !mute;
+        if (mute == true) {
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    BorderPane pane;
+                    try {
+                        Image image = new Image(getClass().getResourceAsStream("mute.png"));
+                        muteSoundImage.setImage(image);
+                        mute = true;
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
 
-        if (mute != true) {
-            Media sound = new Media(new File(musicFile).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
+        } else {
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    BorderPane pane;
+                    try {
+                        Image image = new Image(getClass().getResourceAsStream("icons8_speaker_64px.png"));
+                        muteSoundImage.setImage(image);
+                        mute = false;
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
         }
     }
 
     @FXML
-    void muteSound(ActionEvent event) {
-        mute = !mute;
+    void exit(ActionEvent event) throws IOException {
+
+        BorderPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        topbar.getChildren().setAll(pane);
+
+    }
+
+    public void aiMove(String rowIndex, String columnIndex) throws InterruptedException {
+        Thread.sleep(1000);
+        System.err.println("aimove");
+        String idAi = new String(rowIndex + columnIndex);
+        System.out.println(idAi);
+        if (idAi.equals(new String("00"))) {
+            viewFlag = 0;
+            btn_00.setDisable(true);
+            changeViewForAi(img_view00);
+            changeBlockView();
+
+            System.out.println("00");
+        } else if (idAi.equals(new String("01"))) {
+            System.out.println("01");
+            viewFlag = 0;
+            System.out.println("view flag " + viewFlag);
+            btn_01.setDisable(true);
+            changeViewForAi(img_view01);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("02"))) {
+            viewFlag = 0;
+            btn_02.setDisable(true);
+
+            changeViewForAi(img_view02);
+            changeBlockView();
+
+            System.out.println("02");
+
+        } else if (idAi.equals(new String("10"))) {
+            viewFlag = 0;
+
+            btn_10.setDisable(true);
+            changeViewForAi(img_view10);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("11"))) {
+            viewFlag = 0;
+
+            btn_11.setDisable(true);
+            changeViewForAi(img_view11);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("12"))) {
+            viewFlag = 0;
+            btn_12.setDisable(true);
+
+            changeViewForAi(img_view12);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("20"))) {
+            viewFlag = 0;
+
+            btn_20.setDisable(true);
+            changeViewForAi(img_view20);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("21"))) {
+            viewFlag = 0;
+
+            btn_21.setDisable(true);
+            changeViewForAi(img_view21);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("22"))) {
+            viewFlag = 0;
+
+            btn_22.setDisable(true);
+            changeViewForAi(img_view22);
+            changeBlockView();
+
+        }
+    }
+
+    public void otherPlayerMove(String rowIndex, String columnIndex) {
+        String idAi = new String(rowIndex + columnIndex);
+        System.out.println(idAi);
+        if (idAi.equals(new String("00"))) {
+            viewFlag = 0;
+            btn_00.setDisable(true);
+            changeViewForAi(img_view00);
+            changeBlockView();
+
+            System.out.println("00");
+        } else if (idAi.equals(new String("01"))) {
+            System.out.println("01");
+            viewFlag = 0;
+
+            btn_01.setDisable(true);
+            changeViewForAi(img_view01);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("02"))) {
+            viewFlag = 0;
+            btn_02.setDisable(true);
+
+            changeViewForAi(img_view02);
+            changeBlockView();
+
+            System.out.println("02");
+
+        } else if (idAi.equals(new String("10"))) {
+            viewFlag = 0;
+
+            btn_10.setDisable(true);
+            changeViewForAi(img_view10);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("11"))) {
+            viewFlag = 0;
+
+            btn_11.setDisable(true);
+            changeViewForAi(img_view11);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("12"))) {
+            viewFlag = 0;
+            btn_12.setDisable(true);
+
+            changeViewForAi(img_view12);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("20"))) {
+            viewFlag = 0;
+
+            btn_20.setDisable(true);
+            changeViewForAi(img_view20);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("21"))) {
+            viewFlag = 0;
+
+            btn_21.setDisable(true);
+            changeViewForAi(img_view21);
+            changeBlockView();
+
+        } else if (idAi.equals(new String("22"))) {
+            viewFlag = 0;
+
+            btn_22.setDisable(true);
+            changeViewForAi(img_view22);
+            changeBlockView();
+
+        }
+
+    }
+
+    public void playSound(String musicFile) {
+
+        if (mute == false) {
+            Media sound = new Media(new File(musicFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
+        }
     }
 
     public void gameStatuswithAi(String status) {

@@ -4,7 +4,9 @@ public class GameWithComputer {
     private NewGame gameToPlay;
     private Move playerMove;
     private Move computerMove;
-    private int gameStatus;
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    // private int gameStatus;
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     private boolean computerStarts;
     private ComputerPlayer computer;
 
@@ -14,7 +16,9 @@ public class GameWithComputer {
         computer = new ComputerPlayer(gameToPlay, this.computerStarts);
         initPlayerMove();
         computerFirstMove();
-        gameStatus = 3;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        // gameStatus = 3;
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     }
 
     private void computerFirstMove() {
@@ -39,26 +43,26 @@ public class GameWithComputer {
         return computerMove;
     }
 
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     public int playMove(Move newMove) {
 
         playerMove.setPosition(newMove.getRowIndex(), newMove.getColumnIndex());
-        gameStatus = gameToPlay.insertAndCheckMove(playerMove);
-
-        if (gameStatus == 3) {
-            computerMove = computer.playMove(playerMove);
-            gameStatus = gameToPlay.insertAndCheckMove(computerMove);
-        }
-
+        int gameStatus = gameToPlay.insertAndCheckMove(playerMove);
         if (gameStatus == playerMove.getType()) {
             return 1;
         }
-
-        else if (gameStatus == computerMove.getType()) {
-            return -1;
-        }
-
         return gameStatus;
-
     }
 
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    public int AIplayMove() {
+        computerMove = computer.playMove(playerMove);
+        int gameStatus = gameToPlay.insertAndCheckMove(computerMove);
+        System.out.println("Statue" + gameStatus);
+        if (gameStatus == computerMove.getType()) {
+            return -1;
+        }
+        return gameStatus;
+    }
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 }

@@ -57,9 +57,9 @@ public class MainMenuController implements Initializable {
 //    }
     @FXML
     void game(ActionEvent event) throws IOException {
-        BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+        BorderPane pane = FXMLLoader.load(getClass().getResource("game.fxml"));
         main.getChildren().setAll(pane);
-ClientController.getCONTROL().AIRequest();
+        ClientController.getCONTROL().AIRequest();
     }
 
 }

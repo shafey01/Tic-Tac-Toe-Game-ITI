@@ -21,15 +21,8 @@
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Img/icons8_exit_64px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
-            <Button fx:id="sound_btn" layoutX="1640.0" layoutY="50.0" mnemonicParsing="false" onAction="#muteSound" prefHeight="110.0" prefWidth="110.0" style="-fx-background-radius: 150; -fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="20.0">
+            <Button fx:id="sound_btn" layoutX="1640.0" layoutY="50.0" mnemonicParsing="false" onAction="#muteSound2" prefHeight="110.0" prefWidth="110.0" style="-fx-background-radius: 150; -fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="20.0">
                <graphic>
                   <ImageView fx:id="muteSoundImage" fitHeight="121.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,6 +34,11 @@
             <ImageView fitHeight="228.0" fitWidth="332.0" layoutX="842.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/Screenshot%20(42).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="112.0" fitWidth="120.0" layoutX="1752.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Img/icons8_exit_64px.png" />
                </image>
             </ImageView>
          </children>
@@ -160,6 +158,7 @@
                   <InnerShadow />
                </effect>
             </GridPane>
+            <ImageView fx:id="block_view" fitHeight="737.0" fitWidth="682.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </center>

@@ -83,7 +83,7 @@
                               <Font name="Yu Gothic Bold" size="27.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="invite_bt" defaultButton="true" layoutX="1137.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: #032358;" text="Invite" textFill="#f89a36" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1137.0" AnchorPane.topAnchor="4.0">
+                        <Button fx:id="invite_bt" defaultButton="true" layoutX="1137.0" layoutY="4.0" mnemonicParsing="false" onAction="#inviteButton" style="-fx-background-color: #032358;" text="Invite" textFill="#f89a36" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1137.0" AnchorPane.topAnchor="4.0">
                            <font>
                               <Font name="Yu Gothic Bold" size="28.0" />
                            </font>

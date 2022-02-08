@@ -23,8 +23,8 @@ public class PlayerDAO {
 
     public static final String DB_URL = "jdbc:mysql://localhost:3306/gamedb";
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String USER = "root";
-    public static final String PASS = "";
+    public static final String USER = "shafey";
+    public static final String PASS = "shafey";
     Connection con;
     PreparedStatement pst = null;
     Vector<PlayerTable> playerTable;
@@ -92,12 +92,16 @@ public class PlayerDAO {
         return playerTable;
     }
 
-    public void createNewUser(PlayerTable newPlayer) {
+    public void createNewUser(int userId, int gameId) {
+        this.connect();
+        PlayerTable playerTable = new PlayerTable(userId, gameId, 0);
         try {
-            PreparedStatement pst = con.prepareStatement("INSERT INTO player(gameId, playerId, gameScore) VALUES (  ? ,? , 0 )");
-            pst.setInt(1, newPlayer.getGameId());
-            pst.setInt(2, newPlayer.getPlayerId());
+            PreparedStatement pst = con.prepareStatement("INSERT INTO player(gameId, userId, totalScore) VALUES (  ? ,? , 0 )");
+            pst.setInt(1, playerTable.getGameId());
+            pst.setInt(2, playerTable.getPlayerId());
             pst.execute();
+            pst.close();
+            this.closeConnection();
         } catch (Exception ex) {
             ex.getMessage();
         }

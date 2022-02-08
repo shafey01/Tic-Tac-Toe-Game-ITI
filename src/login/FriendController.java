@@ -10,13 +10,18 @@ import DataBase.UserPkg.ContactPerson;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,7 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -37,7 +42,6 @@ public class FriendController implements Initializable {
     ClientController clientcontrol;
     public static FriendController friendControl;
 
-    
     public String[] state;
 
     @FXML
@@ -87,8 +91,6 @@ public class FriendController implements Initializable {
     @FXML
     private TextField userNameTexetField;
 
-   
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -101,19 +103,16 @@ public class FriendController implements Initializable {
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
 
-
-        
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
         stateBoard.setCellValueFactory(new PropertyValueFactory<>("State"));
         leaderBordeTableView.getColumns().add(userNameColumn);
         leaderBordeTableView.getColumns().add(score);
         leaderBordeTableView.getColumns().add(stateBoard);
-        
-        System.out.println("2"+ClientController.getCONTROL());
+
+        System.out.println("2" + ClientController.getCONTROL());
 
         stateShow();
-
 
     }
 
@@ -141,37 +140,115 @@ public class FriendController implements Initializable {
         friend.getChildren().setAll(pane);
     }
 
-
-  
-
-
     public void stateShow() {
- c = new ContactDAO();
+        c = new ContactDAO();
         ClientController.getCONTROL().sendStateRequest();
 
         Vector<ContactPerson> contactPerson = c.getUsers();
-       
 
-          leaderBordeTableView.getItems().clear();
+        leaderBordeTableView.getItems().clear();
         // state = ClientController.getCONTROL().sendState2();
-        String[] state = ClientController.getCONTROL().sendState2();  
-             
+        String[] state = ClientController.getCONTROL().sendState2();
+
         for (ContactPerson i : contactPerson) {
 
             if (Arrays.asList(state).contains(i.getUsername())) {
-            
-          leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
-            
+
+                leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
+
             }
         }
 
+    }
 
+    @FXML
+    void inviteButton(ActionEvent event) throws IOException {
+
+        String userName = userNameTexetField.getText();
+
+//        ClientController.getCONTROL().gameStartControl(userName);
+        ClientController.getCONTROL().invitationControl(userName);
+
+        userNameTexetField.setText("");
 
     }
 
- @FXML
+    public void inviteStatus(String s) throws IOException {
+
+        if (s.equals(new String("1"))) {
+
+            
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+                        topbar.getChildren().setAll(pane);
+
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+        }
+
+    }
+
+    @FXML
+    public int inviteAction() throws IOException {
+//        System.out.println("You clicked me!");
+//        label.setText("Hello World!");
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("You get Invite From: ...");
+        alert.setContentText(" ");
+        alert.initStyle(StageStyle.UNDECORATED);
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+        ButtonType buttonTypeOK = new ButtonType("OK", ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
+//        dialogPane.setGraphic(new ImageView(this.getClass().getResource("icons8_invite_50px.png").toString()));
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOK) {
+            System.out.println("OK");
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+                        topbar.getChildren().setAll(pane);
+
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+            return 1;
+//            System.out.println("OK");
+
+        } else {
+            return 0;
+//            System.out.println("Cancel");
+        }
+
+    }
+
+    public void game() throws IOException {
+
+        BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+        topbar.getChildren().setAll(pane);
+    }
+
+    @FXML
     void refresh_Action(ActionEvent event) {
-      stateShow();
+        stateShow();
     }
 }
- 

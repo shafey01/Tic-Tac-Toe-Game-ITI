@@ -33,6 +33,8 @@ public class LeaderBordeController implements Initializable {
     ContactDAO c;
     ClientController control;
 
+public static  LeaderBordeController LeaderBordeController;
+
     @FXML
     private ImageView bt_exit;
 
@@ -74,7 +76,7 @@ public class LeaderBordeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+LeaderBordeController = this;
         userNameColumn = new TableColumn<>("user Name");
         score = new TableColumn<>("Total Score");
 //userNameColumn.setText("asdf");
@@ -132,6 +134,16 @@ userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         for (ContactPerson i : contactPerson) {
             leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score()));
+        }
+
+    }
+
+ public void inviteStatus(String s) throws IOException {
+
+        if (s.equals(new String("1"))) {
+
+            BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
+            topbar.getChildren().setAll(pane);
         }
 
     }

@@ -59,25 +59,7 @@ public class CreateAccountController implements Initializable {
     @FXML
     private Button close_bt;
 
-//
-// Thread th  =     new Thread() {
-//
-//            @Override
-//
-//            public void run() {
-//                Platform.runLater(new Runnable() {
-//
-//                    public void run() {
-//                        userNameTextField_CA.setText(" ");
-//                        passwordTextField_CA.setText(" ");
-//
-//                    }
-//
-//                });
-//
-//            }
-//
-//        };
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -124,14 +106,7 @@ public class CreateAccountController implements Initializable {
 
     }
 
-//    public void test() throws IOException {
-//        System.out.println("test");
-//
-//
-////        BorderPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-////        createaccount.getChildren().setAll(pane);
-//    }
-//
+
     public void sendToController(int s) throws IOException {
         System.out.println("before if");
 
