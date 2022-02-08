@@ -7,12 +7,12 @@
 
 <AnchorPane id="AnchorPane" fx:id="main" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="970.0" prefWidth="1950.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.MainMenuController">
    <children>
-      <ImageView fitHeight="670.0" fitWidth="867.0" layoutX="585.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="670.0" fitWidth="867.0" layoutX="574.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Img/Screenshot%20(42).png" />
          </image>
       </ImageView>
-      <Button fx:id="ai_bt" layoutX="350.0" layoutY="655.0" mnemonicParsing="false" onAction="#game" style="-fx-background-color: #032358;">
+      <Button fx:id="ai_bt" layoutX="310.0" layoutY="677.0" mnemonicParsing="false" onAction="#game" style="-fx-background-color: #032358;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -21,7 +21,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="online_bt" layoutX="1432.0" layoutY="665.0" mnemonicParsing="false" onAction="#loadend" style="-fx-background-color: #032358;">
+      <Button fx:id="online_bt" layoutX="1490.0" layoutY="679.0" mnemonicParsing="false" onAction="#loadend" style="-fx-background-color: #032358;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>

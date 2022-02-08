@@ -62,7 +62,7 @@
             </ImageView>
             <AnchorPane fx:id="Setting" layoutY="16.0" prefHeight="994.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
                <children>
-                  <Separator layoutX="46.0" layoutY="820.0" prefHeight="7.0" prefWidth="717.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="54.0" />
+                  <Separator layoutX="46.0" layoutY="832.0" prefHeight="7.0" prefWidth="717.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="54.0" />
                   <Text fill="#f89a36" layoutX="114.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How To Play">
                      <font>
                         <Font name="Yu Gothic Bold" size="50.0" />
@@ -78,17 +78,17 @@
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Text fill="#f89a36" layoutX="114.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." wrappingWidth="1721.5160369873047">
+                  <Text fill="#f89a36" layoutX="114.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." wrappingWidth="1721.5160369873047">
                      <font>
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Text fill="#f89a36" layoutX="114.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." wrappingWidth="1702.3160858154297">
+                  <Text fill="#f89a36" layoutX="114.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." wrappingWidth="1702.3160858154297">
                      <font>
                         <Font name="Yu Gothic Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="github_bt" layoutX="1708.0" layoutY="718.0" mnemonicParsing="false" onAction="#loadgithub" style="-fx-background-color: #032358; -fx-cursor: hand;">
+                  <Button fx:id="github_bt" layoutX="1708.0" layoutY="735.0" mnemonicParsing="false" onAction="#loadgithub" style="-fx-background-color: #032358; -fx-cursor: hand;">
                      <graphic>
                         <ImageView fitHeight="87.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
                            <image>
