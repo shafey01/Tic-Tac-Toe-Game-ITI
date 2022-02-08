@@ -11,6 +11,7 @@ import login.FriendController;
 import static login.FriendController.friendControl;
 import login.Game_v3Controller1;
 import login.LeaderBordeController;
+import login.MainMenuController;
 
 public class ClientController {
 
@@ -45,16 +46,19 @@ public class ClientController {
         return CONTROL;
     }
 
-//public ClientController()
-//{
-//
-//
-//}
     public void invitationControl(String userNameToInvite) throws IOException {
 
         System.out.println("invitation from " + userNameToInvite);
         System.out.println("Do you want to accept");
-        int isAccepted = FriendController.friendControl.inviteAction();
+int isAccepted = 0;
+try{
+      isAccepted =  FriendController.friendControl.inviteAction();
+}
+catch(Exception e)    
+{
+e.printStackTrace();
+}
+//    int isAccepted = 1;
         try {
 
 ///alert from GUI
@@ -81,7 +85,7 @@ public class ClientController {
         System.out.println("Start game with " + acceptUserName);
         Game_v3Controller1.gameControl.gameFlag = "normal";
         FriendController.friendControl.inviteStatus(new String("1"));
-        LeaderBordeController.LeaderBordeController.inviteStatus(new String("1"));
+//        LeaderBordeController.LeaderBordeController.inviteStatus(new String("1"));
 
     }
 
@@ -91,8 +95,11 @@ public class ClientController {
 
     public void gameMovesControl(String rowIndex, String columnIndex) throws InterruptedException {
         // release lock
-        Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
-//        Game_v3Controller1.gameControl.otherPlayerMove(rowIndex, columnIndex);
+        if (MainMenuController.mainmenucotrller.ai_button == 1) {
+            Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
+        }
+
+        Game_v3Controller1.gameControl.otherPlayerMove(rowIndex, columnIndex);
         System.out.println("AI played in " + rowIndex + columnIndex);
     }
 
