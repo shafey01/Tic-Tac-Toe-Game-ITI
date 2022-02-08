@@ -58,6 +58,7 @@ public class LoadingController implements Initializable {
                         stage.getIcons().add(icon);
                         stage.setTitle("Tic Tac Toe");
                         stage.setFullScreen(true);
+//      stage.setMaximized(true);
                         stage.setScene(scene);
                         stage.show();
 

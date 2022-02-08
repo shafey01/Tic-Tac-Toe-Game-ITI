@@ -51,18 +51,22 @@ public class ClientController {
 //
 //
 //}
-    public void invitationControl(String userNameToInvite) {
+    public void invitationControl(String userNameToInvite) throws IOException {
 
         System.out.println("invitation from " + userNameToInvite);
         System.out.println("Do you want to accept");
+        int isAccepted = FriendController.friendControl.inviteAction();
         try {
-            String isAccepted = new String("1");
+
 ///alert from GUI
-            if (isAccepted.equals(new String("1"))) {
+            if (isAccepted == 1) {
+                Game_v3Controller1.gameControl.gameFlag = "normal";
+                Game_v3Controller1.gameControl.XOFLAG = "o";
 
                 currentClient.sendReplyRequest(userNameToInvite);
-
                 FriendController.friendControl.inviteStatus("1");
+
+            } else {
 
             }
 
@@ -75,10 +79,11 @@ public class ClientController {
     public void gameStartControl(String acceptUserName) throws IOException {
 
 //Game from GUI
-        FriendController.friendControl.inviteStatus( new String("1") );
+        System.out.println("Start game with " + acceptUserName);
+        Game_v3Controller1.gameControl.gameFlag = "normal";
+        FriendController.friendControl.inviteStatus(new String("1"));
         LeaderBordeController.LeaderBordeController.inviteStatus(new String("1"));
 
-        System.out.println("Start game with " + acceptUserName);
     }
 
     public void replyControl(String replyID, String isAccepted) {
@@ -87,7 +92,8 @@ public class ClientController {
 
     public void gameMovesControl(String rowIndex, String columnIndex) throws InterruptedException {
         // release lock
-        Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
+//        Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
+        Game_v3Controller1.gameControl.otherPlayerMove(rowIndex, columnIndex);
         System.out.println("AI played in " + rowIndex + columnIndex);
     }
 
@@ -187,6 +193,7 @@ public class ClientController {
     public void AIRequest() {
 
         String computerStarts = "0";
+        Game_v3Controller1.gameControl.gameFlag = "ai";
         currentClient.sendAIgameRequest(computerStarts);
 
     }

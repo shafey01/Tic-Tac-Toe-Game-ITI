@@ -43,6 +43,7 @@ public class Login extends Application {
         stage.setTitle("Tic Tac Toe");
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.setFullScreen(true);
+//      stage.setMaximized(true);
 //        mediaPlayer.play();
 
         stage.setScene(scene);
