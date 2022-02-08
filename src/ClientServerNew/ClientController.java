@@ -9,7 +9,6 @@ import login.CreateAccountController;
 import login.FXMLDocumentController;
 import login.FriendController;
 import static login.FriendController.friendControl;
-import login.Game_v3Controller;
 import login.Game_v3Controller1;
 import login.LeaderBordeController;
 
@@ -92,8 +91,8 @@ public class ClientController {
 
     public void gameMovesControl(String rowIndex, String columnIndex) throws InterruptedException {
         // release lock
-//        Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
-        Game_v3Controller1.gameControl.otherPlayerMove(rowIndex, columnIndex);
+        Game_v3Controller1.gameControl.aiMove(rowIndex, columnIndex);
+//        Game_v3Controller1.gameControl.otherPlayerMove(rowIndex, columnIndex);
         System.out.println("AI played in " + rowIndex + columnIndex);
     }
 
