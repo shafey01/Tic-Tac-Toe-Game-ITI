@@ -11,7 +11,9 @@ public class ComputerPlayer {
         this.computerStarts = computerStarts;
         initComputerMove();
     }
-
+//public void setBoard(int[][] board) {
+//        this.gameToPlay.setBoard(board);
+//    }
     private void initComputerMove() {
         computerMove = new Move();
         if (computerStarts) {

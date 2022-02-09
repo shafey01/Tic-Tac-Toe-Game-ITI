@@ -33,7 +33,7 @@ public class LeaderBordeController implements Initializable {
     ContactDAO c;
     ClientController control;
 
-public static  LeaderBordeController LeaderBordeController;
+    public static LeaderBordeController LeaderBordeController;
 
     @FXML
     private ImageView bt_exit;
@@ -76,12 +76,13 @@ public static  LeaderBordeController LeaderBordeController;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-LeaderBordeController = this;
+        LeaderBordeController = this;
         userNameColumn = new TableColumn<>("user Name");
         score = new TableColumn<>("Total Score");
 //userNameColumn.setText("asdf");
         userNameColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
-userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        score.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         score.setCellValueFactory(new PropertyValueFactory<>("total_score"));
 
         leaderBordeTableView.getColumns().add(userNameColumn);
@@ -90,11 +91,11 @@ userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
     }
 
-
     @FXML
     void refresh_Action(ActionEvent event) {
         leaderBoradShow();
     }
+
     @FXML
     private void loadsetting(ActionEvent event) throws IOException {
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
@@ -125,12 +126,10 @@ userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
     public void leaderBoradShow() {
         c = new ContactDAO();
-        
-         leaderBordeTableView.getItems().clear();
+
+        leaderBordeTableView.getItems().clear();
         Vector<ContactPerson> contactPerson = c.getUsers();
         System.out.println(contactPerson.get(0).getUsername());
-
-        
 
         for (ContactPerson i : contactPerson) {
             leaderBordeTableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score()));
@@ -138,7 +137,7 @@ userNameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
     }
 
- public void inviteStatus(String s) throws IOException {
+    public void inviteStatus(String s) throws IOException {
 
         if (s.equals(new String("1"))) {
 

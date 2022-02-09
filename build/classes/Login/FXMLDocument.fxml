@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="rootPane" prefHeight="1168.0" prefWidth="1963.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLDocumentController">
+<BorderPane fx:id="rootPane" prefHeight="970.0" prefWidth="1900.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLDocumentController">
    <left>
-      <AnchorPane prefHeight="1168.0" prefWidth="862.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="1059.0" prefWidth="814.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1063.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -36,7 +36,7 @@
    <right>
       <AnchorPane prefHeight="1168.0" prefWidth="1085.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1059.0" prefWidth="1009.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TextField fx:id="userNameTextFieldSignIn" layoutX="168.0" layoutY="426.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="614.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #4886FF; -fx-cursor: hand;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="426.0">
                      <font>
@@ -70,7 +70,7 @@
                         <Font size="36.0" />
                      </font>
                   </Button>
-                  <Label layoutX="382.0" layoutY="87.0" text="Sign in" textFill="#032358" AnchorPane.topAnchor="87.0">
+                  <Label layoutX="397.0" layoutY="87.0" text="Sign in" textFill="#032358" AnchorPane.topAnchor="87.0">
                      <font>
                         <Font name="Yu Gothic Bold" size="59.0" />
                      </font>
@@ -80,15 +80,6 @@
                         <Font name="Yu Gothic Bold" size="33.0" />
                      </font>
                   </Hyperlink>
-                  <Button fx:id="close_bt" cancelButton="true" layoutX="1032.0" layoutY="35.0" mnemonicParsing="false" onAction="#close_fc" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #ffffff; -fx-cursor: hand;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
-                     <graphic>
-                        <ImageView fitHeight="54.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Img/icons8_exit_sign_52px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Label fx:id="loginStatusLabel" layoutX="153.0" layoutY="251.0" prefHeight="56.0" prefWidth="638.0" textFill="#ec0909">
                      <font>
                         <Font name="Times New Roman Bold" size="34.0" />

@@ -48,9 +48,6 @@ public class SettingController implements Initializable {
     private Button github_bt;
 
     @FXML
-    private RadioButton music_bt;
-
-    @FXML
     private BorderPane setting;
 
     @FXML
@@ -90,10 +87,6 @@ public class SettingController implements Initializable {
         setting.getChildren().setAll(pane);
     }
 
-    @FXML
-    void music_Action(ActionEvent event) {
-
-    }
 
   public void inviteStatus(String s) throws IOException {
 

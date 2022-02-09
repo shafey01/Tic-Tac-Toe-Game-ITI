@@ -56,8 +56,7 @@ public class CreateAccountController implements Initializable {
     @FXML
     public TextField userNameTextField_CA;
 
-    @FXML
-    private Button close_bt;
+
 
 
     @Override
@@ -85,12 +84,7 @@ public class CreateAccountController implements Initializable {
         createaccount.getChildren().setAll(pane);
     }
 
-    @FXML
-    void close_fc(ActionEvent event) {
-        Stage stage = (Stage) close_bt.getScene().getWindow();
-        // do what you have to do
-        stage.close();
-    }
+ 
 
     @FXML
 
@@ -157,6 +151,8 @@ public class CreateAccountController implements Initializable {
 
                     try {
                         wrong_text.setText("Please try again Later");
+userNameTextField_CA.setStyle("-fx-border-color: red;");
+passwordTextField_CA.setStyle("-fx-border-color: red;");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();

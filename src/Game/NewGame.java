@@ -15,7 +15,13 @@ public class NewGame {
             }
         }
     }
+  public int[][] getBoard() {
+        return this.board;
+    }
 
+    public void setBoard(int[][] board) {
+        this.board = board;
+    }
     public boolean isCellEmpty(int rowIndex, int columnIndex) {
         return board[rowIndex][columnIndex] == 0;
     }
@@ -110,5 +116,6 @@ public class NewGame {
                 || wonSecondaryDiagonal(move);
 
     }
+
 
 }
