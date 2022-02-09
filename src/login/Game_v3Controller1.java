@@ -8,20 +8,28 @@ import ClientServerNew.ClientController;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -119,6 +127,7 @@ public class Game_v3Controller1 implements Initializable {
     private ImageView muteSoundImage;
     @FXML
     private AnchorPane topbar;
+//.setGraphic(new ImageView(this.getClass().getResource("/img/icons8_invite_50px.png").toString()));
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -126,22 +135,29 @@ public class Game_v3Controller1 implements Initializable {
         gameControl = this;
         mute = false;
         viewFlag = 0;
-        musicFileLose = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\loseSound.mp3";
-        musicFileWin = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\winSound.mp3";
-        musicFileClick = "C:\\Users\\MBR\\Desktop\\master\\Tic-Tac-Toe-Game-ITI\\src\\login\\clickSound.mp3";
+
+        musicFileLose = "/sounds/loseSound.mp3";
+        musicFileWin = "/sounds/winSound.mp3";
+        musicFileClick = "/sounds/clickSound.mp3";
         playSound(musicFileClick);
         block_view.setVisible(false);
 
     }
 
+    @FXML
+    void close_fc(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        topbar.getChildren().setAll(pane);
+    }
+
     public void changeViewForPlayer(ImageView img) {
 
         if (XOFLAG.equals(new String("x"))) {
-            Image image = new Image(getClass().getResourceAsStream("1.png"));
+            Image image = new Image(getClass().getResourceAsStream("/Img/1.png"));
             img.setImage(image);
 
         } else {
-            Image image = new Image(getClass().getResourceAsStream("2.png"));
+            Image image = new Image(getClass().getResourceAsStream("/Img/2.png"));
             img.setImage(image);
 
         }
@@ -154,11 +170,11 @@ public class Game_v3Controller1 implements Initializable {
 
                 try {
                     if (XOFLAG.equals(new String("x"))) {
-                        Image image = new Image(getClass().getResourceAsStream("2.png"));
+                        Image image = new Image(getClass().getResourceAsStream("/Img/2.png"));
                         img.setImage(image);
 
                     } else {
-                        Image image = new Image(getClass().getResourceAsStream("1.png"));
+                        Image image = new Image(getClass().getResourceAsStream("/Img/1.png"));
                         img.setImage(image);
 
                     }
@@ -197,8 +213,8 @@ public class Game_v3Controller1 implements Initializable {
     void move_00(ActionEvent event) {
         changeBlockView();
 
-        System.out.println("login.Game_v3Controller.move_00()");
-        playSound(musicFileClick);
+                playSound(musicFileClick);
+
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_00.setDisable(true);
@@ -220,7 +236,8 @@ public class Game_v3Controller1 implements Initializable {
     void move_01(ActionEvent event) {
         changeBlockView();
 
-        playSound(musicFileClick);
+                playSound(musicFileClick);
+
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -243,17 +260,17 @@ public class Game_v3Controller1 implements Initializable {
     void move_02(ActionEvent event) {
         changeBlockView();
 
-        playSound(musicFileClick);
+            playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
-            btn_01.setDisable(true);
+            btn_02.setDisable(true);
             changeViewForPlayer(img_view02);
 
             ClientController.getCONTROL().AIMove(new String("0"), new String("2"));
         } else if (gameFlag.equals(new String("normal"))) {
             viewFlag = 1;
-            btn_01.setDisable(true);
+            btn_02.setDisable(true);
             changeViewForPlayer(img_view02);
 
             ClientController.getCONTROL().MultiplayerMove(new String("0"), new String("2"));
@@ -265,9 +282,9 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     void move_10(ActionEvent event) {
         changeBlockView();
-
         playSound(musicFileClick);
 
+        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_10.setDisable(true);
@@ -288,7 +305,6 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     void move_11(ActionEvent event) {
         changeBlockView();
-
         playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
@@ -311,9 +327,9 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     void move_12(ActionEvent event) {
         changeBlockView();
-
         playSound(musicFileClick);
 
+        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_12.setDisable(true);
@@ -335,7 +351,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_20(ActionEvent event) {
         changeBlockView();
 
-        playSound(musicFileClick);
+                playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -357,9 +373,9 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     void move_21(ActionEvent event) {
         changeBlockView();
-
         playSound(musicFileClick);
 
+        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_21.setDisable(true);
@@ -380,7 +396,6 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     void move_22(ActionEvent event) {
         changeBlockView();
-
         playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
@@ -409,7 +424,8 @@ public class Game_v3Controller1 implements Initializable {
                 public void run() {
                     BorderPane pane;
                     try {
-                        Image image = new Image(getClass().getResourceAsStream("mute.png"));
+                        Image image = new Image(getClass().getResource("/Img/mute.png").toString());
+
                         muteSoundImage.setImage(image);
                         mute = true;
                     } catch (Exception ex) {
@@ -425,7 +441,9 @@ public class Game_v3Controller1 implements Initializable {
                 public void run() {
                     BorderPane pane;
                     try {
-                        Image image = new Image(getClass().getResourceAsStream("icons8_speaker_64px.png"));
+//                        Image image = new Image(getClass().getResourceAsStream("icons8_speaker_64px.png"));
+                        Image image = new Image(getClass().getResource("/Img/icons8_speaker_64px.png").toString());
+
                         muteSoundImage.setImage(image);
                         mute = false;
 
@@ -596,9 +614,9 @@ public class Game_v3Controller1 implements Initializable {
     public void playSound(String musicFile) {
 
         if (mute == false) {
-            Media sound = new Media(new File(musicFile).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
+
+            AudioClip mApplause = new AudioClip(this.getClass().getResource("/sounds/clickSound.mp3").toExternalForm());
+            mApplause.play();
         }
     }
 
@@ -610,10 +628,30 @@ public class Game_v3Controller1 implements Initializable {
                 public void run() {
                     BorderPane pane;
                     try {
-                        Image image = new Image(getClass().getResourceAsStream("noWin.gif"));
-                        youwin.setImage(image);
-                        playSound(musicFileLose);
+                        AudioClip mApplause = new AudioClip(this.getClass().getResource("/sounds/loseSound.mp3").toExternalForm());
+                        mApplause.play();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Draw");
+                        alert.setContentText(" ");
+                        alert.initStyle(StageStyle.UNDECORATED);
+                        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                        ButtonType buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
 
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+
+                        dialogPane.getStyleClass().add("myDialog");
+                        dialogPane.setGraphic(new ImageView(this.getClass().getResource("/Img/icons8_fight_30px.png").toString()));
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == buttonTypeOK) {
+                            System.out.println("OK");
+                        } else if (result.get() == buttonTypeCancel) {
+                            System.out.println("Cancel");
+                        }
+
+                        //    playSound(musicFileLose);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -627,10 +665,30 @@ public class Game_v3Controller1 implements Initializable {
                 public void run() {
                     BorderPane pane;
                     try {
-                        Image image = new Image(getClass().getResourceAsStream("win.gif"));
-                        youwin.setImage(image);
-                        playSound(musicFileWin);
+                        AudioClip mApplause = new AudioClip(this.getClass().getResource("/sounds/winSound.mp3").toExternalForm());
+                        mApplause.play();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Win");
+                        alert.setContentText(" ");
+                        alert.initStyle(StageStyle.UNDECORATED);
+                        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                        ButtonType buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
 
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+
+                        dialogPane.getStyleClass().add("myDialog");
+                        dialogPane.setGraphic(new ImageView(this.getClass().getResource("/Img/icons8_trophy_32px.png").toString()));
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == buttonTypeOK) {
+                            System.out.println("OK");
+                        } else if (result.get() == buttonTypeCancel) {
+                            System.out.println("Cancel");
+                        }
+
+                        //    playSound(musicFileWin);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -644,10 +702,30 @@ public class Game_v3Controller1 implements Initializable {
                 public void run() {
                     BorderPane pane;
                     try {
-                        Image image = new Image(getClass().getResourceAsStream("aiWin.gif"));
-                        youwin.setImage(image);
-                        playSound(musicFileLose);
+                        AudioClip mApplause = new AudioClip(this.getClass().getResource("/sounds/loseSound.mp3").toExternalForm());
+                        mApplause.play();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("loser");
+                        alert.setContentText(" ");
+                        alert.initStyle(StageStyle.UNDECORATED);
+                        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                        ButtonType buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
 
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+
+                        dialogPane.getStyleClass().add("myDialog");
+                        dialogPane.setGraphic(new ImageView(this.getClass().getResource("/Img/icons8_loser_32px_1.png").toString()));
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == buttonTypeOK) {
+                            System.out.println("OK");
+                        } else if (result.get() == buttonTypeCancel) {
+                            System.out.println("Cancel");
+                        }
+
+                        //  playSound(musicFileLose);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

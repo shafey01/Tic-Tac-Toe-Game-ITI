@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="friend" prefHeight="1059.0" prefWidth="1940.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FriendController">
+<BorderPane fx:id="friend" prefHeight="915.0" prefWidth="1950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FriendController">
    <top>
-      <AnchorPane fx:id="topbar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="818.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="topbar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="1900.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="bt_setting" layoutX="201.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="10.0">
                <graphic>
@@ -62,28 +62,28 @@
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1940.0" style="-fx-background-color: F89A36;" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1954.0" style="-fx-background-color: F89A36;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="668.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="669.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/icons8_eject_48px.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutY="16.0" prefHeight="994.0" prefWidth="1940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
+            <AnchorPane layoutY="32.0" prefHeight="838.0" prefWidth="1900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
                <children>
-                  <TableView fx:id="leaderBordeTableView" layoutX="-1.0" prefHeight="915.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="leaderBordeTableView" layoutX="4.0" layoutY="-14.0" prefHeight="750.0" prefWidth="1954.0" style="-fx-background-color: #032358;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-14.0">
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <AnchorPane layoutX="209.0" layoutY="368.0" prefHeight="73.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <AnchorPane layoutY="746.0" prefHeight="173.0" prefWidth="1954.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="-81.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <TextField fx:id="userNameTexetField" layoutX="637.0" layoutY="4.0" prefHeight="46.0" prefWidth="471.0" promptText="Enter User Name ..." AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="637.0" AnchorPane.topAnchor="4.0">
+                        <TextField fx:id="userNameTexetField" layoutX="652.0" layoutY="44.0" prefHeight="82.0" prefWidth="471.0" promptText="Enter User Name ..." AnchorPane.leftAnchor="652.0">
                            <font>
                               <Font name="Yu Gothic Bold" size="27.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="invite_bt" defaultButton="true" layoutX="1137.0" layoutY="4.0" mnemonicParsing="false" onAction="#inviteButton" style="-fx-background-color: #032358;" text="Invite" textFill="#f89a36" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1137.0" AnchorPane.topAnchor="4.0">
+                        <Button fx:id="invite_bt" defaultButton="true" layoutX="1148.0" layoutY="42.0" mnemonicParsing="false" onAction="#inviteButton" prefHeight="85.0" prefWidth="138.0" style="-fx-background-color: #032358;" text="Invite" textFill="#f89a36" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="1148.0" AnchorPane.topAnchor="42.0">
                            <font>
                               <Font name="Yu Gothic Bold" size="28.0" />
                            </font>

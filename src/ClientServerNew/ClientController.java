@@ -20,6 +20,7 @@ public class ClientController {
     private int moveType;
     private static ClientController CONTROL;
     private static int a = 1;
+    
 
     public static int getA() {
         return a;

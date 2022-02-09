@@ -53,12 +53,12 @@ public class LoadingController implements Initializable {
                         }
                         Scene scene = new Scene(pane);
                         Stage stage = new Stage();
-                        Image icon = new Image(getClass().getResourceAsStream("hobbies-and-free-time.png"));
+                        Image icon = new Image(getClass().getResourceAsStream("/Img/hobbies-and-free-time.png"));
 
                         stage.getIcons().add(icon);
                         stage.setTitle("Tic Tac Toe");
-                        stage.setFullScreen(true);
-//      stage.setMaximized(true);
+//                        stage.setFullScreen(true);
+      stage.setMaximized(true);
                         stage.setScene(scene);
                         stage.show();
 

@@ -103,24 +103,27 @@ public class GameDAO {
         return newGame.getId();
     }
 
-    public void updateGameMap(GameTable game) throws SQLException {
-
+    public void updateGameMap(int[][] map,int gameId) throws SQLException {
+        this.connect(); 
         PreparedStatement pst = con.prepareStatement("UPDATE game SET map = ? WHERE id = ?");
-        pst.setString(1, Arrays.deepToString(game.getMap()));
-        pst.setInt(2, game.getId());
+        pst.setString(1, Arrays.deepToString(map));
+        pst.setInt(2, gameId);
 
         pst.execute();
+        pst.close();
+        this.closeConnection();
 
     }
 
-    public void setGameWinner(GameTable game, int winnerId) throws SQLException {
-
+    public void setGameWinner(int gameId, int winnerId) throws SQLException {
+        this.connect();
         PreparedStatement pst = con.prepareStatement("UPDATE game SET winnerId = ? WHERE id = ?");
         pst.setInt(1, winnerId);
-        pst.setInt(2, game.getId());
+        pst.setInt(2, gameId);
 
         pst.execute();
-
+        pst.close();
+        this.closeConnection();
     }
 
     private int[][] stringToArray(String string) {

@@ -3,6 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/server_gui/FXMLDocumentController.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/ServerMain.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Client.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/login/SettingController.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/DataBase/GamePkg/GameDAO.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/DataBase/GamePkg/GameTable.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/server_gui/Server_GUI.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/login/FriendController.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/login/Setting.fxml</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/ClientController.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/DataBase/PlayerPkg/PlayerDAO.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Server.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/login/LeaderBordeController.java</file>
+            <file>file:/I:/ITI/java/new/Tic-Tac-Toe-Game-ITI/src/login/Friend.fxml</file>
+=======
             <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/ClientMain.java</file>
             <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/server_gui/Server_GUI.java</file>
             <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/ServerMain.java</file>
@@ -16,6 +32,7 @@
             <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/ClientServerNew/Server.java</file>
             <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/DataBase/UserPkg/ContactPerson.java</file>
             <file>file:/C:/Users/MBR/Desktop/master/Tic-Tac-Toe-Game-ITI/src/Game/Move.java</file>
+>>>>>>> 44756ae425939b3f40e4a1fb2f4c92d0152ad282
         </group>
     </open-files>
 </project-private>

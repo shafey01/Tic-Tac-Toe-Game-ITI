@@ -64,5 +64,14 @@ public class GameWithComputer {
         }
         return gameStatus;
     }
+
+//  public int[][] getBoard() {
+//        return this.gameToPlay.getBoard();
+//    }
+//    
+//    public void setBoard(int[][] board) {
+//        this.gameToPlay.setBoard(board);
+////        computer.setBoard(board);
+//    }
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 }

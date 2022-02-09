@@ -53,8 +53,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField userNameTextFieldSignIn;
 
-    @FXML
-    private Button close_bt;
+
     @FXML
     private Label loginStatusLabel;
 
@@ -98,12 +97,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("6" + client.getCONTROL());
     }
 
-    @FXML
-    void close_fc(ActionEvent event) {
-        Stage stage = (Stage) close_bt.getScene().getWindow();
-        // do what you have to do
-        stage.close();
-    }
+ 
 
     public void sendToControllerLogin(int s) throws IOException {
         System.out.println("before if");
@@ -136,6 +130,8 @@ public class FXMLDocumentController implements Initializable {
                     try {
 //                        wrong_text_Login.setText("Wrong user name or password");
                         loginStatusLabel.setText("Wrong user name or password");
+                        userNameTextFieldSignIn.setStyle("-fx-border-color: red;-fx-border-width: 0 0 1 0;");
+                        passwordTextFieldSignIn.setStyle("-fx-border-color: red;-fx-border-width: 0 0 1 0;");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -155,6 +151,8 @@ public class FXMLDocumentController implements Initializable {
                     try {
 //                        wrong_text_Login.setText("Please try again Later");
                         loginStatusLabel.setText("Please try again Later");
+                        userNameTextFieldSignIn.setStyle("-fx-border-color: red;-fx-border-width: 0 0 1 0;");
+                        passwordTextFieldSignIn.setStyle("-fx-border-color: red;-fx-border-width: 0 0 1 0;");
 
                     } catch (Exception ex) {
                         ex.printStackTrace();

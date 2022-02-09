@@ -104,13 +104,16 @@ public class ContactDAO {
 
     }
 
-    public void UpdateUserTolalScore(ContactPerson user) {
+    public void UpdateUserTolalScore(String userName) {
+         this.connect();
         try {
-            String query = "UPDATE user SET total_score = ? WHERE user_id = ?";
+            String query = "UPDATE user SET total_score = total_score + 10 WHERE username = ?";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setInt(1, user.getTotal_score());
-            pst.setInt(2, user.getUser_id());
+            
+            pst.setString(1, userName);
             pst.execute();
+            pst.close();
+            this.closeConnection();
         } catch (SQLException ex) {
             Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -35,15 +35,15 @@ public class Login extends Application {
     public void start(Stage stage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("Loading.fxml"));
-        Image icon = new Image(getClass().getResourceAsStream("hobbies-and-free-time.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/Img/hobbies-and-free-time.png"));
 
         stage.getIcons().add(icon);
         Scene scene = new Scene(root);
 
         stage.setTitle("Tic Tac Toe");
         //stage.initStyle(StageStyle.UNDECORATED);
-        stage.setFullScreen(true);
-//      stage.setMaximized(true);
+//        stage.setFullScreen(true);
+      stage.setMaximized(true);
 //        mediaPlayer.play();
 
         stage.setScene(scene);

@@ -109,31 +109,35 @@
                   <content>
                     <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="600.0" style="-fx-background-color: #c4c4c4;">
                            <children>
-                              <Text layoutX="40.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of users ">
+                              <Text layoutX="188.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of users " AnchorPane.leftAnchor="192.0">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="numberOfPlayers_TextField" editable="false" focusTraversable="false" layoutX="157.0" layoutY="90.0" prefWidth="108.0" style="-fx-background-color: gray;" />
-                              <TextField fx:id="activePlayers_TextField" editable="false" focusTraversable="false" layoutX="157.0" layoutY="204.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: gray;" />
-                              <TextField fx:id="playersInGame_TextField" editable="false" focusTraversable="false" layoutX="438.0" layoutY="201.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: gray;" />
-                              <Text layoutX="40.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active players">
+                              <TextField fx:id="numberOfPlayers_TextField" editable="false" focusTraversable="false" layoutX="305.0" layoutY="55.0" prefWidth="108.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="305.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></TextField>
+                              <TextField fx:id="activePlayers_TextField" editable="false" focusTraversable="false" layoutX="305.0" layoutY="261.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="305.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></TextField>
+                              <Text layoutX="188.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active players" AnchorPane.leftAnchor="192.0">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="321.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players in game">
+                              <Text layoutX="192.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score" AnchorPane.leftAnchor="192.0">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Text>
-                              <Separator layoutX="297.0" layoutY="61.0" orientation="VERTICAL" prefHeight="345.6" prefWidth="6.4" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="10.0" />
-                              <Text layoutX="330.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score">
+                              <TextField fx:id="highestScore_TextField" editable="false" focusTraversable="false" layoutX="305.0" layoutY="162.0" prefWidth="108.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="305.0">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="highestScore_TextField" editable="false" focusTraversable="false" layoutX="438.0" layoutY="88.0" prefWidth="108.0" style="-fx-background-color: gray;" />
+                                 </font></TextField>
+                              <Separator layoutX="200.0" layoutY="185.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+                              <Separator layoutX="188.0" layoutY="144.0" prefWidth="200.0" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>
                   </content>
