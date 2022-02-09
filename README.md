@@ -31,8 +31,8 @@ This project for learning and practice Java Programming.
 - Scense Builder
 
 # Contributors
-- michael Ramez
-- menna Hamdy
+- Michael Ramez
+- Menna Hamdy
 - Mustafa Hammad
 - Kholoud Ahmed
 - Ayman Ibrahim
