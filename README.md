@@ -52,7 +52,7 @@ Open Client.jar
 # License
 this project under the GNU General Public License v2.0.
 
-# Acknowledgments
+
 
 
 
