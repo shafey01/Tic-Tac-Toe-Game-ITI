@@ -126,7 +126,7 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     private ImageView muteSoundImage;
     @FXML
-    private AnchorPane topbar;
+    private BorderPane topbar;
 //.setGraphic(new ImageView(this.getClass().getResource("/img/icons8_invite_50px.png").toString()));
 
     @Override
@@ -146,7 +146,7 @@ public class Game_v3Controller1 implements Initializable {
 
     @FXML
     void close_fc(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        BorderPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         topbar.getChildren().setAll(pane);
     }
 
@@ -213,7 +213,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_00(ActionEvent event) {
         changeBlockView();
 
-                playSound(musicFileClick);
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -236,8 +236,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_01(ActionEvent event) {
         changeBlockView();
 
-                playSound(musicFileClick);
-
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -260,7 +259,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_02(ActionEvent event) {
         changeBlockView();
 
-            playSound(musicFileClick);
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -284,7 +283,6 @@ public class Game_v3Controller1 implements Initializable {
         changeBlockView();
         playSound(musicFileClick);
 
-        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_10.setDisable(true);
@@ -329,7 +327,6 @@ public class Game_v3Controller1 implements Initializable {
         changeBlockView();
         playSound(musicFileClick);
 
-        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_12.setDisable(true);
@@ -351,7 +348,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_20(ActionEvent event) {
         changeBlockView();
 
-                playSound(musicFileClick);
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -375,7 +372,6 @@ public class Game_v3Controller1 implements Initializable {
         changeBlockView();
         playSound(musicFileClick);
 
-        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_21.setDisable(true);
@@ -648,6 +644,8 @@ public class Game_v3Controller1 implements Initializable {
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
                         } else if (result.get() == buttonTypeCancel) {
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                             System.out.println("Cancel");
                         }
 
@@ -685,6 +683,8 @@ public class Game_v3Controller1 implements Initializable {
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
                         } else if (result.get() == buttonTypeCancel) {
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                             System.out.println("Cancel");
                         }
 
@@ -722,6 +722,8 @@ public class Game_v3Controller1 implements Initializable {
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
                         } else if (result.get() == buttonTypeCancel) {
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                             System.out.println("Cancel");
                         }
 

@@ -111,7 +111,7 @@ public class FXMLDocumentController implements Initializable {
                 public void run() {
 
                     try {
-                        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                        BorderPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
                         rootPane.getChildren().setAll(pane);
 
                     } catch (Exception ex) {

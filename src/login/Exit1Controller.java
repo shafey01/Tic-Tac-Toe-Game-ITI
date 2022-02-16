@@ -76,7 +76,7 @@ public class Exit1Controller implements Initializable {
 
     @FXML
     private void loadSwitchMode(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        BorderPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         exit2.getChildren().setAll(pane);
     }
 

@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Game_v3Controller1">
+<BorderPane fx:id="topbar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/8.0.311" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Game_v3Controller1">
    <top>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="193.0" prefWidth="1941.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="Exit_btn" cancelButton="true" mnemonicParsing="false" onAction="#close_fc" prefHeight="78.0" prefWidth="176.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
+            <Button fx:id="Exit_btn" cancelButton="true" layoutX="1654.0" layoutY="35.0" mnemonicParsing="false" onAction="#close_fc" prefHeight="78.0" prefWidth="176.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.rightAnchor="182.79999999999995" AnchorPane.topAnchor="35.0">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -29,7 +29,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="sound_btn" layoutX="1640.0" layoutY="50.0" mnemonicParsing="false" onAction="#muteSound2" prefHeight="110.0" prefWidth="110.0" style="-fx-background-radius: 150; -fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="20.0">
+            <Button fx:id="sound_btn" layoutX="176.0" layoutY="35.0" mnemonicParsing="false" onAction="#muteSound2" prefHeight="110.0" prefWidth="110.0" style="-fx-background-radius: 150; -fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.leftAnchor="176.0" AnchorPane.topAnchor="35.0">
                <graphic>
                   <ImageView fx:id="muteSoundImage" fitHeight="121.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>

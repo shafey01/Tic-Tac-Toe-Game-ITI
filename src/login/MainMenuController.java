@@ -27,7 +27,7 @@ public class MainMenuController implements Initializable {
     private Button ai_bt;
 
     @FXML
-    private AnchorPane main;
+    private BorderPane main;
 
     @FXML
     private Button online_bt;
