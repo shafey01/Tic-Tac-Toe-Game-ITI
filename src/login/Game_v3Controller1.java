@@ -154,9 +154,13 @@ public class Game_v3Controller1 implements Initializable {
             public void run() {
                 System.out.println("...............close multi from close btn");
                 try {
+                    ClientController.getCONTROL().gameflag = false;
+                    ClientController.getCONTROL().settingflag = false;
+                    ClientController.getCONTROL().exitflag = false;
+                    ClientController.getCONTROL().friendflag = true;
+                    ClientController.getCONTROL().leaderflag = false;
                     BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
                     topbar.getChildren().setAll(pane);
-                    
 
                     //  playSound(musicFileLose);
                 } catch (Exception ex) {
@@ -656,6 +660,8 @@ public class Game_v3Controller1 implements Initializable {
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                         } else if (result.get() == buttonTypeCancel) {
                             BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
                             topbar.getChildren().setAll(pane2);
@@ -694,6 +700,8 @@ public class Game_v3Controller1 implements Initializable {
 
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == buttonTypeOK) {
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                             System.out.println("OK");
                         } else if (result.get() == buttonTypeCancel) {
                             BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -734,6 +742,8 @@ public class Game_v3Controller1 implements Initializable {
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                         } else if (result.get() == buttonTypeCancel) {
                             BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
                             topbar.getChildren().setAll(pane2);
@@ -759,6 +769,11 @@ public class Game_v3Controller1 implements Initializable {
                 public void run() {
                     System.out.println("...............close multi");
                     try {
+                        ClientController.getCONTROL().gameflag = false;
+                        ClientController.getCONTROL().settingflag = false;
+                        ClientController.getCONTROL().exitflag = false;
+                        ClientController.getCONTROL().friendflag = true;
+                        ClientController.getCONTROL().leaderflag = false;
                         BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
                         topbar.getChildren().setAll(pane);
                         System.out.println("inside if");
@@ -772,6 +787,61 @@ public class Game_v3Controller1 implements Initializable {
 
         }
 
+    }
+
+    public void serverCloseToGame(String s) {
+
+        if (s.equals(new String("1"))) {
+            System.out.println("........................before if");
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Sorry Server Closed !!!!!!!!");
+                        alert.setContentText(" ");
+                        alert.initStyle(StageStyle.UNDECORATED);
+//                    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+                        ButtonType buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+//                    alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == buttonTypeOK) {
+                            System.out.println("OK");
+
+//                            status.set(1);
+                            BorderPane pane;
+                            pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
+                            topbar.getChildren().setAll(pane);
+
+                        } else {
+                            System.out.println("OK from else");
+
+//                            status.set(0);
+                            BorderPane pane;
+                            pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
+                            topbar.getChildren().setAll(pane);
+
+                        }
+
+                    } catch (Exception ex) {
+                        System.out.println("catchhhhhhhhhh");
+
+                        ex.printStackTrace();
+                    }
+//                    latchToWaitForJavaFx.countDown();
+                }
+
+            });
+
+        }
     }
 
 }

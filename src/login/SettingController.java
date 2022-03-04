@@ -1,5 +1,6 @@
 package login;
 
+import ClientServerNew.ClientController;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -29,7 +30,7 @@ public class SettingController implements Initializable {
     public static SettingController settingcont;
 
     @FXML
-    private AnchorPane Setting;
+    private AnchorPane howtoplay;
 
     @FXML
     private ImageView bt_exit;
@@ -69,12 +70,24 @@ public class SettingController implements Initializable {
 
     @FXML
     private void loadsetting(ActionEvent event) throws IOException {
+ClientController.getCONTROL().settingflag = true;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
         setting.getChildren().setAll(pane);
     }
 
     @FXML
     private void loadleaderborde(ActionEvent event) throws IOException {
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = true;
         BorderPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
         setting.getChildren().setAll(pane);
     }
@@ -86,12 +99,24 @@ public class SettingController implements Initializable {
 
     @FXML
     private void loadexite2(ActionEvent event) throws IOException {
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().exitflag = true;
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
         setting.getChildren().setAll(pane);
     }
 
     @FXML
     private void loadfriend(ActionEvent event) throws IOException {
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().friendflag = true;
+ClientController.getCONTROL().leaderflag = false;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
         setting.getChildren().setAll(pane);
     }
@@ -106,7 +131,7 @@ public class SettingController implements Initializable {
 
     }
 
-    public void serverCloseSettings(String s) {
+    public void serverCloseToSettings(String s) {
 
         if (s.equals(new String("1"))) {
 
@@ -132,20 +157,21 @@ public class SettingController implements Initializable {
                             System.out.println("OK");
 
 //                            status.set(1);
+
+
                             BorderPane pane;
                             pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
                             setting.getChildren().setAll(pane);
 
-                            // get a handle to the stage
-//    Stage stage = (Stage) closeButton.getScene().getWindow();
-//    // do what you have to do
-//    stage.close();
-//                            System.out.println("Status1 " + status);
+
+ 
                         } else {
 //                            status.set(0);
                             BorderPane pane;
                             pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
                             setting.getChildren().setAll(pane);
+
+ 
 
                         }
 

@@ -132,18 +132,42 @@ closeButton;
 
     @FXML
     private void loadsetting(ActionEvent event) throws IOException {
+
+ClientController.getCONTROL().settingflag = true;
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
+
+
+
+
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
         friend.getChildren().setAll(pane);
     }
 
     @FXML
     private void loadleaderborde(ActionEvent event) throws IOException {
+
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = true;
         BorderPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
         friend.getChildren().setAll(pane);
     }
 
     @FXML
     private void loadexite2(ActionEvent event) throws IOException {
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().exitflag = true;
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
         status.set(0);
         BorderPane pane = FXMLLoader.load(getClass().getResource("Exit1.fxml"));
         friend.getChildren().setAll(pane);
@@ -151,6 +175,12 @@ closeButton;
 
     @FXML
     private void loadfriend(ActionEvent event) throws IOException {
+ClientController.getCONTROL().gameflag = false;
+
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().friendflag = true;
+ClientController.getCONTROL().leaderflag = false;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
         friend.getChildren().setAll(pane);
     }
@@ -230,7 +260,11 @@ closeButton;
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == buttonTypeOK) {
                         System.out.println("OK");
-
+ClientController.getCONTROL().gameflag = true;
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
                         status.set(1);
                         BorderPane pane;
                         pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
@@ -285,6 +319,11 @@ closeButton;
 
     public void game() throws IOException {
 
+ClientController.getCONTROL().gameflag = true;
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
         topbar.getChildren().setAll(pane);
     }
@@ -294,7 +333,7 @@ closeButton;
         stateShow();
     }
 
-    public void serverClose(String s) {
+    public void serverCloseToFriend(String s) {
 
         if (s.equals(new String("1"))) {
 

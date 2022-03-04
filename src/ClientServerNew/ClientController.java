@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 import login.CreateAccountController;
+import login.Exit1Controller;
 import login.FXMLDocumentController;
 import login.FriendController;
 import static login.FriendController.friendControl;
@@ -23,6 +24,12 @@ public class ClientController {
     private int moveType;
     private static ClientController CONTROL;
     private static int a = 1;
+    public static Boolean settingflag = false;
+    public static Boolean leaderflag = false;
+    public static Boolean friendflag = false;
+    public static Boolean exitflag = false;
+    public static Boolean gameflag = false;
+
     
     public static int getA() {
         return a;
@@ -131,9 +138,29 @@ public class ClientController {
     }
     
     public void exitControl() {
+
+//        FriendController.friendControl.serverCloseToFriend("1");
+        System.out.println("........." + friendflag + leaderflag + settingflag + exitflag);
+        if (friendflag == true && leaderflag == false && settingflag == false && exitflag == false) {
+            FriendController.friendControl.serverCloseToFriend("1");
+        }
         
-        FriendController.friendControl.serverClose("1");
+        if (friendflag == false && leaderflag == false && settingflag == true && exitflag == false) {
+            SettingController.settingcont.serverCloseToSettings("1");
+        }
+        
+        if (friendflag == false && leaderflag == true && settingflag == false && exitflag == false) {
+            LeaderBordeController.LeaderBordeController.serverCloseToLeader("1");
+        }
+        if (exitflag == true && friendflag == false && leaderflag == false && settingflag == false) {
+            Exit1Controller.exitcont.serverCloseToExit("1");
+        }
+
+if ( gameflag == true && exitflag == false && friendflag == false && leaderflag == false && settingflag == false) {
+            Game_v3Controller1.gameControl.serverCloseToGame("1");
+        }
         System.out.println("Server Exit");
+        
     }
     
     public void sendLoginRequest(String userName, String password) {
@@ -226,28 +253,8 @@ public class ClientController {
     public void multiCloseControl() {
         
         try {
-//            Game_v3Controller1.gameControl.close("1");
-//            MainMenuController.mainmenucotrller.serverCloseMain("1");
-//LoadingController.load.serverCloseroot("1");
-Boolean friendflag = LeaderBordeController.LeaderBordeController.friendflag;
-Boolean leaderflag = LeaderBordeController.LeaderBordeController.leaderflag;
-Boolean settingflag = LeaderBordeController.LeaderBordeController.settingflag;
-
-if(friendflag)
-{
-FriendController.friendControl.serverClose("1");
-}
-
-if(settingflag)
-{
-    SettingController.settingcont.serverCloseSettings("1");
-}
-
-
-
-
-
-
+            Game_v3Controller1.gameControl.close("1");
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

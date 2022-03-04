@@ -48,6 +48,11 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private void loadend(ActionEvent event) throws IOException {
+ClientController.getCONTROL().gameflag = false;
+ClientController.getCONTROL().settingflag = true;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
         main.getChildren().setAll(pane);
     }
@@ -66,6 +71,11 @@ public class MainMenuController implements Initializable {
 //    }
     @FXML
     void game(ActionEvent event) throws IOException {
+ClientController.getCONTROL().gameflag = true;
+ClientController.getCONTROL().settingflag = false;
+ClientController.getCONTROL().exitflag = false;
+ClientController.getCONTROL().friendflag = false;
+ClientController.getCONTROL().leaderflag = false;
         ai_button = 1;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Game.fxml"));
         main.getChildren().setAll(pane);
