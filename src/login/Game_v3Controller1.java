@@ -146,8 +146,27 @@ public class Game_v3Controller1 implements Initializable {
 
     @FXML
     void close_fc(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        topbar.getChildren().setAll(pane);
+
+        
+
+    }
+
+
+    void exit2(ActionEvent event) {
+javafx.application.Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                    topbar.getChildren().setAll(pane);
+
+                    //  playSound(musicFileLose);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     public void changeViewForPlayer(ImageView img) {
@@ -213,7 +232,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_00(ActionEvent event) {
         changeBlockView();
 
-                playSound(musicFileClick);
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -236,8 +255,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_01(ActionEvent event) {
         changeBlockView();
 
-                playSound(musicFileClick);
-
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -260,7 +278,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_02(ActionEvent event) {
         changeBlockView();
 
-            playSound(musicFileClick);
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -284,7 +302,6 @@ public class Game_v3Controller1 implements Initializable {
         changeBlockView();
         playSound(musicFileClick);
 
-        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_10.setDisable(true);
@@ -329,7 +346,6 @@ public class Game_v3Controller1 implements Initializable {
         changeBlockView();
         playSound(musicFileClick);
 
-        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_12.setDisable(true);
@@ -351,7 +367,7 @@ public class Game_v3Controller1 implements Initializable {
     void move_20(ActionEvent event) {
         changeBlockView();
 
-                playSound(musicFileClick);
+        playSound(musicFileClick);
 
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
@@ -375,7 +391,6 @@ public class Game_v3Controller1 implements Initializable {
         changeBlockView();
         playSound(musicFileClick);
 
-        
         if (gameFlag.equals(new String("ai"))) {
             viewFlag = 1;
             btn_21.setDisable(true);
@@ -456,13 +471,13 @@ public class Game_v3Controller1 implements Initializable {
         }
     }
 
-    @FXML
-    void exit(ActionEvent event) throws IOException {
-
-        BorderPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        topbar.getChildren().setAll(pane);
-
-    }
+//    @FXML
+//    void exit(ActionEvent event) throws IOException {
+//
+//        BorderPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+//        topbar.getChildren().setAll(pane);
+//
+//    }
 
     public void aiMove(String rowIndex, String columnIndex) throws InterruptedException {
         Thread.sleep(1000);
