@@ -5,6 +5,7 @@
 package login;
 
 import ClientServerNew.ClientController;
+import static ClientServerNew.ClientController.gameflagForimage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -47,6 +48,8 @@ public class Game_v3Controller1 implements Initializable {
     public static int viewFlag;
     public static String gameFlag = "";
     public static String XOFLAG = "";
+    public static Boolean imageflag;
+
     @FXML
     private Button Exit_btn;
 
@@ -133,6 +136,8 @@ public class Game_v3Controller1 implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         gameControl = this;
+        System.out.println("................ai............" + gameflagForimage);
+
         mute = false;
         viewFlag = 0;
 
@@ -141,7 +146,7 @@ public class Game_v3Controller1 implements Initializable {
         musicFileClick = "/sounds/clickSound.mp3";
         playSound(musicFileClick);
         block_view.setVisible(false);
-
+        
     }
 
     @FXML
@@ -478,6 +483,8 @@ public class Game_v3Controller1 implements Initializable {
     }
 
     public void aiMove(String rowIndex, String columnIndex) throws InterruptedException {
+  Image image = new Image(getClass().getResourceAsStream("/Img/robot.png"));
+            playerX_Img.setImage(image);
         Thread.sleep(1000);
         System.err.println("aimove");
         String idAi = new String(rowIndex + columnIndex);
@@ -641,6 +648,7 @@ public class Game_v3Controller1 implements Initializable {
                 public void run() {
                     BorderPane pane;
                     try {
+ClientController.getCONTROL().gameflagForimage = false;
                         AudioClip mApplause = new AudioClip(this.getClass().getResource("/sounds/loseSound.mp3").toExternalForm());
                         mApplause.play();
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -677,7 +685,10 @@ public class Game_v3Controller1 implements Initializable {
 
         } else if (status.equals(new String("1"))) {
 //player win
+ClientController.getCONTROL().gameflagForimage = false;
+
             javafx.application.Platform.runLater(new Runnable() {
+
                 @Override
                 public void run() {
                     BorderPane pane;
