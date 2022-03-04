@@ -1,1 +1,7 @@
 /dist/
+/TicTacToeClient/build/
+/TicTacToeClient/dist/
+/TicTacToeClient/nbproject/private/
+/TicTacToeServer/build/
+/TicTacToeServer/dist/
+/TicTacToeServer/nbproject/private/

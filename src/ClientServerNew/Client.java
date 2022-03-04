@@ -126,6 +126,8 @@ public class Client {
                 listenToServerThread.start();
 
                 return 1;
+            } else if (messageFromServer.equals(new String("-2"))) {
+                return -2;
             } else {
 
                 return 0;

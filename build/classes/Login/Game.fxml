@@ -53,14 +53,14 @@
    <left>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="937.0" prefWidth="688.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="Xscore" alignment="CENTER" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: F89A36;" text="0" textAlignment="CENTER" textFill="#0048ba" AnchorPane.leftAnchor="203.5" AnchorPane.topAnchor="30.0">
+            <Label fx:id="Xscore" alignment="CENTER" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: F89A36;" textAlignment="CENTER" textFill="#0048ba" AnchorPane.leftAnchor="203.5" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="System Bold" size="64.0" />
                </font>
             </Label>
             <ImageView fitHeight="150.0" fitWidth="190.0" layoutX="239.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Img/2.png" />
+                  <Image url="@../Img/1.png" />
                </image>
             </ImageView>
             <ImageView fx:id="playerX_Img" fitHeight="167.0" fitWidth="185.0" layoutX="228.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="232.20000000000005" AnchorPane.topAnchor="60.0">
@@ -165,13 +165,22 @@
                </effect>
             </GridPane>
             <ImageView fx:id="block_view" fitHeight="737.0" fitWidth="682.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v00" fitHeight="203.0" fitWidth="210.0" layoutX="9.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v01" fitHeight="204.0" fitWidth="213.0" layoutX="233.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v02" fitHeight="204.0" fitWidth="226.0" layoutX="472.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v10" fitHeight="204.0" fitWidth="226.0" layoutX="-11.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v11" fitHeight="204.0" fitWidth="212.0" layoutX="241.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v12" fitHeight="204.0" fitWidth="212.0" layoutX="477.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v20" fitHeight="204.0" fitWidth="212.0" layoutX="10.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v21" fitHeight="204.0" fitWidth="212.0" layoutX="238.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="v22" fitHeight="214.0" fitWidth="216.0" layoutX="468.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </center>
    <right>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="627.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="Oscore" alignment="CENTER" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: F89A36;" text="0" textAlignment="CENTER" textFill="#0048ba" AnchorPane.leftAnchor="203.5" AnchorPane.topAnchor="30.0">
+            <Label fx:id="Oscore" alignment="CENTER" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: F89A36;" textAlignment="CENTER" textFill="#0048ba" AnchorPane.leftAnchor="203.5" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="System Bold" size="64.0" />
                </font>
@@ -183,7 +192,7 @@
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="190.0" layoutX="241.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Img/1.png" />
+                  <Image url="@../Img/2.png" />
                </image>
             </ImageView>
          </children>

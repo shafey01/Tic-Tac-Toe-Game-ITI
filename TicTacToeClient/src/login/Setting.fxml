@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="setting" prefHeight="970.0" prefWidth="1950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SettingController">
+   <top>
+      <AnchorPane fx:id="topbar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="1950.0" style="-fx-background-color: #032358;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="bt_setting" layoutX="201.0" layoutY="15.0" mnemonicParsing="false" onAction="#loadsetting" prefHeight="55.0" prefWidth="68.0" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_settings_64px_1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadfriend" layoutX="630.0" layoutY="11.0" mnemonicParsing="false" onAction="#loadfriend" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_friend" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_friends_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadleaderborde" layoutX="1124.0" layoutY="12.0" mnemonicParsing="false" onAction="#loadleaderborde" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_leaderborde" fitHeight="39.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_trophy_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bt_loadexite2" layoutX="657.0" layoutY="19.0" mnemonicParsing="false" onAction="#loadexite2" style="-fx-background-color: #032358; -fx-cursor: hand;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <ImageView fx:id="bt_exit" fitHeight="39.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_shutdown_60px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1950.0" style="-fx-background-color: F89A36;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Img/icons8_eject_48px.png" />
+               </image>
+            </ImageView>
+            <AnchorPane fx:id="howtoplay" layoutY="16.0" prefHeight="994.0" prefWidth="1940.0" style="-fx-background-color: #032358;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
+               <children>
+                  <Separator layoutX="46.0" layoutY="832.0" prefHeight="7.0" prefWidth="717.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="54.0" />
+                  <Text fill="#f89a36" layoutX="114.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How To Play">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="50.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#f89a36" layoutX="121.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. The game is played on a grid that's 3 squares by 3 squares." wrappingWidth="1737.5157928466797">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#f89a36" layoutX="118.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. You are X, your friend (or the computer in this case) is O. Players take turns putting their marks in empty squares." wrappingWidth="1753.5160369873047">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#f89a36" layoutX="114.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." wrappingWidth="1721.5160369873047">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#f89a36" layoutX="114.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." wrappingWidth="1702.3160858154297">
+                     <font>
+                        <Font name="Yu Gothic Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="github_bt" layoutX="1708.0" layoutY="735.0" mnemonicParsing="false" onAction="#loadgithub" style="-fx-background-color: #032358; -fx-cursor: hand;">
+                     <graphic>
+                        <ImageView fitHeight="87.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Img/icons8_github_60px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

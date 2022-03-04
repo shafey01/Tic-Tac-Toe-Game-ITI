@@ -118,6 +118,13 @@ public class Server {
         // private Move stringToMove()
         private void handleLoginRequest(String userName, String password) {
             // database
+            if(clientsTable.get(userName) != null)
+            {
+            String messageToClient = new String("-2");
+            writeToClient.println(messageToClient);     
+            }
+            else
+            {
             int result = databaseContactDAO.getUserIdByName(userName, password);
             System.out.println("rsult from db: " + result);
             this.userName = userName;
@@ -127,6 +134,7 @@ public class Server {
 
             String messageToClient = new String(String.valueOf(result));
             writeToClient.println(messageToClient);
+            }
         }
 
         private void handleSignupRequest(String userName, String password) {
