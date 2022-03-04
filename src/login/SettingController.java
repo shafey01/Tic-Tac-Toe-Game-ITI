@@ -5,20 +5,28 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.StageStyle;
 
 public class SettingController implements Initializable {
+
+    public static SettingController settingcont;
 
     @FXML
     private AnchorPane Setting;
@@ -55,6 +63,7 @@ public class SettingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        settingcont = this;
         // TODO
     }
 
@@ -87,8 +96,7 @@ public class SettingController implements Initializable {
         setting.getChildren().setAll(pane);
     }
 
-
-  public void inviteStatus(String s) throws IOException {
+    public void inviteStatus(String s) throws IOException {
 
         if (s.equals(new String("1"))) {
 
@@ -96,6 +104,60 @@ public class SettingController implements Initializable {
             topbar.getChildren().setAll(pane);
         }
 
+    }
+
+    public void serverCloseSettings(String s) {
+
+        if (s.equals(new String("1"))) {
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("server closed !!!!!!!!");
+                        alert.setContentText(" ");
+                        alert.initStyle(StageStyle.UNDECORATED);
+//                    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+                        ButtonType buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+//                    alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == buttonTypeOK) {
+                            System.out.println("OK");
+
+//                            status.set(1);
+                            BorderPane pane;
+                            pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
+                            setting.getChildren().setAll(pane);
+
+                            // get a handle to the stage
+//    Stage stage = (Stage) closeButton.getScene().getWindow();
+//    // do what you have to do
+//    stage.close();
+//                            System.out.println("Status1 " + status);
+                        } else {
+//                            status.set(0);
+                            BorderPane pane;
+                            pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
+                            setting.getChildren().setAll(pane);
+
+                        }
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+//                    latchToWaitForJavaFx.countDown();
+                }
+
+            });
+
+        }
     }
 
 }

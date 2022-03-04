@@ -45,8 +45,8 @@ import javafx.stage.Stage;
  * @author Mustafa Raed
  */
 public class FXMLDocumentController implements Initializable {
-    
-     @FXML
+
+    @FXML
     private TableView<ContactPerson> DB_TableView;
 
     @FXML
@@ -82,7 +82,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private MenuItem open_menuItem;
 
-
     @FXML
     private MenuItem refresh_menuItem;
 
@@ -107,8 +106,8 @@ public class FXMLDocumentController implements Initializable {
     Server server;
     FXMLDocumentController serverGui;
     ContactDAO c;
-   
- @Override
+
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
@@ -120,128 +119,123 @@ public class FXMLDocumentController implements Initializable {
         state_column = new TableColumn<>("State");
 
         //userName_column.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
-         System.out.println("here1");
+        System.out.println("here1");
         userName_column.setCellValueFactory(new PropertyValueFactory<>("username"));
         score_column.setCellValueFactory(new PropertyValueFactory<>("total_score"));
         state_column.setCellValueFactory(new PropertyValueFactory<>("State"));
-userName_column.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
-score_column.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
-state_column.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
-        System.out.println("here2");    
+        userName_column.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+        score_column.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+        state_column.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+        System.out.println("here2");
         DB_TableView.getColumns().add(userName_column);
         DB_TableView.getColumns().add(score_column);
         DB_TableView.getColumns().add(state_column);
-         
-        
-        
+
         stateShow();
 
-
     }
-@FXML
+
+    @FXML
     void github_bt(ActionEvent event) throws URISyntaxException, IOException {
- Desktop.getDesktop().browse(new URI("https://github.com/shafey01/Tic-Tac-Toe-Game-ITI/tree/master"));
+        Desktop.getDesktop().browse(new URI("https://github.com/shafey01/Tic-Tac-Toe-Game-ITI/tree/master"));
     }
 
     @FXML
     private void refresh_menuItemAction(ActionEvent event) {
         System.out.println("Button Action\n");
-           stateShow();
+        stateShow();
     }
-    
-  
 
-    
     private void stateShow() {
- 
-        System.out.println("here3");    
+
+        System.out.println("here3");
 
         c = new ContactDAO();
-        
 
         Vector<ContactPerson> contactPerson = c.getUsers();
-       
 
         DB_TableView.getItems().clear();
-        String[] state = Server.getServer().serverRequestState();  
-        int maxScore =0;     
+        String[] state = Server.getServer().serverRequestState();
+        int maxScore = 0;
         for (ContactPerson i : contactPerson) {
-             if(maxScore < i.getTotal_score()){
-                   maxScore = i.getTotal_score();
-              }
+            if (maxScore < i.getTotal_score()) {
+                maxScore = i.getTotal_score();
+            }
             if (Arrays.asList(state).contains(i.getUsername())) {
-            
-          DB_TableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
-            
+
+                DB_TableView.getItems().add(new ContactPerson(i.getUsername(), i.getTotal_score(), i.getState()));
+
             }
         }
-         highestScore_TextField.setText(String.valueOf(maxScore));
-         numberOfPlayers_TextField.setText(String.valueOf(contactPerson.size()));
-         activePlayers_TextField.setText(String.valueOf(state.length));
-     
-}
+        highestScore_TextField.setText(String.valueOf(maxScore));
+        numberOfPlayers_TextField.setText(String.valueOf(contactPerson.size()));
+        activePlayers_TextField.setText(String.valueOf(state.length));
+
+    }
+
     @FXML
     void close(ActionEvent event) {
 
         System.exit(0);
 
     }
+
     @FXML
     void aboutServer_menuItemAction(ActionEvent event) {
 
-Alert alert = new Alert(AlertType.ERROR);
-alert.setTitle("Server info");
-alert.setHeaderText("Tic Tac Toe Server");
-alert.setContentText("Server info");
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Server info");
+        alert.setHeaderText("Tic Tac Toe Server");
+        alert.setContentText("Server info");
 
-Exception ex = new FileNotFoundException("Server info");
+        Exception ex = new FileNotFoundException("Server info");
 
 // Create expandable Exception.
-StringWriter sw = new StringWriter();
-PrintWriter pw = new PrintWriter(sw);
-ex.printStackTrace(pw);
-String exceptionText = sw.toString();
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        ex.printStackTrace(pw);
+        String exceptionText = sw.toString();
 
+        TextArea textArea = new TextArea(exceptionText);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
 
-TextArea textArea = new TextArea(exceptionText);
-textArea.setEditable(false);
-textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
 
-textArea.setMaxWidth(Double.MAX_VALUE);
-textArea.setMaxHeight(Double.MAX_VALUE);
-GridPane.setVgrow(textArea, Priority.ALWAYS);
-GridPane.setHgrow(textArea, Priority.ALWAYS);
-
-GridPane expContent = new GridPane();
-expContent.setMaxWidth(Double.MAX_VALUE);
-expContent.add(textArea, 0, 0);
- DialogPane dialogPane = alert.getDialogPane();
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(textArea, 0, 0);
+        DialogPane dialogPane = alert.getDialogPane();
 
 // Set expandable Exception into the dialog pane.
-alert.getDialogPane().setExpandableContent(expContent);
-Stage stage = (Stage) dialogPane.getScene().getWindow();
+        alert.getDialogPane().setExpandableContent(expContent);
+        Stage stage = (Stage) dialogPane.getScene().getWindow();
 
 // Add a custom icon.
-stage.getIcons().add(new Image(this.getClass().getResource("/Img/icons8_repository_16px.png").toString()));
-dialogPane.setGraphic(new ImageView(this.getClass().getResource("/Img/icons8_server_128px.png").toString()));
+        stage.getIcons().add(new Image(this.getClass().getResource("/Img/icons8_repository_16px.png").toString()));
+        dialogPane.setGraphic(new ImageView(this.getClass().getResource("/Img/icons8_server_128px.png").toString()));
 
-alert.showAndWait();
+        alert.showAndWait();
 
     }
 
-
-
     @FXML
     void start_menuItemAction(ActionEvent event) {
+
+        System.out.println("start server");
+        Server.getServer().startServer();
 
     }
 
     @FXML
     void stop_menuItemAction(ActionEvent event) {
+        System.out.println("stop server");
+
+        Server.getServer().stopServer();
 
     }
 
 }
- 
-    
-

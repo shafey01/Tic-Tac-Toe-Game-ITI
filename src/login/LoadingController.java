@@ -6,6 +6,7 @@ package login;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,15 +16,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class LoadingController implements Initializable {
+
+
+public  static  LoadingController load;
 
     @FXML
     private AnchorPane rootPane;
@@ -32,6 +41,7 @@ public class LoadingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+load = this;
         new SplashScreen().start();
 
     }
@@ -73,7 +83,12 @@ public class LoadingController implements Initializable {
             }
 
         }
+
+
+
     }
+
+  
 
     private void setRotate(Circle c, boolean reverse, int angle, int duration) {
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(duration), c);

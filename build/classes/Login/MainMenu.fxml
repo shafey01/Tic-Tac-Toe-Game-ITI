@@ -4,31 +4,36 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane id="AnchorPane" fx:id="main" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="970.0" prefWidth="1950.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.MainMenuController">
-   <children>
-      <ImageView fitHeight="670.0" fitWidth="867.0" layoutX="574.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Img/Screenshot%20(42).png" />
-         </image>
-      </ImageView>
-      <Button fx:id="ai_bt" layoutX="310.0" layoutY="677.0" mnemonicParsing="false" onAction="#game" style="-fx-background-color: #032358;">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+<BorderPane fx:id="main" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.MainMenuController">
+   <center>
+      <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="970.0" prefWidth="1950.0" style="-fx-background-color: #032358;">
+         <children>
+            <ImageView fitHeight="705.0" fitWidth="864.0" layoutX="574.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Img/icons8_broken_robot_200px.png" />
+                  <Image url="@../Img/Screenshot%20(42).png" />
                </image>
             </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="online_bt" layoutX="1490.0" layoutY="679.0" mnemonicParsing="false" onAction="#loadend" style="-fx-background-color: #032358;">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Img/icons8_online_64px.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-   </children>
-</AnchorPane>
+            <Button fx:id="ai_bt" layoutX="310.0" layoutY="677.0" mnemonicParsing="false" onAction="#game" style="-fx-background-color: #032358;">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_broken_robot_200px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="online_bt" layoutX="1490.0" layoutY="679.0" mnemonicParsing="false" onAction="#loadend" style="-fx-background-color: #032358;">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/icons8_online_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

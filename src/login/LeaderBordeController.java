@@ -33,6 +33,11 @@ public class LeaderBordeController implements Initializable {
     ContactDAO c;
     ClientController control;
 
+public Boolean settingflag = false;
+public Boolean leaderflag = false;
+public Boolean friendflag = false;
+
+
     public static LeaderBordeController LeaderBordeController;
 
     @FXML
@@ -98,12 +103,18 @@ public class LeaderBordeController implements Initializable {
 
     @FXML
     private void loadsetting(ActionEvent event) throws IOException {
+settingflag = true;
+friendflag = false;
+leaderflag = false;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Setting.fxml"));
         leaderborde.getChildren().setAll(pane);
     }
 
     @FXML
     private void loadleaderborde(ActionEvent event) throws IOException {
+settingflag = false;
+friendflag = false;
+leaderflag = true;
         BorderPane pane = FXMLLoader.load(getClass().getResource("LeaderBorde.fxml"));
         leaderborde.getChildren().setAll(pane);
     }
@@ -116,6 +127,9 @@ public class LeaderBordeController implements Initializable {
 
     @FXML
     private void loadfriend(ActionEvent event) throws IOException {
+settingflag = false;
+leaderflag = false;
+friendflag = true;
         BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
         leaderborde.getChildren().setAll(pane);
     }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="rootPane" prefHeight="970.0" prefWidth="1900.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoadingController">
+<AnchorPane fx:id="rootPane" prefHeight="970.0" prefWidth="1900.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/8.0.311" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoadingController">
    <children>
       <ImageView fitHeight="734.0" fitWidth="975.0" layoutX="513.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="513.0" AnchorPane.rightAnchor="575.306884765625" AnchorPane.topAnchor="4.0">
          <image>

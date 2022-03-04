@@ -126,7 +126,7 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     private ImageView muteSoundImage;
     @FXML
-    private AnchorPane topbar;
+    private BorderPane topbar;
 //.setGraphic(new ImageView(this.getClass().getResource("/img/icons8_invite_50px.png").toString()));
 
     @Override
@@ -147,19 +147,16 @@ public class Game_v3Controller1 implements Initializable {
     @FXML
     void close_fc(ActionEvent event) throws IOException {
 
-        
+        ClientController.getCONTROL().sendMultiCloseRequest();
 
-    }
-
-
-    void exit2(ActionEvent event) {
-javafx.application.Platform.runLater(new Runnable() {
+        javafx.application.Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
+                System.out.println("...............close multi from close btn");
                 try {
-                    AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                    BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
                     topbar.getChildren().setAll(pane);
+                    
 
                     //  playSound(musicFileLose);
                 } catch (Exception ex) {
@@ -167,6 +164,11 @@ javafx.application.Platform.runLater(new Runnable() {
                 }
             }
         });
+
+    }
+
+    void exit2(ActionEvent event) throws IOException {
+
     }
 
     public void changeViewForPlayer(ImageView img) {
@@ -471,14 +473,6 @@ javafx.application.Platform.runLater(new Runnable() {
         }
     }
 
-//    @FXML
-//    void exit(ActionEvent event) throws IOException {
-//
-//        BorderPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-//        topbar.getChildren().setAll(pane);
-//
-//    }
-
     public void aiMove(String rowIndex, String columnIndex) throws InterruptedException {
         Thread.sleep(1000);
         System.err.println("aimove");
@@ -663,6 +657,8 @@ javafx.application.Platform.runLater(new Runnable() {
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
                         } else if (result.get() == buttonTypeCancel) {
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                             System.out.println("Cancel");
                         }
 
@@ -700,6 +696,8 @@ javafx.application.Platform.runLater(new Runnable() {
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
                         } else if (result.get() == buttonTypeCancel) {
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                             System.out.println("Cancel");
                         }
 
@@ -737,8 +735,33 @@ javafx.application.Platform.runLater(new Runnable() {
                         if (result.get() == buttonTypeOK) {
                             System.out.println("OK");
                         } else if (result.get() == buttonTypeCancel) {
+                            BorderPane pane2 = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            topbar.getChildren().setAll(pane2);
                             System.out.println("Cancel");
                         }
+
+                        //  playSound(musicFileLose);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+        }
+
+    }
+
+    public void close(String s) throws IOException {
+        System.out.println("...............close multi");
+        if (s.equals(new String("1"))) {
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("...............close multi");
+                    try {
+                        BorderPane pane = FXMLLoader.load(getClass().getResource("Friend.fxml"));
+                        topbar.getChildren().setAll(pane);
+                        System.out.println("inside if");
 
                         //  playSound(musicFileLose);
                     } catch (Exception ex) {

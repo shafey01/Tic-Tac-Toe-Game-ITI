@@ -21,7 +21,7 @@ This project for learning and practice Java Programming.
 
 
 # Video Link 
-
+- https://youtu.be/PyH0cdVLpFs 
 
 # Built With
 - Java
@@ -31,8 +31,8 @@ This project for learning and practice Java Programming.
 - Scense Builder
 
 # Contributors
-- michael Ramez
-- menna Hamdy
+- Michael Ramez
+- Menna Hamdy
 - Mustafa Hammad
 - Kholoud Ahmed
 - Ayman Ibrahim
@@ -52,7 +52,7 @@ Open Client.jar
 # License
 this project under the GNU General Public License v2.0.
 
-# Acknowledgments
+
 
 
 

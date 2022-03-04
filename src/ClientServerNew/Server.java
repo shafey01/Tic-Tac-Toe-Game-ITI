@@ -10,8 +10,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
-// import java.util.Map;
-
 import Game.GameWithComputer;
 import Game.Move;
 import Game.MultiplayerGame;
@@ -95,7 +93,7 @@ public class Server {
 
         public ClientHandler(Socket internalSocket) {
             internalSockHandler = internalSocket;
-         
+
             // isOn = true;
             try {
                 databaseContactDAO = new ContactDAO();
@@ -108,7 +106,7 @@ public class Server {
             }
             moveType = 1;
             clientStatus = true;
-            multiClientUserName = new String("");   
+            multiClientUserName = new String("");
 
         }
 
@@ -140,8 +138,9 @@ public class Server {
 
         private void handleInvitaionRequest(String userNameToInvite) {
             ClientHandler otherClient = clientsTable.get(userNameToInvite);
-            if ((otherClient != null) && (otherClient.clientStatus == true) && (userNameToInvite.equals(userName) == false) ) {
+            if ((otherClient != null) && (otherClient.clientStatus == true) && (userNameToInvite.equals(userName) == false)) {
                 System.out.println("Status " + otherClient.clientStatus);
+               
 
                 String messageToOtherClient = new String("invite." + userName);
                 otherClient.writeToClient.println(messageToOtherClient);
@@ -152,24 +151,23 @@ public class Server {
         private void handleReplyRequest(String otherClientuserName) {
             ClientHandler otherClient = clientsTable.get(otherClientuserName);
             if (otherClient != null && otherClient.clientStatus == true) {
-                 gameDAO = new GameDAO();
-                 gameCotact = new ContactDAO();
-                 playerDAO = new PlayerDAO();
-                 
-                 try {
-                     gameID = gameDAO.createNewGame();
-                     System.out.println(gameID + " : " + userName);
-                     userID = gameCotact.getUserIdByName(userName);
-                     int userId2 = gameCotact.getUserIdByName(otherClientuserName);
-                     System.out.println("user id:" + userID);
-                     playerDAO.createNewUser(gameID, userID);
-                     playerDAO.createNewUser(gameID, userId2);
-                    
+                gameDAO = new GameDAO();
+                gameCotact = new ContactDAO();
+                playerDAO = new PlayerDAO();
 
-                     System.out.println("");
-                 } catch (Exception e) {
-                     e.printStackTrace();
-                 }
+                try {
+                    gameID = gameDAO.createNewGame();
+                    System.out.println(gameID + " : " + userName);
+                    userID = gameCotact.getUserIdByName(userName);
+                    int userId2 = gameCotact.getUserIdByName(otherClientuserName);
+                    System.out.println("user id:" + userID);
+                    playerDAO.createNewUser(gameID, userID);
+                    playerDAO.createNewUser(gameID, userId2);
+
+                    System.out.println("");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 this.clientStatus = otherClient.clientStatus = false;
                 this.multiplayerGame = new MultiplayerGame();
                 this.moveType = 2;
@@ -225,21 +223,18 @@ public class Server {
                 gameStatus = gameWithComputer.AIplayMove();
                 messageToClient = new String("game." + gameWithComputer.getComputerMove().toString());
                 writeToClient.println(messageToClient);
-                
+
             }
 
             if (gameStatus == 0) {
-                
-                
+
                 messageToClient = new String("over.0");
                 writeToClient.println(messageToClient);
                 clientStatus = true;
-                
-                
 
             } else if (gameStatus == 1) {
-                
-                System.out.println("user" +userName);
+
+                System.out.println("user" + userName);
                 gameCotact.UpdateUserTolalScore(userName);
                 messageToClient = new String("over.1");
                 writeToClient.println(messageToClient);
@@ -254,7 +249,7 @@ public class Server {
 
         }
 
-        private void handleMultigameMoveRequest(String rowIndex, String columnIndex)  {
+        private void handleMultigameMoveRequest(String rowIndex, String columnIndex) {
             Move move = Move.stringToMove(rowIndex, columnIndex);
             move.setType(moveType);
             int gameStatus = multiplayerGame.playMove(move);
@@ -264,7 +259,7 @@ public class Server {
                 otherClient.writeToClient.println(messageToOtherClient);
                 System.out.println("after send");
             } else if (gameStatus == 0) {
-                
+
                 this.moveType = otherClient.moveType = 1;
                 String messageToClient = new String("over.0");
                 writeToClient.println(messageToClient);
@@ -280,19 +275,17 @@ public class Server {
                 otherClient.multiClientUserName = new String("");
 
             } else if (gameStatus == this.moveType) {
-                int [][] map = multiplayerGame.getBoard();
+                int[][] map = multiplayerGame.getBoard();
                 try {
-                            System.out.println(gameID);
-                            System.out.println(userID);
-                            gameDAO.setGameWinner(gameID, userID);
-                            gameDAO.updateGameMap(map, gameID);
-                            gameCotact.UpdateUserTolalScore(userName);
-                        } catch (SQLException ex) {
-                           ex.printStackTrace();
-                        }
-                
-                
-                
+                    System.out.println(gameID);
+                    System.out.println(userID);
+                    gameDAO.setGameWinner(gameID, userID);
+                    gameDAO.updateGameMap(map, gameID);
+                    gameCotact.UpdateUserTolalScore(userName);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
                 this.moveType = otherClient.moveType = 1;
                 String messageToClient = new String("over.1");
                 writeToClient.println(messageToClient);
@@ -311,6 +304,10 @@ public class Server {
 
         private void handleLogoutRequest() {
             clientsTable.remove(userName);
+            if (multiClientUserName.equals(new String("")) == false) {
+                multigameClose();
+            }
+
             closeConnection();
         }
 
@@ -331,9 +328,12 @@ public class Server {
         }
 
         private void multigameClose() {
+            
             ClientHandler otherClient = clientsTable.get(multiClientUserName);
             String messageToOtherClient = new String("multiclose");
             otherClient.writeToClient.println(messageToOtherClient);
+            this.clientStatus = true;
+            otherClient.clientStatus = true;
         }
 
         private void handleClientRequest(String messageFromClient) {
@@ -361,6 +361,8 @@ public class Server {
                         handleMultigameMoveRequest(tokens[1], tokens[2]);
                     } else if (tokens[0].equals(new String("state"))) {
                         handleStateRequest();
+                    } else if (tokens[0].equals(new String("multiclose"))) {
+                        multigameClose();
                     } else if (tokens[0].equals(new String("logout"))) {
                         handleLogoutRequest();
                     } else if (tokens[0].equals(new String("quit"))) {
@@ -409,12 +411,10 @@ public class Server {
         }
         return state;
     }
-    
-    public void dummie(AtomicInteger x)
-    {
+
+    public void dummie(AtomicInteger x) {
         System.out.println("xxxx = " + x.get());
-      
-    
+
     }
 }
 

@@ -18,7 +18,6 @@ public class Client {
     private ClientController controller;
     public boolean isConnectionSuccess;
 
-
     public Client(ClientController controller) {
 
         this.controller = controller;
@@ -45,14 +44,12 @@ public class Client {
                     while (true) {
                         messageFromServer = readFromServer.readLine();
                         System.out.println(".run 1()");
-try{
-                        handleServerReply(messageFromServer);
-}
-catch(Exception e)
-{
-e.printStackTrace();
-}    
-                    System.out.println(".run 2()");
+                        try {
+                            handleServerReply(messageFromServer);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println(".run 2()");
 
                     }
 
@@ -95,6 +92,8 @@ e.printStackTrace();
 
             controller.stateControl(state);
 
+        } else if (tokens[0].equals(new String("multiclose"))) {
+            controller.multiCloseControl();
         } else if (tokens[0].equals(new String("exit"))) {
             controller.exitControl();
             closeConnection();
@@ -206,6 +205,12 @@ e.printStackTrace();
         String messageToServer = new String("state.");
         writeToServer.println(messageToServer);
 
+    }
+
+    public void sendMultiCloseRequest() {
+
+        String messageToServer = new String("multiclose.");
+        writeToServer.println(messageToServer);
     }
 
 }

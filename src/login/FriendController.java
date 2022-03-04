@@ -35,6 +35,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
@@ -98,6 +99,8 @@ public class FriendController implements Initializable {
 
     @FXML
     private TextField userNameTexetField;
+@FXML private javafx.scene.control.Button 
+closeButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -269,9 +272,7 @@ public class FriendController implements Initializable {
 //                }
 //
 //            });
-
 //        }
-
 //try{
 //Thread.sleep(2000);
 //}
@@ -292,4 +293,67 @@ public class FriendController implements Initializable {
     void refresh_Action(ActionEvent event) {
         stateShow();
     }
+
+    public void serverClose(String s) {
+
+        if (s.equals(new String("1"))) {
+
+            javafx.application.Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("server closed !!!!!!!!");
+                        alert.setContentText(" ");
+                        alert.initStyle(StageStyle.UNDECORATED);
+//                    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+                        ButtonType buttonTypeOK = new ButtonType("OK", ButtonData.OK_DONE);
+//                    alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add(getClass().getResource("fxml.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == buttonTypeOK) {
+                            System.out.println("OK");
+
+                            status.set(1);
+
+
+                            BorderPane pane;
+                            pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
+                            topbar.getChildren().setAll(pane);
+
+
+ // get a handle to the stage
+
+
+//    Stage stage = (Stage) closeButton.getScene().getWindow();
+//    // do what you have to do
+//    stage.close();
+
+                            System.out.println("Status1 " + status);
+                        } else {
+                            status.set(0);
+                            BorderPane pane;
+                            pane = FXMLLoader.load(getClass().getResource("serverclose.fxml"));
+                            topbar.getChildren().setAll(pane);
+
+ 
+
+                        }
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    latchToWaitForJavaFx.countDown();
+                }
+
+            });
+
+        }
+    }
+
 }
