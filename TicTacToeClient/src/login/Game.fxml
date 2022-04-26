@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="topbar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1059.0" prefWidth="1940.0" style="-fx-background-color: #032358;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Game_v3Controller1">
    <top>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="193.0" prefWidth="1941.0" BorderPane.alignment="CENTER">
