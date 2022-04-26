@@ -180,7 +180,7 @@
    <right>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="627.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="Oscore" alignment="CENTER" opacity="0.96" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: F89A36;" textAlignment="CENTER" textFill="#0048ba" AnchorPane.leftAnchor="203.5" AnchorPane.topAnchor="30.0">
+            <Label fx:id="Oscore" alignment="CENTER" prefHeight="685.0" prefWidth="220.0" style="-fx-background-color: F89A36;" textAlignment="CENTER" textFill="#0048ba" AnchorPane.leftAnchor="203.5" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="System Bold" size="64.0" />
                </font>
